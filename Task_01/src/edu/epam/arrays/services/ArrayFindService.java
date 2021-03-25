@@ -2,9 +2,13 @@ package edu.epam.arrays.services;
 
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exceptions.ArrayCustomException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public final class ArrayFindService {
+    static Logger logger = LogManager.getLogger();
     private ArrayFindService(){}
     public static Integer findMin(Array array) throws ArrayCustomException {
         if (array == null){
@@ -18,6 +22,7 @@ public final class ArrayFindService {
             int element = array.getElementAt(i);
             min = Math.min(element, min);
         }
+        logger.log(Level.INFO, "Min element is " + min);
         return min;
     }
     public static Integer findMax(Array array) throws ArrayCustomException {
@@ -32,6 +37,7 @@ public final class ArrayFindService {
             int element = array.getElementAt(i);
             max = Math.max(element, max);
         }
+        logger.log(Level.INFO, "Max element is " + max);
         return max;
     }
 }

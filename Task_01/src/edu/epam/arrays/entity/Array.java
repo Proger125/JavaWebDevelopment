@@ -1,24 +1,31 @@
 package edu.epam.arrays.entity;
 
 import edu.epam.arrays.exceptions.ArrayCustomException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Array {
+    static Logger logger = LogManager.getLogger();
     private final Integer[] data;
     private final Integer size;
     public Array(int size){
         this.size = size;
         this.data = new Integer[size];
+        logger.log(Level.INFO, "Array was created");
     }
     public Array(Integer[] array){
         this.size = array.length;
         this.data = new Integer[this.size];
         System.arraycopy(array, 0, this.data, 0, this.size);
+        logger.log(Level.INFO, "Array was created");
     }
     public void setElementAt(Integer pos, Integer element) throws ArrayCustomException {
         if (pos < 0 || pos > this.data.length - 1){
             throw new ArrayCustomException("Position is out of range");
         }
         this.data[pos] = element;
+        logger.log(Level.INFO, "Element in position " + pos + " was changed");
     }
     public Integer getElementAt(Integer pos) throws ArrayCustomException {
         if (pos < 0 || pos > this.data.length - 1){

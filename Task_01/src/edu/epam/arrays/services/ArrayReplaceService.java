@@ -3,8 +3,12 @@ package edu.epam.arrays.services;
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exceptions.ArrayCustomException;
 import edu.epam.arrays.expressions.ArrayFunctionExpression;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class ArrayReplaceService {
+    static Logger logger = LogManager.getLogger();
     private ArrayReplaceService(){}
     public static void replaceElementsByExpression(Array array, ArrayFunctionExpression expression, Integer replacement) throws ArrayCustomException {
         if (array == null){
@@ -17,5 +21,6 @@ public final class ArrayReplaceService {
                 array.setElementAt(i, replacement);
             }
         }
+        logger.log(Level.INFO, "All replacements have been made");
     }
 }
