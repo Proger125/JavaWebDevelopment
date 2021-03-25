@@ -7,10 +7,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public final class ArrayFindService {
+public class ArrayFindService {
     static Logger logger = LogManager.getLogger();
-    private ArrayFindService(){}
-    public static Integer findMin(Array array) throws ArrayCustomException {
+    public ArrayFindService(){}
+    public Integer findMin(Array array) throws ArrayCustomException {
         if (array == null){
             throw new ArrayCustomException("Array is null");
         }

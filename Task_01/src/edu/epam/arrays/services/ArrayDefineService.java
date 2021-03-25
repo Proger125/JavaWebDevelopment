@@ -11,8 +11,8 @@ import java.util.Arrays;
 
 public final class ArrayDefineService {
     static Logger logger = LogManager.getLogger();
-    private ArrayDefineService(){}
-    public static Integer sum(Array array) throws ArrayCustomException {
+    public ArrayDefineService(){}
+    public Integer sum(Array array) throws ArrayCustomException {
         if (array == null){
             throw new ArrayCustomException("Array is null");
         }
@@ -26,7 +26,7 @@ public final class ArrayDefineService {
         logger.log(Level.INFO, "Sum of elements is " + sum);
         return sum;
     }
-    public static Integer countElementsByExpression(Array array, ArrayFunctionExpression expression) throws ArrayCustomException {
+    public Integer countElementsByExpression(Array array, ArrayFunctionExpression expression) throws ArrayCustomException {
         if (array == null){
             throw new ArrayCustomException("Array is null");
         }
@@ -42,7 +42,7 @@ public final class ArrayDefineService {
         logger.log(Level.INFO, "Count of elements by expression is " + count);
         return count;
     }
-    public static Integer defineAverageElement(Array array) throws ArrayCustomException {
+    public Integer defineAverageElement(Array array) throws ArrayCustomException {
         if (array == null){
             throw new ArrayCustomException("Array is null");
         }

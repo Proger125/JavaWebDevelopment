@@ -7,10 +7,10 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public final class ArrayReplaceService {
+public class ArrayReplaceService {
     static Logger logger = LogManager.getLogger();
-    private ArrayReplaceService(){}
-    public static void replaceElementsByExpression(Array array, ArrayFunctionExpression expression, Integer replacement) throws ArrayCustomException {
+    public ArrayReplaceService(){}
+    public void replaceElementsByExpression(Array array, ArrayFunctionExpression expression, Integer replacement) throws ArrayCustomException {
         if (array == null){
             throw new ArrayCustomException("Array is null");        }
         if (array.getSize() > 0){
