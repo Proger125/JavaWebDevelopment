@@ -1,4 +1,4 @@
-package edu.epam.arrays.services;
+package edu.epam.arrays.services.impl;
 
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exceptions.ArrayCustomException;
@@ -6,10 +6,10 @@ import edu.epam.arrays.expressions.ArrayFunctionExpression;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import edu.epam.arrays.services.*;
 import java.util.Arrays;
 
-public final class ArrayDefineService {
+public class ArrayDefineService implements IArrayDefineService{
     static Logger logger = LogManager.getLogger();
     public ArrayDefineService(){}
     public Integer sum(Array array) throws ArrayCustomException {
