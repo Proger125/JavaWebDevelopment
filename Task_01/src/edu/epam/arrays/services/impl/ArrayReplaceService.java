@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 
 public class ArrayReplaceService implements IArrayReplaceService {
     static Logger logger = LogManager.getLogger();
-    public ArrayReplaceService(){}
     public void replaceElementsByExpression(Array array, ArrayFunctionExpression expression, Integer replacement) throws ArrayCustomException {
         if (array == null){
             throw new ArrayCustomException("Array is null");        }

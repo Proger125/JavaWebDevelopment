@@ -11,7 +11,6 @@ import java.util.Arrays;
 
 public class ArrayDefineService implements IArrayDefineService{
     static Logger logger = LogManager.getLogger();
-    public ArrayDefineService(){}
     public Integer sum(Array array) throws ArrayCustomException {
         if (array == null){
             throw new ArrayCustomException("Array is null");
