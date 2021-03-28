@@ -14,7 +14,7 @@ public class ArrayFindService implements IArrayFindService {
         if (array == null){
             throw new ArrayCustomException("Array is null");
         }
-        if (array.getSize() > 0){
+        if (array.getSize() == 0){
             throw new ArrayCustomException("Array is empty");
         }
         Integer min = array.getElementAt(0);
@@ -29,7 +29,7 @@ public class ArrayFindService implements IArrayFindService {
         if (array == null){
             throw new ArrayCustomException("Array is null");
         }
-        if (array.getSize() > 0){
+        if (array.getSize() == 0){
             throw new ArrayCustomException("Array is empty");
         }
         Integer max = array.getElementAt(0);

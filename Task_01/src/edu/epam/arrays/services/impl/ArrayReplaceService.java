@@ -13,7 +13,7 @@ public class ArrayReplaceService implements IArrayReplaceService {
     public void replaceElementsByExpression(Array array, ArrayFunctionExpression expression, Integer replacement) throws ArrayCustomException {
         if (array == null){
             throw new ArrayCustomException("Array is null");        }
-        if (array.getSize() > 0){
+        if (array.getSize() == 0){
             throw new ArrayCustomException("Array is empty");
         }
         for (int i = 0; i < array.getSize(); i++){

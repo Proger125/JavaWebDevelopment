@@ -15,7 +15,7 @@ public class ArrayDefineService implements IArrayDefineService{
         if (array == null){
             throw new ArrayCustomException("Array is null");
         }
-        if (array.getSize() > 0){
+        if (array.getSize() == 0){
             throw new ArrayCustomException("Array is empty");
         }
         Integer sum = 0;
@@ -29,7 +29,7 @@ public class ArrayDefineService implements IArrayDefineService{
         if (array == null){
             throw new ArrayCustomException("Array is null");
         }
-        if (array.getSize() > 0){
+        if (array.getSize() == 0){
             throw new ArrayCustomException("Array is empty");
         }
         Integer count = 0;
@@ -45,7 +45,7 @@ public class ArrayDefineService implements IArrayDefineService{
         if (array == null){
             throw new ArrayCustomException("Array is null");
         }
-        if (array.getSize() > 0){
+        if (array.getSize() == 0){
             throw new ArrayCustomException("Array is empty");
         }
         Arrays.sort(array.getData());

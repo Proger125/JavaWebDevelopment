@@ -8,7 +8,10 @@ import org.apache.logging.log4j.Logger;
 public class Array {
     static Logger logger = LogManager.getLogger();
     private Integer[] data;
-    public Array(){}
+    public Array(){
+        this.data = new Integer[0];
+        logger.log(Level.INFO, "Array was created");
+    }
     public Array(int size){
         this.data = new Integer[size];
         logger.log(Level.INFO, "Array was created");
