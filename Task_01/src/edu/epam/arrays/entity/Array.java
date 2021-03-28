@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
+
 public class Array {
     static Logger logger = LogManager.getLogger();
     private Integer[] data;
