@@ -1,11 +1,9 @@
 package edu.epam.arrays.entity;
 
-import edu.epam.arrays.exceptions.ArrayCustomException;
+import edu.epam.arrays.exception.ArrayCustomException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Arrays;
 
 public class Array {
     static Logger logger = LogManager.getLogger();

@@ -1,12 +1,10 @@
 package edu.epam.arrays.reader;
 
-import edu.epam.arrays.exceptions.ArrayCustomException;
+import edu.epam.arrays.exception.ArrayCustomException;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
 
 public class ArrayReader {
     private FileReader reader;

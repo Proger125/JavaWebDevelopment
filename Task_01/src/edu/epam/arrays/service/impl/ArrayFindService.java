@@ -1,8 +1,8 @@
-package edu.epam.arrays.services.impl;
+package edu.epam.arrays.service.impl;
 
 import edu.epam.arrays.entity.Array;
-import edu.epam.arrays.exceptions.ArrayCustomException;
-import edu.epam.arrays.services.IArrayFindService;
+import edu.epam.arrays.exception.ArrayCustomException;
+import edu.epam.arrays.service.IArrayFindService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

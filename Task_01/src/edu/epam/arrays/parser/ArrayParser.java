@@ -1,10 +1,8 @@
 package edu.epam.arrays.parser;
 
 import edu.epam.arrays.entity.Array;
-import edu.epam.arrays.exceptions.ArrayCustomException;
+import edu.epam.arrays.exception.ArrayCustomException;
 import edu.epam.arrays.validator.IntValidator;
-
-import java.util.StringTokenizer;
 
 public class ArrayParser {
     public Array parseToArray(String[] data, String separator) throws ArrayCustomException {

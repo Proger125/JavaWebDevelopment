@@ -1,8 +1,8 @@
-package edu.epam.arrays.services;
+package edu.epam.arrays.service;
 
 import edu.epam.arrays.entity.Array;
-import edu.epam.arrays.exceptions.ArrayCustomException;
-import edu.epam.arrays.expressions.ArrayFunctionExpression;
+import edu.epam.arrays.exception.ArrayCustomException;
+import edu.epam.arrays.expression.ArrayFunctionExpression;
 
 public interface IArrayDefineService {
     Integer sum(Array array) throws ArrayCustomException;

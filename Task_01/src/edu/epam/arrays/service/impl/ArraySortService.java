@@ -1,8 +1,8 @@
-package edu.epam.arrays.services.impl;
+package edu.epam.arrays.service.impl;
 
 import edu.epam.arrays.entity.Array;
-import edu.epam.arrays.exceptions.ArrayCustomException;
-import edu.epam.arrays.services.IArraySortService;
+import edu.epam.arrays.exception.ArrayCustomException;
+import edu.epam.arrays.service.IArraySortService;
 
 public class ArraySortService implements IArraySortService {
 
