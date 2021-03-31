@@ -41,6 +41,12 @@ public class ArrayFindServiceTest {
         Integer actual = service.findMin(array1);
     }
     @Test
+    public void findMinStreamTestTrue() throws ArrayCustomException {
+        Integer expected = 1;
+        Integer actual = service.findMinStream(array);
+        assertEquals(actual, expected);
+    }
+    @Test
     public void findMaxTestTrue() throws ArrayCustomException{
         Integer expected = 5;
         Integer actual = service.findMax(array);

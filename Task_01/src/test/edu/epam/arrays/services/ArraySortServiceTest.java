@@ -3,6 +3,7 @@ package test.edu.epam.arrays.services;
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exception.ArrayCustomException;
 import edu.epam.arrays.service.impl.ArraySortService;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,13 +24,27 @@ public class ArraySortServiceTest {
     public void setUp(){
         sortService = new ArraySortService();
     }
+    @AfterClass
+    public void tearDown(){
+        sortService = null;
+    }
     @Test(dataProvider = "dataProviderFunction")
-    public void bubbleSortTest(Array data, Array expected) throws ArrayCustomException {
-        sortService.bubbleSort(data);
-        assertEquals(data, expected);
+    public void bubbleSortTestTrue(Array actual, Array expected) throws ArrayCustomException {
+        sortService.bubbleSort(actual);
+        assertEquals(actual, expected);
     }
     @Test(expectedExceptions = ArrayCustomException.class)
     public void bubbleSortTestException() throws ArrayCustomException {
+        Array array = null;
+        sortService.bubbleSort(array);
+    }
+    @Test(dataProvider = "dataProviderFunction")
+    public void insertionSortTestTrue(Array actual, Array expected) throws ArrayCustomException {
+        sortService.insertionSort(actual);
+        assertEquals(actual, expected);
+    }
+    @Test(expectedExceptions = ArrayCustomException.class)
+    public void insertionSortException() throws ArrayCustomException{
         Array array = null;
         sortService.bubbleSort(array);
     }

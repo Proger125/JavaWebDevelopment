@@ -47,4 +47,8 @@ public class ArrayDefineServiceTest {
         Integer actual = service.countElementsByExpression(array, (n)->n % 2 != 0);
         assertNotEquals(actual, expected);
     }
+    @Test(expectedExceptions = ArrayCustomException.class)
+    public void setElementTest() throws ArrayCustomException {
+        array.setElementAt(5, 2);
+    }
 }

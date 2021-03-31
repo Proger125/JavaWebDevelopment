@@ -25,6 +25,7 @@ public class Array {
     }
     public void setElementAt(Integer pos, Integer element) throws ArrayCustomException {
         if (pos < 0 || pos > this.data.length - 1){
+            logger.log(Level.ERROR, "Incorrect position");
             throw new ArrayCustomException("Position is out of range");
         }
         this.data[pos] = element;
@@ -72,5 +73,14 @@ public class Array {
         }
         builder.append("]");
         return builder.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int arrayHashCode = 0;
+        for (int i = 0; i < this.data.length; i++){
+            arrayHashCode += data[i].hashCode() * 1.05;
+        }
+        return arrayHashCode;
     }
 }
