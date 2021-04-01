@@ -6,4 +6,6 @@ import edu.epam.arrays.exception.ArrayCustomException;
 public interface IArrayFindService {
     Integer findMin(Array array) throws ArrayCustomException;
     Integer findMax(Array array) throws ArrayCustomException;
+    Integer findMinStream(Array array) throws ArrayCustomException;
+    Integer findMaxStream(Array array) throws ArrayCustomException;
 }

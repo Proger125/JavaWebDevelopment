@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Array {
     static Logger logger = LogManager.getLogger();
-    private Integer[] data;
+    private final Integer[] data;
     public Array(){
         this.data = new Integer[0];
         logger.log(Level.INFO, "Array was created");
@@ -42,6 +42,13 @@ public class Array {
         Integer[] array = new Integer[this.data.length];
         System.arraycopy(this.data, 0, array, 0, array.length);
         return array;
+    }
+    public int[] getIntData(){
+        int[] result = new int[this.data.length];
+        for (int i = 0; i < result.length; i++){
+            result[i] = this.data[i];
+        }
+        return result;
     }
     @Override
     public boolean equals(Object obj) {

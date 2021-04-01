@@ -306,3 +306,144 @@
 2021-03-31 13:35:40 [main] ERROR edu.epam.arrays.entity.Array- Incorrect position
 2021-03-31 13:51:15 [main] INFO  edu.epam.arrays.entity.Array- Array was created
 2021-03-31 13:53:09 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 13:59:14 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:00:33 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:00:33 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:00:33 [main] INFO  epam.arrays.service.impl.ArrayFindService- Max element is 5
+2021-03-31 14:00:33 [main] INFO  epam.arrays.service.impl.ArrayFindService- Max element is 5
+2021-03-31 14:00:33 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:00:33 [main] INFO  epam.arrays.service.impl.ArrayFindService- Min element is 1
+2021-03-31 14:00:33 [main] INFO  epam.arrays.service.impl.ArrayFindService- Min element is 1
+2021-03-31 14:01:37 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:01:38 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:01:38 [main] INFO  epam.arrays.service.impl.ArrayFindService- Max element is 5
+2021-03-31 14:01:38 [main] INFO  epam.arrays.service.impl.ArrayFindService- Max element is 5
+2021-03-31 14:01:38 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:01:38 [main] INFO  epam.arrays.service.impl.ArrayFindService- Min element is 1
+2021-03-31 14:01:38 [main] INFO  epam.arrays.service.impl.ArrayFindService- Min element is 1
+2021-03-31 14:02:51 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:02:51 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:02:51 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:02:51 [main] INFO  epam.arrays.service.impl.ArrayFindService- Max element is 5
+2021-03-31 14:02:51 [main] INFO  epam.arrays.service.impl.ArrayFindService- Max element is 5
+2021-03-31 14:02:51 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:02:51 [main] INFO  epam.arrays.service.impl.ArrayFindService- Min element is 1
+2021-03-31 14:02:51 [main] INFO  epam.arrays.service.impl.ArrayFindService- Min element is 1
+2021-03-31 14:04:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:04:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:04:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:04:01 [main] INFO  epam.arrays.service.impl.ArrayFindService- Max element is 5
+2021-03-31 14:04:01 [main] INFO  epam.arrays.service.impl.ArrayFindService- Max element is 5
+2021-03-31 14:04:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:04:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:04:01 [main] INFO  epam.arrays.service.impl.ArrayFindService- Min element is 1
+2021-03-31 14:04:01 [main] INFO  epam.arrays.service.impl.ArrayFindService- Min element is 1
+2021-03-31 14:11:07 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:11:07 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of elements is 15
+2021-03-31 14:13:04 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:13:04 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of element is 15
+2021-03-31 14:14:43 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:14:43 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Count of elements by expression is 3
+2021-03-31 14:14:43 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Count of elements by expression is 2
+2021-03-31 14:14:43 [main] ERROR edu.epam.arrays.entity.Array- Incorrect position
+2021-03-31 14:14:43 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 14:14:43 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of element is 15
+2021-03-31 14:14:43 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of elements is 15
+2021-03-31 14:14:43 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of elements is 15
+2021-03-31 14:14:43 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of elements is 15
+2021-03-31 22:13:13 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:14:23 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:15:53 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:15:53 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Count of elements by expression is 3
+2021-03-31 22:15:53 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Count of elements by expression is 2
+2021-03-31 22:15:53 [main] ERROR edu.epam.arrays.entity.Array- Incorrect position
+2021-03-31 22:15:53 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:15:53 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of element is 15
+2021-03-31 22:15:53 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of elements is 15
+2021-03-31 22:15:53 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of elements is 15
+2021-03-31 22:15:53 [main] INFO  epam.arrays.service.impl.ArrayDefineService- Sum of elements is 15
+2021-03-31 22:23:25 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:55:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:55:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:55:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:55:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:55:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:55:01 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 22:55:01 [main] INFO  epam.arrays.service.impl.ArraySortService- Array was sorted
+2021-03-31 22:55:01 [main] INFO  epam.arrays.service.impl.ArraySortService- Array was sorted
+2021-03-31 22:55:01 [main] INFO  epam.arrays.service.impl.ArraySortService- Array was sorted
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 4 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  epam.arrays.service.impl.ArraySortService- Array was sorted
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 4 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  epam.arrays.service.impl.ArraySortService- Array was sorted
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 4 was changed
+2021-03-31 23:11:24 [main] INFO  epam.arrays.service.impl.ArraySortService- Array was sorted
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Array was created
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 4 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  epam.arrays.service.impl.ArraySortService- Array was sorted
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 0 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 4 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  epam.arrays.service.impl.ArraySortService- Array was sorted
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 1 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 2 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 4 was changed
+2021-03-31 23:11:24 [main] INFO  edu.epam.arrays.entity.Array- Element in position 3 was changed
+2021-03-31 23:11:24 [main] INFO  epam.arrays.service.impl.ArraySortService- Array was sorted

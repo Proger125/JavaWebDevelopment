@@ -12,8 +12,11 @@ public class ArrayReplaceService implements IArrayReplaceService {
     static Logger logger = LogManager.getLogger();
     public void replaceElementsByExpression(Array array, ArrayFunctionExpression expression, Integer replacement) throws ArrayCustomException {
         if (array == null){
-            throw new ArrayCustomException("Array is null");        }
+            logger.log(Level.ERROR, "Array is null");
+            throw new ArrayCustomException("Array is null");
+        }
         if (array.getSize() == 0){
+            logger.log(Level.ERROR, "Array is empty");
             throw new ArrayCustomException("Array is empty");
         }
         for (int i = 0; i < array.getSize(); i++){

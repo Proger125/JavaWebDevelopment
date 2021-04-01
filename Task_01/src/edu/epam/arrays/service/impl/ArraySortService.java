@@ -7,11 +7,14 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+
 public class ArraySortService implements IArraySortService {
     static Logger logger = LogManager.getLogger();
     @Override
     public void bubbleSort(Array array) throws ArrayCustomException {
         if (array == null){
+            logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
         }
         if (array.getSize() <= 1){
@@ -36,6 +39,7 @@ public class ArraySortService implements IArraySortService {
     @Override
     public void insertionSort(Array array) throws ArrayCustomException {
         if (array == null){
+            logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
         }
         if (array.getSize() <= 1){
@@ -56,6 +60,7 @@ public class ArraySortService implements IArraySortService {
     @Override
     public void selectionSort(Array array) throws ArrayCustomException {
         if (array == null){
+            logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
         }
         if (array.getSize() <= 1){

@@ -36,6 +36,23 @@ public class ArrayDefineServiceTest {
         assertNotEquals(actual, expected);
     }
     @Test
+    public void sumStreamTestTrue() throws ArrayCustomException{
+        Integer expected = 15;
+        Integer actual = service.sum(array);
+        assertEquals(actual, expected);
+    }
+    @Test
+    public void sumStreamTestFalse() throws ArrayCustomException{
+        Integer expected = 10;
+        Integer actual = service.sumStream(array);
+        assertNotEquals(actual, expected);
+    }
+    @Test(expectedExceptions = ArrayCustomException.class)
+    public void sumStreamTestException() throws ArrayCustomException {
+        Array array1 = new Array();
+        Integer actual = service.sumStream(array1);
+    }
+    @Test
     public void countElementsByExpressionTestTrue() throws ArrayCustomException {
         Integer expected = 2;
         Integer actual = service.countElementsByExpression(array, (n)->n % 2 == 0);
@@ -47,8 +64,20 @@ public class ArrayDefineServiceTest {
         Integer actual = service.countElementsByExpression(array, (n)->n % 2 != 0);
         assertNotEquals(actual, expected);
     }
+    @Test
+    public void countElementsByExpressionStream() throws ArrayCustomException{
+        Long expected = 2L;
+        Long actual = service.countElementsByExpressionStream(array, (a) -> a % 2 == 0);
+        assertEquals(actual, expected);
+    }
     @Test(expectedExceptions = ArrayCustomException.class)
     public void setElementTest() throws ArrayCustomException {
         array.setElementAt(5, 2);
+    }
+    @Test
+    public void defineAverageInArrayStreamTestTrue() throws ArrayCustomException {
+        Double expected = 3.0;
+        Double actual = service.defineAverageInArrayStream(array);
+        assertEquals(actual, expected);
     }
 }

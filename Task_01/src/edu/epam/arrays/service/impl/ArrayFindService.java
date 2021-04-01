@@ -8,16 +8,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 
 public class ArrayFindService implements IArrayFindService {
     static Logger logger = LogManager.getLogger();
     public Integer findMin(Array array) throws ArrayCustomException {
         if (array == null){
+            logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
         }
         if (array.getSize() == 0){
+            logger.log(Level.ERROR, "Array is empty");
             throw new ArrayCustomException("Array is empty");
         }
         Integer min = array.getElementAt(0);
@@ -30,20 +31,20 @@ public class ArrayFindService implements IArrayFindService {
     }
     public Integer findMinStream(Array array) throws ArrayCustomException{
         if (array == null){
+            logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
         }
         if (array.getSize() == 0){
+            logger.log(Level.ERROR, "Array is empty");
             throw new ArrayCustomException("Array is empty");
         }
-        int[] data = new int[array.getSize()];
-        for (int i = 0; i < array.getSize(); i++){
-            data[i] = array.getElementAt(i);
-        }
-        Integer min = Arrays.stream(data).min().getAsInt();
+        Integer min = Arrays.stream(array.getIntData()).min().getAsInt();
+        logger.log(Level.INFO, "Min element is " + min);
         return min;
     }
     public Integer findMax(Array array) throws ArrayCustomException {
         if (array == null){
+            logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
         }
         if (array.getSize() == 0){
@@ -54,6 +55,19 @@ public class ArrayFindService implements IArrayFindService {
             int element = array.getElementAt(i);
             max = Math.max(element, max);
         }
+        logger.log(Level.INFO, "Max element is " + max);
+        return max;
+    }
+    public Integer findMaxStream(Array array) throws ArrayCustomException{
+        if (array == null){
+            logger.log(Level.ERROR, "Array is null");
+            throw new ArrayCustomException("Array is null");
+        }
+        if (array.getSize() == 0){
+            logger.log(Level.ERROR, "Array is empty");
+            throw new ArrayCustomException("Array is empty");
+        }
+        Integer max = Arrays.stream(array.getIntData()).max().getAsInt();
         logger.log(Level.INFO, "Max element is " + max);
         return max;
     }

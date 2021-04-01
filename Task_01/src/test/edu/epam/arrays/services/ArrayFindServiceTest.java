@@ -47,6 +47,17 @@ public class ArrayFindServiceTest {
         assertEquals(actual, expected);
     }
     @Test
+    public void findMinStreamTestFalse() throws ArrayCustomException{
+        Integer expected = 2;
+        Integer actual = service.findMinStream(array);
+        assertNotEquals(actual, expected);
+    }
+    @Test(expectedExceptions = ArrayCustomException.class)
+    public void findMinStreamTestException() throws ArrayCustomException {
+        Array array1 = new Array();
+        Integer actual = service.findMinStream(array1);
+    }
+    @Test
     public void findMaxTestTrue() throws ArrayCustomException{
         Integer expected = 5;
         Integer actual = service.findMax(array);
@@ -62,5 +73,22 @@ public class ArrayFindServiceTest {
     public void findMaxTestException() throws ArrayCustomException{
         Array array1 = new Array();
         Integer actual = service.findMax(array1);
+    }
+    @Test
+    public void findMaxStreamTestTrue() throws ArrayCustomException{
+        Integer expected = 5;
+        Integer actual = service.findMaxStream(array);
+        assertEquals(actual, expected);
+    }
+    @Test
+    public void findMaxStreamTestFalse() throws ArrayCustomException{
+        Integer expected = 4;
+        Integer actual = service.findMinStream(array);
+        assertNotEquals(actual, expected);
+    }
+    @Test(expectedExceptions = ArrayCustomException.class)
+    public void findMaxStreamTestException() throws ArrayCustomException{
+        Array array1 = new Array();
+        Integer actual = service.findMaxStream(array1);
     }
 }
