@@ -34,6 +34,7 @@ public class Array {
 
     public Integer getElementAt(Integer pos) throws ArrayCustomException {
         if (pos < 0 || pos > this.data.length - 1){
+            logger.log(Level.ERROR, "Position is out of range");
             throw new ArrayCustomException("Position is out of range");
         }
         return this.data[pos];
