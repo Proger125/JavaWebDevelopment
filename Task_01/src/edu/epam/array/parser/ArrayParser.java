@@ -17,7 +17,7 @@ public class ArrayParser {
             Integer[] array = new Integer[tokens.length];
             boolean isCorrectString = true;
             for (int i = 0; i < tokens.length; i++){
-                if (IntValidator.isValidate(tokens[i])){
+                if (IntValidator.isIntValid(tokens[i])){
                     array[i] = parseToInt(tokens[i]);
                 }else{
                     isCorrectString = false;

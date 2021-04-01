@@ -43,3 +43,7 @@
 2021-04-01 17:58:09 [main] INFO  edu.epam.arrays.entity.IntArray- Element in position 1 was changed
 2021-04-01 17:58:09 [main] INFO  edu.epam.arrays.entity.IntArray- Element in position 3 was changed
 2021-04-01 17:58:09 [main] INFO  epam.arrays.service.impl.ArrayReplaceServiceImpl- All replacements have been made
+2021-04-01 18:07:20 [main] INFO  edu.epam.array.entity.IntArray- Array was created
+2021-04-01 18:07:20 [main] INFO  edu.epam.array.entity.IntArray- Array was created
+2021-04-01 18:07:20 [main] INFO  edu.epam.array.entity.IntArray- Array was created
+2021-04-01 18:07:20 [main] INFO  edu.epam.array.entity.IntArray- Array was created

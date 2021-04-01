@@ -2,7 +2,7 @@ package edu.epam.array.validator;
 
 public final class IntValidator {
     private IntValidator(){}
-    public static boolean isValidate(String data){
+    public static boolean isIntValid(String data){
         try{
             Integer.parseInt(data);
             return true;
