@@ -16,9 +16,11 @@ public class ArrayParser {
             String[] tokens = data[k].split(separator);
             Integer[] array = new Integer[tokens.length];
             boolean isCorrectString = true;
-            for (int i = 0; i < tokens.length; i++){
+            int i = 0;
+            while (i < tokens.length){
                 if (IntValidator.isIntValid(tokens[i])){
                     array[i] = parseToInt(tokens[i]);
+                    i++;
                 }else{
                     isCorrectString = false;
                     break;
@@ -26,8 +28,6 @@ public class ArrayParser {
             }
             if (isCorrectString){
                 return new IntArray(array);
-            }else{
-                continue;
             }
         }
         throw new ArrayCustomException("There is no correct string in the data");
