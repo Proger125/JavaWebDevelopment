@@ -2,7 +2,7 @@ package test.edu.epam.arrays.services;
 
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.service.impl.ArrayDefineService;
+import edu.epam.arrays.service.impl.ArrayDefineServiceImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,11 +12,11 @@ import static org.testng.Assert.assertNotEquals;
 
 public class ArrayDefineServiceTest {
     Array array;
-    ArrayDefineService service;
+    ArrayDefineServiceImpl service;
     @BeforeClass
     public void setUp(){
         array = new Array(1, 2, 3, 4, 5);
-        service = new ArrayDefineService();
+        service = new ArrayDefineServiceImpl();
     }
     @AfterClass
     public void tearDown(){
@@ -69,10 +69,6 @@ public class ArrayDefineServiceTest {
         Long expected = 2L;
         Long actual = service.countElementsByExpressionStream(array, (a) -> a % 2 == 0);
         assertEquals(actual, expected);
-    }
-    @Test(expectedExceptions = ArrayCustomException.class)
-    public void setElementTest() throws ArrayCustomException {
-        array.setElementAt(5, 2);
     }
     @Test
     public void defineAverageInArrayStreamTestTrue() throws ArrayCustomException {

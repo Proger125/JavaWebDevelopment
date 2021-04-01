@@ -2,7 +2,7 @@ package edu.epam.arrays.service.impl;
 
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.service.IArrayFindService;
+import edu.epam.arrays.service.ArrayFindService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 
 
-public class ArrayFindService implements IArrayFindService {
+public class ArrayFindServiceImpl implements ArrayFindService {
     static Logger logger = LogManager.getLogger();
     public Integer findMin(Array array) throws ArrayCustomException {
         if (array == null){

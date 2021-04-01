@@ -2,7 +2,7 @@ package test.edu.epam.arrays.services;
 
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.service.impl.ArraySortService;
+import edu.epam.arrays.service.impl.ArraySortServiceImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 public class ArraySortServiceTest {
-    ArraySortService sortService;
+    ArraySortServiceImpl sortService;
     @DataProvider
     public Object[][] dataProviderFunction(){
         return new Object[][]{
@@ -22,7 +22,7 @@ public class ArraySortServiceTest {
     }
     @BeforeClass
     public void setUp(){
-        sortService = new ArraySortService();
+        sortService = new ArraySortServiceImpl();
     }
     @AfterClass
     public void tearDown(){

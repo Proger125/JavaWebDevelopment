@@ -2,14 +2,14 @@ package edu.epam.arrays.service.impl;
 
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.service.IArraySortService;
+import edu.epam.arrays.service.ArraySortService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
 
-public class ArraySortService implements IArraySortService {
+public class ArraySortServiceImpl implements ArraySortService {
     static Logger logger = LogManager.getLogger();
     @Override
     public void bubbleSort(Array array) throws ArrayCustomException {

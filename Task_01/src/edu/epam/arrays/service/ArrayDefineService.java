@@ -6,7 +6,7 @@ import edu.epam.arrays.expression.ArrayFunctionExpression;
 
 import java.util.function.IntPredicate;
 
-public interface IArrayDefineService {
+public interface ArrayDefineService {
     Integer sum(Array array) throws ArrayCustomException;
     Integer sumStream(Array array) throws ArrayCustomException;
     Integer countElementsByExpression(Array array, ArrayFunctionExpression expression) throws ArrayCustomException;

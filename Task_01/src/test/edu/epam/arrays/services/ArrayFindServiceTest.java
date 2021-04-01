@@ -2,7 +2,7 @@ package test.edu.epam.arrays.services;
 
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.service.impl.ArrayFindService;
+import edu.epam.arrays.service.impl.ArrayFindServiceImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,11 +12,11 @@ import static org.testng.Assert.assertNotEquals;
 
 public class ArrayFindServiceTest {
     Array array;
-    ArrayFindService service;
+    ArrayFindServiceImpl service;
     @BeforeClass
     public void setUp(){
         array = new Array(1, 2, 3, 4, 5);
-        service = new ArrayFindService();
+        service = new ArrayFindServiceImpl();
     }
     @AfterClass
     public void tearDown(){

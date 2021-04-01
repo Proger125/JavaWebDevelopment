@@ -2,7 +2,7 @@ package test.edu.epam.arrays.services;
 
 import edu.epam.arrays.entity.Array;
 import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.service.impl.ArrayReplaceService;
+import edu.epam.arrays.service.impl.ArrayReplaceServiceImpl;
 import org.testng.annotations.*;
 
 import static org.testng.Assert.assertEquals;
@@ -10,11 +10,11 @@ import static org.testng.Assert.assertNotEquals;
 
 public class ArrayReplaceServiceTest {
     Array array;
-    ArrayReplaceService service;
+    ArrayReplaceServiceImpl service;
     @BeforeMethod
     public void setUp(){
         array = new Array(1, 2, 3, 4, 5);
-        service = new ArrayReplaceService();
+        service = new ArrayReplaceServiceImpl();
     }
     @AfterMethod
     public void tearDown(){

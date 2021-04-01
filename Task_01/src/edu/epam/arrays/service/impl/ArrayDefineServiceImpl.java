@@ -10,7 +10,7 @@ import edu.epam.arrays.service.*;
 import java.util.Arrays;
 import java.util.function.IntPredicate;
 
-public class ArrayDefineService implements IArrayDefineService{
+public class ArrayDefineServiceImpl implements ArrayDefineService {
     static Logger logger = LogManager.getLogger();
     public Integer sum(Array array) throws ArrayCustomException {
         if (array == null){
