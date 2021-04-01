@@ -1,8 +1,8 @@
-package edu.epam.arrays.service;
+package edu.epam.array.service;
 
-import edu.epam.arrays.entity.IntArray;
-import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.expression.ArrayFunctionExpression;
+import edu.epam.array.entity.IntArray;
+import edu.epam.array.exception.ArrayCustomException;
+import edu.epam.array.expression.ArrayFunctionExpression;
 
 import java.util.function.IntPredicate;
 

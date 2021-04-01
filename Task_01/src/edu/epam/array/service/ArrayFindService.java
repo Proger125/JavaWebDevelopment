@@ -1,7 +1,7 @@
-package edu.epam.arrays.service;
+package edu.epam.array.service;
 
-import edu.epam.arrays.entity.IntArray;
-import edu.epam.arrays.exception.ArrayCustomException;
+import edu.epam.array.entity.IntArray;
+import edu.epam.array.exception.ArrayCustomException;
 
 public interface ArrayFindService {
     Integer findMin(IntArray array) throws ArrayCustomException;

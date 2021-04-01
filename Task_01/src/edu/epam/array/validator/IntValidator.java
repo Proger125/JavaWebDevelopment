@@ -1,4 +1,4 @@
-package edu.epam.arrays.validator;
+package edu.epam.array.validator;
 
 public final class IntValidator {
     private IntValidator(){}

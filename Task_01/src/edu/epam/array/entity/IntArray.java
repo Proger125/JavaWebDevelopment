@@ -1,6 +1,6 @@
-package edu.epam.arrays.entity;
+package edu.epam.array.entity;
 
-import edu.epam.arrays.exception.ArrayCustomException;
+import edu.epam.array.exception.ArrayCustomException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

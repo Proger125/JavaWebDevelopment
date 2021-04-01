@@ -1,8 +1,8 @@
-package edu.epam.arrays.parser;
+package edu.epam.array.parser;
 
-import edu.epam.arrays.entity.IntArray;
-import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.validator.IntValidator;
+import edu.epam.array.entity.IntArray;
+import edu.epam.array.exception.ArrayCustomException;
+import edu.epam.array.validator.IntValidator;
 
 public class ArrayParser {
     public IntArray parseToArray(String[] data, String separator) throws ArrayCustomException {

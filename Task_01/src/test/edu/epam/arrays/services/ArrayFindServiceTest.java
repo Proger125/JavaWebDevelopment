@@ -1,8 +1,8 @@
 package test.edu.epam.arrays.services;
 
-import edu.epam.arrays.entity.IntArray;
-import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.service.impl.ArrayFindServiceImpl;
+import edu.epam.array.entity.IntArray;
+import edu.epam.array.exception.ArrayCustomException;
+import edu.epam.array.service.impl.ArrayFindServiceImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

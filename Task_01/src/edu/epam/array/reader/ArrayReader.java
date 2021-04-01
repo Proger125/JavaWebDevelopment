@@ -1,8 +1,7 @@
-package edu.epam.arrays.reader;
+package edu.epam.array.reader;
 
-import edu.epam.arrays.exception.ArrayCustomException;
+import edu.epam.array.exception.ArrayCustomException;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;

@@ -1,9 +1,9 @@
 package test.edu.epam.arrays.io;
 
-import edu.epam.arrays.entity.IntArray;
-import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.parser.ArrayParser;
-import edu.epam.arrays.reader.ArrayReader;
+import edu.epam.array.entity.IntArray;
+import edu.epam.array.exception.ArrayCustomException;
+import edu.epam.array.parser.ArrayParser;
+import edu.epam.array.reader.ArrayReader;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

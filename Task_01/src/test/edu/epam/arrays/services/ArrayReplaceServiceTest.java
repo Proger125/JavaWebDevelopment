@@ -1,8 +1,8 @@
 package test.edu.epam.arrays.services;
 
-import edu.epam.arrays.entity.IntArray;
-import edu.epam.arrays.exception.ArrayCustomException;
-import edu.epam.arrays.service.impl.ArrayReplaceServiceImpl;
+import edu.epam.array.entity.IntArray;
+import edu.epam.array.exception.ArrayCustomException;
+import edu.epam.array.service.impl.ArrayReplaceServiceImpl;
 import org.testng.annotations.*;
 
 import static org.testng.Assert.assertEquals;
