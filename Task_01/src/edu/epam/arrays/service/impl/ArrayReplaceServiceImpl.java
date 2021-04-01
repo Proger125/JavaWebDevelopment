@@ -1,6 +1,6 @@
 package edu.epam.arrays.service.impl;
 
-import edu.epam.arrays.entity.Array;
+import edu.epam.arrays.entity.IntArray;
 import edu.epam.arrays.exception.ArrayCustomException;
 import edu.epam.arrays.expression.ArrayFunctionExpression;
 import edu.epam.arrays.service.ArrayReplaceService;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ArrayReplaceServiceImpl implements ArrayReplaceService {
     static Logger logger = LogManager.getLogger();
-    public void replaceElementsByExpression(Array array, ArrayFunctionExpression expression, Integer replacement) throws ArrayCustomException {
+    public void replaceElementsByExpression(IntArray array, ArrayFunctionExpression expression, Integer replacement) throws ArrayCustomException {
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");

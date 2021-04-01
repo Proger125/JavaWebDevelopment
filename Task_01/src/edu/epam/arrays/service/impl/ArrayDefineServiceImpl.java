@@ -1,6 +1,6 @@
 package edu.epam.arrays.service.impl;
 
-import edu.epam.arrays.entity.Array;
+import edu.epam.arrays.entity.IntArray;
 import edu.epam.arrays.exception.ArrayCustomException;
 import edu.epam.arrays.expression.ArrayFunctionExpression;
 import org.apache.logging.log4j.Level;
@@ -12,7 +12,7 @@ import java.util.function.IntPredicate;
 
 public class ArrayDefineServiceImpl implements ArrayDefineService {
     static Logger logger = LogManager.getLogger();
-    public Integer sum(Array array) throws ArrayCustomException {
+    public Integer sum(IntArray array) throws ArrayCustomException {
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -28,7 +28,7 @@ public class ArrayDefineServiceImpl implements ArrayDefineService {
         logger.log(Level.INFO, "Sum of elements is " + sum);
         return sum;
     }
-    public Integer sumStream(Array array) throws ArrayCustomException{
+    public Integer sumStream(IntArray array) throws ArrayCustomException{
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -41,7 +41,7 @@ public class ArrayDefineServiceImpl implements ArrayDefineService {
         logger.log(Level.INFO, "Sum of element is " + sum);
         return sum;
     }
-    public Integer countElementsByExpression(Array array, ArrayFunctionExpression expression) throws ArrayCustomException {
+    public Integer countElementsByExpression(IntArray array, ArrayFunctionExpression expression) throws ArrayCustomException {
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -59,7 +59,7 @@ public class ArrayDefineServiceImpl implements ArrayDefineService {
         logger.log(Level.INFO, "Count of elements by expression is " + count);
         return count;
     }
-    public Long countElementsByExpressionStream(Array array, IntPredicate predicate) throws ArrayCustomException{
+    public Long countElementsByExpressionStream(IntArray array, IntPredicate predicate) throws ArrayCustomException{
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -72,7 +72,7 @@ public class ArrayDefineServiceImpl implements ArrayDefineService {
         logger.log(Level.INFO, "Count elements: " + count);
         return count;
     }
-    public Integer defineAverageElement(Array array) throws ArrayCustomException {
+    public Integer defineAverageElement(IntArray array) throws ArrayCustomException {
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -85,7 +85,7 @@ public class ArrayDefineServiceImpl implements ArrayDefineService {
         logger.log(Level.INFO, "Average elements is " + array.getElementAt(array.getSize() / 2));
         return array.getElementAt(array.getSize() / 2);
     }
-    public Double defineAverageInArrayStream(Array array) throws ArrayCustomException{
+    public Double defineAverageInArrayStream(IntArray array) throws ArrayCustomException{
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");

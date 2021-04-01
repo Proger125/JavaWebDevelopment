@@ -1,11 +1,11 @@
 package edu.epam.arrays.parser;
 
-import edu.epam.arrays.entity.Array;
+import edu.epam.arrays.entity.IntArray;
 import edu.epam.arrays.exception.ArrayCustomException;
 import edu.epam.arrays.validator.IntValidator;
 
 public class ArrayParser {
-    public Array parseToArray(String[] data, String separator) throws ArrayCustomException {
+    public IntArray parseToArray(String[] data, String separator) throws ArrayCustomException {
         if (data == null){
             throw new ArrayCustomException("String is null");
         }
@@ -25,7 +25,7 @@ public class ArrayParser {
                 }
             }
             if (isCorrectString){
-                return new Array(array);
+                return new IntArray(array);
             }else{
                 continue;
             }

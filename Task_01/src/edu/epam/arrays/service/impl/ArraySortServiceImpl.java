@@ -1,6 +1,6 @@
 package edu.epam.arrays.service.impl;
 
-import edu.epam.arrays.entity.Array;
+import edu.epam.arrays.entity.IntArray;
 import edu.epam.arrays.exception.ArrayCustomException;
 import edu.epam.arrays.service.ArraySortService;
 import org.apache.logging.log4j.Level;
@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 public class ArraySortServiceImpl implements ArraySortService {
     static Logger logger = LogManager.getLogger();
     @Override
-    public void bubbleSort(Array array) throws ArrayCustomException {
+    public void bubbleSort(IntArray array) throws ArrayCustomException {
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -37,7 +37,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     }
 
     @Override
-    public void insertionSort(Array array) throws ArrayCustomException {
+    public void insertionSort(IntArray array) throws ArrayCustomException {
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -58,7 +58,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     }
 
     @Override
-    public void selectionSort(Array array) throws ArrayCustomException {
+    public void selectionSort(IntArray array) throws ArrayCustomException {
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");

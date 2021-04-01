@@ -1,6 +1,6 @@
 package test.edu.epam.arrays.services;
 
-import edu.epam.arrays.entity.Array;
+import edu.epam.arrays.entity.IntArray;
 import edu.epam.arrays.exception.ArrayCustomException;
 import edu.epam.arrays.service.impl.ArrayDefineServiceImpl;
 import org.testng.annotations.AfterClass;
@@ -11,11 +11,11 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
 public class ArrayDefineServiceTest {
-    Array array;
+    IntArray array;
     ArrayDefineServiceImpl service;
     @BeforeClass
     public void setUp(){
-        array = new Array(1, 2, 3, 4, 5);
+        array = new IntArray(1, 2, 3, 4, 5);
         service = new ArrayDefineServiceImpl();
     }
     @AfterClass
@@ -49,7 +49,7 @@ public class ArrayDefineServiceTest {
     }
     @Test(expectedExceptions = ArrayCustomException.class)
     public void sumStreamTestException() throws ArrayCustomException {
-        Array array1 = new Array();
+        IntArray array1 = new IntArray();
         Integer actual = service.sumStream(array1);
     }
     @Test

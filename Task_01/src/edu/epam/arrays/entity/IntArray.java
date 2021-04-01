@@ -5,18 +5,18 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Array {
+public class IntArray {
     static Logger logger = LogManager.getLogger();
     private final Integer[] data;
-    public Array(){
+    public IntArray(){
         this.data = new Integer[0];
         logger.log(Level.INFO, "Array was created");
     }
-    public Array(int size){
+    public IntArray(int size){
         this.data = new Integer[size];
         logger.log(Level.INFO, "Array was created");
     }
-    public Array(Integer...values){
+    public IntArray(Integer...values){
         this.data = values;
         logger.log(Level.INFO, "Array was created");
     }
@@ -59,7 +59,7 @@ public class Array {
         if (obj.getClass() != this.getClass()){
             return false;
         }
-        Array array = (Array) obj;
+        IntArray array = (IntArray) obj;
         if (this.data.length == array.data.length){
             for (int i = 0; i < this.data.length; i++){
                 if (!this.data[i].equals(array.data[i])){

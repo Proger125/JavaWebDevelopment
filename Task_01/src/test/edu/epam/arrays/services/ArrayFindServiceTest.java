@@ -1,6 +1,6 @@
 package test.edu.epam.arrays.services;
 
-import edu.epam.arrays.entity.Array;
+import edu.epam.arrays.entity.IntArray;
 import edu.epam.arrays.exception.ArrayCustomException;
 import edu.epam.arrays.service.impl.ArrayFindServiceImpl;
 import org.testng.annotations.AfterClass;
@@ -11,11 +11,11 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
 public class ArrayFindServiceTest {
-    Array array;
+    IntArray array;
     ArrayFindServiceImpl service;
     @BeforeClass
     public void setUp(){
-        array = new Array(1, 2, 3, 4, 5);
+        array = new IntArray(1, 2, 3, 4, 5);
         service = new ArrayFindServiceImpl();
     }
     @AfterClass
@@ -37,7 +37,7 @@ public class ArrayFindServiceTest {
     }
     @Test(expectedExceptions = ArrayCustomException.class)
     public void findMinTestException() throws ArrayCustomException {
-        Array array1 = new Array();
+        IntArray array1 = new IntArray();
         Integer actual = service.findMin(array1);
     }
     @Test
@@ -54,7 +54,7 @@ public class ArrayFindServiceTest {
     }
     @Test(expectedExceptions = ArrayCustomException.class)
     public void findMinStreamTestException() throws ArrayCustomException {
-        Array array1 = new Array();
+        IntArray array1 = new IntArray();
         Integer actual = service.findMinStream(array1);
     }
     @Test
@@ -71,7 +71,7 @@ public class ArrayFindServiceTest {
     }
     @Test(expectedExceptions = ArrayCustomException.class)
     public void findMaxTestException() throws ArrayCustomException{
-        Array array1 = new Array();
+        IntArray array1 = new IntArray();
         Integer actual = service.findMax(array1);
     }
     @Test
@@ -88,7 +88,7 @@ public class ArrayFindServiceTest {
     }
     @Test(expectedExceptions = ArrayCustomException.class)
     public void findMaxStreamTestException() throws ArrayCustomException{
-        Array array1 = new Array();
+        IntArray array1 = new IntArray();
         Integer actual = service.findMaxStream(array1);
     }
 }

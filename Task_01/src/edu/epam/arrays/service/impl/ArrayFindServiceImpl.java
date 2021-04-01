@@ -1,6 +1,6 @@
 package edu.epam.arrays.service.impl;
 
-import edu.epam.arrays.entity.Array;
+import edu.epam.arrays.entity.IntArray;
 import edu.epam.arrays.exception.ArrayCustomException;
 import edu.epam.arrays.service.ArrayFindService;
 import org.apache.logging.log4j.Level;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 public class ArrayFindServiceImpl implements ArrayFindService {
     static Logger logger = LogManager.getLogger();
-    public Integer findMin(Array array) throws ArrayCustomException {
+    public Integer findMin(IntArray array) throws ArrayCustomException {
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -29,7 +29,7 @@ public class ArrayFindServiceImpl implements ArrayFindService {
         logger.log(Level.INFO, "Min element is " + min);
         return min;
     }
-    public Integer findMinStream(Array array) throws ArrayCustomException{
+    public Integer findMinStream(IntArray array) throws ArrayCustomException{
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -42,7 +42,7 @@ public class ArrayFindServiceImpl implements ArrayFindService {
         logger.log(Level.INFO, "Min element is " + min);
         return min;
     }
-    public Integer findMax(Array array) throws ArrayCustomException {
+    public Integer findMax(IntArray array) throws ArrayCustomException {
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
@@ -58,7 +58,7 @@ public class ArrayFindServiceImpl implements ArrayFindService {
         logger.log(Level.INFO, "Max element is " + max);
         return max;
     }
-    public Integer findMaxStream(Array array) throws ArrayCustomException{
+    public Integer findMaxStream(IntArray array) throws ArrayCustomException{
         if (array == null){
             logger.log(Level.ERROR, "Array is null");
             throw new ArrayCustomException("Array is null");
