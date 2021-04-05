@@ -35,15 +35,13 @@ public class ArrayReader {
         try{
             StringBuilder builder = new StringBuilder();
             int symbol;
-            while (true){
+            symbol = reader.read();
+            while (symbol != -1){
+                builder.append((char) symbol);
                 symbol = reader.read();
-                if (symbol == -1){
-                    String result = builder.toString();
-                    return result.split("\n");
-                }else{
-                    builder.append((char) symbol);
-                }
             }
+            String result = builder.toString();
+            return result.split("\n");
         }catch (IOException e){
             throw new ArrayCustomException("File is empty");
         }

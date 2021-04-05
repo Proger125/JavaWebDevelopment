@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gems>
+    <natural-gem id="1">
+        <name>Diamond</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Yellow</color>
+            <transparency>80</transparency>
+            <edge-amount>6</edge-amount>
+        </visual-parameters>
+    </natural-gem>
+    <natural-gem id="2">
+        <name>Ruby</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Red</color>
+            <transparency>90</transparency>
+            <edge-amount>13</edge-amount>
+        </visual-parameters>
+    </natural-gem>
+    <natural-gem id="3">
+        <name>Sapphire</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Blue</color>
+            <transparency>65</transparency>
+            <edge-amount>15</edge-amount>
+        </visual-parameters>
+    </natural-gem>
+    <artificial-gem>
+        <name>Artificial Diamond</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Blue</color>
+            <transparency>97</transparency>
+            <edge-amount>4</edge-amount>
+        </visual-parameters>
+    </artificial-gem>
+    <artificial-gem>
+        <name>Artificial Ruby</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Burgundy</color>
+            <transparency>76</transparency>
+            <edge-amount>16</edge-amount>
+        </visual-parameters>
+    </artificial-gem>
+    <artificial-gem>
+        <name>Artificial Sapphire</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Grey</color>
+            <transparency>92</transparency>
+            <edge-amount>14</edge-amount>
+        </visual-parameters>
+    </artificial-gem>
+
+</gems>
