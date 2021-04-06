@@ -13,4 +13,5 @@ public class ArrayCustomException extends Exception{
     public ArrayCustomException(Throwable cause){
         super(cause);
     }
+
 }

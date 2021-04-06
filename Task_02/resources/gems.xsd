@@ -28,10 +28,10 @@
                 </restriction>
             </simpleType>
         </attribute>
-        <attribute name="value" use="optional">
+        <attribute name="value" use="optional" default="0" >
             <simpleType>
                 <restriction base="positiveInteger">
-                    <minInclusive value="1"/>
+                    <minInclusive value="0"/>
                     <maxInclusive value="3000"/>
                 </restriction>
             </simpleType>

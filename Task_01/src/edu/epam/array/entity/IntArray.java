@@ -87,7 +87,7 @@ public class IntArray {
     public int hashCode() {
         int arrayHashCode = 0;
         for (int i = 0; i < this.data.length; i++){
-            arrayHashCode += data[i].hashCode() * 1.05;
+            arrayHashCode += data[i].hashCode() * (i+1);
         }
         return arrayHashCode;
     }
