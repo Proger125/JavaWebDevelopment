@@ -1,100 +1,111 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="gems"
-        xmlns:tns="gems">
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.org/gems"
+        xmlns:tns="http://www.example.org/gems"
+        elementFormDefault="qualified" >
     <element name="gems">
         <complexType>
             <sequence>
-                <element name="gem" type="tns:Gem" minOccurs="1" maxOccurs="unbounded"/>
+                <element ref="tns:gem" maxOccurs="unbounded"/>
             </sequence>
         </complexType>
     </element>
+
+
     <complexType name="Gem">
-        <all>
+        <sequence>
             <element name="name" type="string"/>
-            <element name="preciousness">
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="Precious"/>
-                        <enumeration value="SemiPrecious"/>
-                    </restriction>
-                </simpleType>
-            </element>
+            <element name="preciousness" type="tns:Preciousness" />
             <element name="visual-parameters" type="tns:VisualParameters"/>
-        </all>
-        <attribute name="id" use="required">
-            <simpleType>
-                <restriction base="ID">
-                    <pattern value="\d{1,4}"/>
-                </restriction>
-            </simpleType>
-        </attribute>
-        <attribute name="value" use="optional" default="0" >
-            <simpleType>
-                <restriction base="positiveInteger">
-                    <minInclusive value="0"/>
-                    <maxInclusive value="3000"/>
-                </restriction>
-            </simpleType>
-        </attribute>
+            <element name="creation-date" type="gYearMonth"/>
+        </sequence>
+        <attribute name="id" use="required" type="tns:Id" />
+        <attribute name="value" use="optional" default="0" type="tns:Value"/>
     </complexType>
+
+    <complexType name="Natural-gem">
+        <complexContent>
+            <extension base="tns:Gem">
+                <sequence>
+                    <element name="extraction-place" type="tns:Extraction-place" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Artificial-gem">
+        <complexContent>
+            <extension base="tns:Gem">
+                <sequence>
+                    <element name="growing-time" type="tns:Growing-time" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+
+    <simpleType name="Preciousness">
+        <restriction>
+            <enumeration value="Precious"/>
+            <enumeration value="SemiPrecious"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Id">
+        <restriction base="ID">
+            <pattern value="\w{1,15}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Value">
+        <restriction base="positiveInteger">
+            <minInclusive value="0"/>
+            <maxInclusive value="3000"/>
+        </restriction>
+    </simpleType>
+
     <complexType name="VisualParameters">
         <sequence>
             <element name="color" type="string"/>
-            <element name="transparency">
-                <simpleType>
-                    <restriction base="positiveInteger">
-                        <minInclusive value="0"/>
-                        <maxInclusive value="100"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="edge-amount">
-                <simpleType>
-                    <restriction base="positiveInteger">
-                        <minInclusive value="4"/>
-                        <maxExclusive value="15"/>
-                    </restriction>
-                </simpleType>
-            </element>
+            <element name="transparency" type="tns:Transparency" />
+            <element name="edge-amount" type="tns:Edge-amount" />
         </sequence>
     </complexType>
-    <complexType name="Natural-Gem">
-        <complexContent>
-            <extension base="tns:Gem">
-                <sequence>
-                    <element name="extraction-place">
-                        <simpleType>
-                            <restriction base="string">
-                                <enumeration value="Africa"/>
-                                <enumeration value="Asia"/>
-                                <enumeration value="Europe"/>
-                                <enumeration value="NorthAmerica"/>
-                                <enumeration value="SouthAmerica"/>
-                                <enumeration value="Siberia"/>
-                            </restriction>
-                        </simpleType>
-                    </element>
-                </sequence>
-            </extension>
-        </complexContent>
-    </complexType>
-    <complexType name="Artificial-Gem">
-        <complexContent>
-            <extension base="tns:Gem">
-                <sequence>
-                    <element name="creation-time">
-                        <simpleType>
-                            <restriction base="positiveInteger">
-                                <minInclusive value="100"/>
-                                <maxInclusive value="1000"/>
-                            </restriction>
-                        </simpleType>
-                    </element>
-                </sequence>
-            </extension>
-        </complexContent>
-    </complexType>
+
+    <simpleType name="Transparency">
+        <restriction base="positiveInteger">
+            <minInclusive value="0"/>
+            <maxInclusive value="100"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Edge-amount">
+        <restriction base="positiveInteger">
+            <minInclusive value="4"/>
+            <maxInclusive value="15"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Extraction-place">
+        <restriction base="string">
+            <enumeration value="Africa"/>
+            <enumeration value="Asia"/>
+            <enumeration value="Europe"/>
+            <enumeration value="NorthAmerica"/>
+            <enumeration value="SouthAmerica"/>
+            <enumeration value="Siberia"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Growing-time">
+        <restriction base="positiveInteger">
+            <minInclusive value="100"/>
+            <maxInclusive value="1000"/>
+        </restriction>
+    </simpleType>
+
+
     <element name="gem" type="tns:Gem" abstract="true"/>
-    <element name="natural-gem" type="tns:Natural-Gem" substitutionGroup="tns:gem"/>
-    <element name="artificial-gem" type="tns:Artificial-Gem" substitutionGroup="tns:gem"/>
+    <element name="natural-gem" type="tns:Natural-gem" substitutionGroup="tns:gem"/>
+    <element name="artificial-gem" type="tns:Artificial-gem" substitutionGroup="tns:gem"/>
 </schema>
