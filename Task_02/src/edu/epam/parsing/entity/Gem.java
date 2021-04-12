@@ -6,19 +6,31 @@ import java.time.YearMonth;
 import java.util.Objects;
 
 public abstract class Gem {
-    private int id;
+    private String id;
+    private int value;
     private String name;
     private Preciousness preciousness;
     private VisualParameters parameters;
     private YearMonth creationDate;
 
-    public Gem(){}
-    public Gem(int id, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate) {
+    public Gem(){
+        parameters = new VisualParameters();
+    }
+    public Gem(String id, int value, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate) {
         this.id = id;
+        this.value = value;
         this.name = name;
         this.preciousness = preciousness;
         this.parameters = parameters;
         this.creationDate = creationDate;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public YearMonth getCreationDate() {
@@ -37,11 +49,11 @@ public abstract class Gem {
         this.parameters = parameters;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -75,7 +87,7 @@ public abstract class Gem {
 
     @Override
     public int hashCode() {
-        return Integer.hashCode(id)
+        return id.hashCode()
                 + name.hashCode()
                 + preciousness.hashCode()
                 + parameters.hashCode()

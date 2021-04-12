@@ -3,24 +3,23 @@ package edu.epam.parsing.entity;
 import edu.epam.parsing.enumeration.Preciousness;
 
 import java.time.YearMonth;
-import java.util.Objects;
 
 public class ArtificialGem extends Gem{
-    private int growingType;
+    private int growingTime;
 
     public ArtificialGem() {super();}
 
-    public ArtificialGem(int id, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate, int growingType) {
-        super(id, name, preciousness, parameters, creationDate);
-        this.growingType = growingType;
+    public ArtificialGem(String id, int value, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate, int growingTime) {
+        super(id, value, name, preciousness, parameters, creationDate);
+        this.growingTime = growingTime;
     }
 
-    public int getGrowingType() {
-        return growingType;
+    public int getGrowingTime() {
+        return growingTime;
     }
 
-    public void setGrowingType(int growingType) {
-        this.growingType = growingType;
+    public void setGrowingTime(int growingType) {
+        this.growingTime = growingType;
     }
 
     @Override
@@ -29,18 +28,18 @@ public class ArtificialGem extends Gem{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         ArtificialGem that = (ArtificialGem) o;
-        return growingType == that.growingType;
+        return growingTime == that.growingTime;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + Integer.hashCode(growingType);
+        return super.hashCode() + Integer.hashCode(growingTime);
     }
 
     @Override
     public String toString() {
         return "ArtificialGem{" +
-                "growingType=" + growingType +
+                "growingType=" + growingTime +
                 '}';
     }
 }

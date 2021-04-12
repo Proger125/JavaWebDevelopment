@@ -20,7 +20,7 @@
             <element name="creation-date" type="gYearMonth"/>
         </sequence>
         <attribute name="id" use="required" type="tns:Id" />
-        <attribute name="value" use="optional" default="0" type="tns:Value"/>
+        <attribute name="weight" use="optional" default="1" type="tns:Weight"/>
     </complexType>
 
     <complexType name="Natural-gem">
@@ -57,7 +57,7 @@
         </restriction>
     </simpleType>
 
-    <simpleType name="Value">
+    <simpleType name="Weight">
         <restriction base="positiveInteger">
             <minInclusive value="0"/>
             <maxInclusive value="3000"/>
@@ -91,8 +91,8 @@
             <enumeration value="Africa"/>
             <enumeration value="Asia"/>
             <enumeration value="Europe"/>
-            <enumeration value="NorthAmerica"/>
-            <enumeration value="SouthAmerica"/>
+            <enumeration value="North-America"/>
+            <enumeration value="South-America"/>
             <enumeration value="Siberia"/>
         </restriction>
     </simpleType>

@@ -4,7 +4,7 @@
         xmlns="http://www.example.org/gems"
         xsi:schemaLocation="http://www.example.org/gems gems.xsd">
 
-    <natural-gem id="g1">
+    <natural-gem id="g1" weight="5">
         <name>Diamond</name>
         <preciousness>Precious</preciousness>
         <visual-parameters>
@@ -35,9 +35,9 @@
             <edge-amount>15</edge-amount>
         </visual-parameters>
         <creation-date>2020-08</creation-date>
-        <extraction-place>NorthAmerica</extraction-place>
+        <extraction-place>North-America</extraction-place>
     </natural-gem>
-    <artificial-gem id="g4">
+    <artificial-gem id="g4" weight="8">
         <name>Artificial Diamond</name>
         <preciousness>Precious</preciousness>
         <visual-parameters>
@@ -59,7 +59,7 @@
         <creation-date>2002-03</creation-date>
         <growing-time>900</growing-time>
     </artificial-gem>
-    <artificial-gem id="g6">
+    <artificial-gem id="g6" weight="2">
         <name>Artificial Sapphire</name>
         <preciousness>Precious</preciousness>
         <visual-parameters>

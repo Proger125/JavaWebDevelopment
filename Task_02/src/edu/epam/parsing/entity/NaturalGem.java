@@ -11,8 +11,8 @@ public class NaturalGem extends Gem{
 
     public NaturalGem() {}
 
-    public NaturalGem(int id, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate, ExtractionPlace place) {
-        super(id, name, preciousness, parameters, creationDate);
+    public NaturalGem(String id, int value, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate, ExtractionPlace place) {
+        super(id, value, name, preciousness, parameters, creationDate);
         this.place = place;
     }
 
