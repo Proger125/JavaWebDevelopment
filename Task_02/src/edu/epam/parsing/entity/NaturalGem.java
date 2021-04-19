@@ -1,15 +1,24 @@
 package edu.epam.parsing.entity;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.time.YearMonth;
 
 public class NaturalGem extends Gem{
+    static Logger logger = LogManager.getLogger();
     private ExtractionPlace place;
 
-    public NaturalGem() {}
+    public NaturalGem() {
+        super();
+        logger.log(Level.INFO, "Natural gem was created");
+    }
 
     public NaturalGem(String id, int weight, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate, ExtractionPlace place) {
         super(id, weight, name, preciousness, parameters, creationDate);
         this.place = place;
+        logger.log(Level.INFO, "Natural gem was created");
     }
 
     public ExtractionPlace getPlace() {

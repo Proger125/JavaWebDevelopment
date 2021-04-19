@@ -1,15 +1,24 @@
 package edu.epam.parsing.entity;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.time.YearMonth;
 
 public class ArtificialGem extends Gem{
+    static Logger logger = LogManager.getLogger();
     private int growingTime;
 
-    public ArtificialGem() {super();}
+    public ArtificialGem() {
+        super();
+        logger.log(Level.INFO, "Artificial gem was created");
+    }
 
     public ArtificialGem(String id, int weight, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate, int growingTime) {
         super(id, weight, name, preciousness, parameters, creationDate);
         this.growingTime = growingTime;
+        logger.log(Level.INFO, "Artificial gem was created");
     }
 
     public int getGrowingTime() {

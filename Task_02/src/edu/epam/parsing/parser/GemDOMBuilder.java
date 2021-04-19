@@ -6,6 +6,9 @@ import edu.epam.parsing.entity.Gem;
 import edu.epam.parsing.entity.NaturalGem;
 import edu.epam.parsing.entity.ExtractionPlace;
 import edu.epam.parsing.entity.Preciousness;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -19,6 +22,7 @@ import java.io.IOException;
 import java.time.YearMonth;
 
 public class GemDOMBuilder extends GemBuilder{
+    static Logger logger = LogManager.getLogger();
     private DocumentBuilder builder;
     public GemDOMBuilder() throws GemException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -46,9 +50,12 @@ public class GemDOMBuilder extends GemBuilder{
                 ArtificialGem gem = buildArtificialGem(gemElement);
                 gems.add(gem);
             }
+            logger.log(Level.INFO, "Set of gems was created by DOM parser");
         } catch (SAXException e) {
+            logger.log(Level.ERROR, "Problems with parsing in DOM parser");
             throw new GemException("Problems with parsing...");
         } catch (IOException exception) {
+            logger.log(Level.ERROR, "Problems with file in DOM parser");
             throw new GemException("Problems with file...");
         }
     }

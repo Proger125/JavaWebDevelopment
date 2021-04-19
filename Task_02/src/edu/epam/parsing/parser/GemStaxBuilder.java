@@ -6,6 +6,9 @@ import edu.epam.parsing.entity.Gem;
 import edu.epam.parsing.entity.NaturalGem;
 import edu.epam.parsing.entity.ExtractionPlace;
 import edu.epam.parsing.entity.Preciousness;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -18,6 +21,7 @@ import java.io.IOException;
 import java.time.YearMonth;
 
 public class GemStaxBuilder extends GemBuilder{
+    static Logger logger = LogManager.getLogger();
     private XMLInputFactory factory;
     public GemStaxBuilder(){
         factory = XMLInputFactory.newInstance();
@@ -43,14 +47,17 @@ public class GemStaxBuilder extends GemBuilder{
                     }
                 }
             }
+            logger.log(Level.INFO, "Set of gems was created by Stax parser");
         } catch (FileNotFoundException e) {
             try {
                 if (stream != null){
                     stream.close();
                 }
             } catch (IOException exception) {
+                logger.log(Level.ERROR, "Impossible to close file");
                 throw new GemException("Impossible close file " + filename);
             }
+            logger.log(Level.ERROR, "Problems with file in Stax parser");
             throw new GemException("Problems with file...");
         } catch (XMLStreamException e) {
             try {
@@ -58,8 +65,10 @@ public class GemStaxBuilder extends GemBuilder{
                     stream.close();
                 }
             } catch (IOException exception) {
+                logger.log(Level.ERROR, "Impossible to close file");
                 throw new GemException("Impossible close file " + filename);
             }
+            logger.log(Level.ERROR, "Problems with file in Stax parser");
             throw new GemException("Problems with parsing...");
         }
     }

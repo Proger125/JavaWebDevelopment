@@ -1,6 +1,9 @@
 package edu.epam.parsing.validator;
 
 import edu.epam.parsing.gemException.GemException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -13,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 public final class XmlValidator {
+    static Logger logger = LogManager.getLogger();
     private static final String SCHEMA_FILE_NAME = "resources/gems.xsd";
     private XmlValidator(){}
     public static boolean validateXML(String fileName) throws GemException {
@@ -24,10 +28,13 @@ public final class XmlValidator {
             Source source = new StreamSource(fileName);
             validator.validate(source);
         } catch (IOException exception) {
+            logger.log(Level.ERROR, "Problems with file in validating");
             throw new GemException("Problems with file...");
         } catch (SAXException e) {
+            logger.log(Level.ERROR, "XML file is incorrect");
             return false;
         }
+        logger.log(Level.INFO, "XML file is correct");
         return true;
     }
 }
