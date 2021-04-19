@@ -45,7 +45,7 @@
 
 
     <simpleType name="Preciousness">
-        <restriction>
+        <restriction base="string">
             <enumeration value="Precious"/>
             <enumeration value="SemiPrecious"/>
         </restriction>
@@ -59,7 +59,7 @@
 
     <simpleType name="Weight">
         <restriction base="positiveInteger">
-            <minInclusive value="0"/>
+            <minInclusive value="1"/>
             <maxInclusive value="3000"/>
         </restriction>
     </simpleType>
@@ -74,7 +74,7 @@
 
     <simpleType name="Transparency">
         <restriction base="positiveInteger">
-            <minInclusive value="0"/>
+            <minInclusive value="1"/>
             <maxInclusive value="100"/>
         </restriction>
     </simpleType>

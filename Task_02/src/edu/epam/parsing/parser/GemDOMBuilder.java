@@ -1,11 +1,11 @@
 package edu.epam.parsing.parser;
 
-import edu.epam.parsing.GemException.GemException;
+import edu.epam.parsing.gemException.GemException;
 import edu.epam.parsing.entity.ArtificialGem;
 import edu.epam.parsing.entity.Gem;
 import edu.epam.parsing.entity.NaturalGem;
-import edu.epam.parsing.enumeration.ExtractionPlace;
-import edu.epam.parsing.enumeration.Preciousness;
+import edu.epam.parsing.entity.ExtractionPlace;
+import edu.epam.parsing.entity.Preciousness;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -28,6 +28,7 @@ public class GemDOMBuilder extends GemBuilder{
             throw new GemException("Problems with parser");
         }
     }
+    @Override
     public void buildSetGems(String filename) throws GemException {
         Document document = null;
         try{
@@ -66,7 +67,9 @@ public class GemDOMBuilder extends GemBuilder{
     }
     private void buildGem(Gem gem, Element gemElement){
         gem.setId(gemElement.getAttribute("id"));
-        gem.setValue(Integer.parseInt(gemElement.getAttribute("value")));
+        if (gemElement.hasAttribute("weight")){
+            gem.setWeight(Integer.parseInt(gemElement.getAttribute("weight")));
+        }
         gem.setName(getElementTextContent(gemElement, "name"));
         String preciousness = getElementTextContent(gemElement, "preciousness").toUpperCase();
         gem.setPreciousness(Preciousness.valueOf(preciousness));

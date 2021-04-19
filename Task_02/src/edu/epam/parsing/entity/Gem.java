@@ -1,13 +1,10 @@
 package edu.epam.parsing.entity;
 
-import edu.epam.parsing.enumeration.Preciousness;
-
 import java.time.YearMonth;
-import java.util.Objects;
 
 public abstract class Gem {
     private String id;
-    private int value;
+    private int weight;
     private String name;
     private Preciousness preciousness;
     private VisualParameters parameters;
@@ -16,9 +13,9 @@ public abstract class Gem {
     public Gem(){
         parameters = new VisualParameters();
     }
-    public Gem(String id, int value, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate) {
+    public Gem(String id, int weight, String name, Preciousness preciousness, VisualParameters parameters, YearMonth creationDate) {
         this.id = id;
-        this.value = value;
+        this.weight = weight;
         this.name = name;
         this.preciousness = preciousness;
         this.parameters = parameters;
@@ -26,11 +23,11 @@ public abstract class Gem {
     }
 
     public int getValue() {
-        return value;
+        return weight;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public YearMonth getCreationDate() {
@@ -75,14 +72,19 @@ public abstract class Gem {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Gem gem = (Gem) o;
-        return id == gem.id &&
-                Objects.equals(name, gem.name) &&
+        return id.equals(gem.id) &&
+                name.equals(gem.name) &&
                 preciousness == gem.preciousness &&
-                Objects.equals(parameters, gem.parameters) &&
-                Objects.equals(creationDate, gem.creationDate);
+                parameters.equals(gem.parameters) &&
+                creationDate.equals(gem.creationDate) &&
+                weight == gem.weight;
     }
 
     @Override
@@ -96,19 +98,28 @@ public abstract class Gem {
 
     @Override
     public String toString() {
-        return "Gem{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", preciousness=" + preciousness +
-                ", parameters=" + parameters +
-                ", creationDate=" + creationDate +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append("Gem{ ");
+        builder.append("id = ").append(id).append(" ");
+        builder.append("name = ").append(name).append(" ");
+        builder.append("preciousness = ").append(preciousness).append(" ");
+        builder.append("parameters = ").append(parameters).append(" ");
+        builder.append("creationDate = ").append(creationDate).append(" ");
+        builder.append("}");
+        return builder.toString();
     }
 
     public static class VisualParameters{
         private String color;
         private int transparency;
         private int edgeAmount;
+
+        public VisualParameters(){}
+        public VisualParameters(String color, int transparency, int edgeAmount) {
+            this.color = color;
+            this.transparency = transparency;
+            this.edgeAmount = edgeAmount;
+        }
 
         public String getColor() {
             return color;
@@ -136,12 +147,16 @@ public abstract class Gem {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             VisualParameters that = (VisualParameters) o;
             return transparency == that.transparency &&
                     edgeAmount == that.edgeAmount &&
-                    Objects.equals(color, that.color);
+                    color.equals(that.color);
         }
 
         @Override
@@ -153,11 +168,13 @@ public abstract class Gem {
 
         @Override
         public String toString() {
-            return "VisualParameters{" +
-                    "color='" + color + '\'' +
-                    ", transparency=" + transparency +
-                    ", edgeAmount=" + edgeAmount +
-                    '}';
+            StringBuilder builder = new StringBuilder();
+            builder.append("VisualParameters{ ");
+            builder.append("color = ").append(color).append(" ");
+            builder.append("transparency = ").append(transparency).append(" ");
+            builder.append("edgeAmount = ").append(edgeAmount).append(" ");
+            builder.append("}");
+            return builder.toString();
         }
     }
 }

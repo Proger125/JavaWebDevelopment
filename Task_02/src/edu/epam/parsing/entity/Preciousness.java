@@ -1,4 +1,4 @@
-package edu.epam.parsing.enumeration;
+package edu.epam.parsing.entity;
 
 public enum Preciousness {
     PRECIOUS, SEMIPRECIOUS;

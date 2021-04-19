@@ -1,6 +1,6 @@
 package edu.epam.parsing.validator;
 
-import edu.epam.parsing.GemException.GemException;
+import edu.epam.parsing.gemException.GemException;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;

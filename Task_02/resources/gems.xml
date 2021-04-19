@@ -70,5 +70,114 @@
         <creation-date>1978-07</creation-date>
         <growing-time>480</growing-time>
     </artificial-gem>
-
+    <natural-gem id="g7">
+        <name>Topaz</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Pale blue</color>
+            <transparency>75</transparency>
+            <edge-amount>12</edge-amount>
+        </visual-parameters>
+        <creation-date>2002-10</creation-date>
+        <extraction-place>Africa</extraction-place>
+    </natural-gem>
+    <natural-gem id="g8">
+        <name>Citrine</name>
+        <preciousness>SemiPrecious</preciousness>
+        <visual-parameters>
+            <color>White</color>
+            <transparency>96</transparency>
+            <edge-amount>8</edge-amount>
+        </visual-parameters>
+        <creation-date>1973-10</creation-date>
+        <extraction-place>North-America</extraction-place>
+    </natural-gem>
+    <artificial-gem id="g9">
+        <name>Artificial Tanzanite</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Blue</color>
+            <transparency>99</transparency>
+            <edge-amount>6</edge-amount>
+        </visual-parameters>
+        <creation-date>1923-10</creation-date>
+        <growing-time>527</growing-time>
+    </artificial-gem>
+    <artificial-gem id="g10">
+        <name>Artificial Aquamarine</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Greenish blue</color>
+            <transparency>68</transparency>
+            <edge-amount>13</edge-amount>
+        </visual-parameters>
+        <creation-date>1968-06</creation-date>
+        <growing-time>784</growing-time>
+    </artificial-gem>
+    <natural-gem id="g11">
+        <name>Heliodor</name>
+        <preciousness>SemiPrecious</preciousness>
+        <visual-parameters>
+            <color>Golden yellow</color>
+            <transparency>59</transparency>
+            <edge-amount>13</edge-amount>
+        </visual-parameters>
+        <creation-date>1987-11</creation-date>
+        <extraction-place>Siberia</extraction-place>
+    </natural-gem>
+    <natural-gem id="g12">
+        <name>Opal</name>
+        <preciousness>SemiPrecious</preciousness>
+        <visual-parameters>
+            <color>Orange</color>
+            <transparency>57</transparency>
+            <edge-amount>8</edge-amount>
+        </visual-parameters>
+        <creation-date>1989-03</creation-date>
+        <extraction-place>Siberia</extraction-place>
+    </natural-gem>
+    <natural-gem id="g13">
+        <name>Andalusite</name>
+        <preciousness>SemiPrecious</preciousness>
+        <visual-parameters>
+            <color>Grey</color>
+            <transparency>86</transparency>
+            <edge-amount>5</edge-amount>
+        </visual-parameters>
+        <creation-date>2005-04</creation-date>
+        <extraction-place>Africa</extraction-place>
+    </natural-gem>
+    <artificial-gem id="g14">
+        <name>Artificial Tourmaline</name>
+        <preciousness>SemiPrecious</preciousness>
+        <visual-parameters>
+            <color>Brown</color>
+            <transparency>75</transparency>
+            <edge-amount>15</edge-amount>
+        </visual-parameters>
+        <creation-date>1965-02</creation-date>
+        <growing-time>368</growing-time>
+    </artificial-gem>
+    <artificial-gem id="g15">
+        <name>Demantoid</name>
+        <preciousness>SemiPrecious</preciousness>
+        <visual-parameters>
+            <color>Green</color>
+            <transparency>35</transparency>
+            <edge-amount>4</edge-amount>
+        </visual-parameters>
+        <creation-date>2001-03</creation-date>
+        <growing-time>459</growing-time>
+    </artificial-gem>
+    <artificial-gem id="g16">
+        <name>Artificial Tsavorite</name>
+        <preciousness>SemiPrecious</preciousness>
+        <visual-parameters>
+            <color>Dark green</color>
+            <transparency>26</transparency>
+            <edge-amount>9</edge-amount>
+        </visual-parameters>
+        <creation-date>1999-05</creation-date>
+        <growing-time>759</growing-time>
+    </artificial-gem>
 </gems>

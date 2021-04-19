@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gems
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.example.org/gems"
+        xsi:schemaLocation="http://www.example.org/gems gems.xsd">
+
+    <natural-gem id="g1" weight="5">
+        <name>Diamond</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Yellow</color>
+            <transparency>80</transparency>
+            <edge-amount>6</edge-amount>
+        </visual-parameters>
+        <creation-date>2021-03</creation-date>
+        <extraction-place>Africa</extraction-place>
+    </natural-gem>
+    <natural-gem id="g2">
+        <name>Ruby</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Red</color>
+            <transparency>90</transparency>
+            <edge-amount>13</edge-amount>
+        </visual-parameters>
+        <creation-date>2020-12</creation-date>
+        <extraction-place>Asia</extraction-place>
+    </natural-gem>
+    <natural-gem id="g3">
+        <name>Sapphire</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Blue</color>
+            <transparency>65</transparency>
+            <edge-amount>15</edge-amount>
+        </visual-parameters>
+        <creation-date>2020-08</creation-date>
+        <extraction-place>North-America</extraction-place>
+    </natural-gem>
+    <artificial-gem id="g4" weight="8">
+        <name>Artificial Diamond</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Blue</color>
+            <transparency>-97</transparency>
+            <edge-amount>4</edge-amount>
+        </visual-parameters>
+        <creation-date>2018-06</creation-date>
+        <growing-time>500</growing-time>
+    </artificial-gem>
+    <artificial-gem id="g5">
+        <name>Artificial Ruby</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Burgundy</color>
+            <transparency>76</transparency>
+            <edge-amount>12</edge-amount>
+        </visual-parameters>
+        <creation-date>2002-03</creation-date>
+        <growing-time>900</growing-time>
+    </artificial-gem>
+    <artificial-gem id="g6" weight="2">
+        <name>Artificial Sapphire</name>
+        <preciousness>Precious</preciousness>
+        <visual-parameters>
+            <color>Grey</color>
+            <transparency>92</transparency>
+            <edge-amount>14</edge-amount>
+        </visual-parameters>
+        <creation-date>1978-07</creation-date>
+        <growing-time>480</growing-time>
+    </artificial-gem>
+
+</gems>

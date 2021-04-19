@@ -1,5 +1,6 @@
 package edu.epam.parsing.parser;
 
+import edu.epam.parsing.gemException.GemException;
 import edu.epam.parsing.entity.Gem;
 
 import java.util.HashSet;
@@ -11,4 +12,5 @@ public abstract class GemBuilder {
     public Set<Gem> getGems() {
         return gems;
     }
+    public abstract void buildSetGems(String filename) throws GemException;
 }

@@ -1,4 +1,4 @@
-package edu.epam.parsing.GemException;
+package edu.epam.parsing.gemException;
 
 public class GemException extends Exception{
     public GemException() {

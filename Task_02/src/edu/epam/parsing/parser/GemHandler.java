@@ -1,13 +1,11 @@
 package edu.epam.parsing.parser;
 
-import edu.epam.parsing.GemException.GemException;
 import edu.epam.parsing.entity.ArtificialGem;
 import edu.epam.parsing.entity.Gem;
 import edu.epam.parsing.entity.NaturalGem;
-import edu.epam.parsing.enumeration.ExtractionPlace;
-import edu.epam.parsing.enumeration.Preciousness;
+import edu.epam.parsing.entity.ExtractionPlace;
+import edu.epam.parsing.entity.Preciousness;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.time.YearMonth;
@@ -84,9 +82,9 @@ public class GemHandler extends DefaultHandler {
         }else{
             if ("id".equals(attributes.getLocalName(0))){
                 current.setId(attributes.getValue(0));
-                current.setValue(Integer.parseInt(attributes.getValue(1)));
+                current.setWeight(Integer.parseInt(attributes.getValue(1)));
             }else{
-                current.setValue(Integer.parseInt(attributes.getValue(0)));
+                current.setWeight(Integer.parseInt(attributes.getValue(0)));
                 current.setId(attributes.getValue(1));
             }
         }
