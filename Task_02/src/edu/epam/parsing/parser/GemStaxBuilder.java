@@ -115,7 +115,7 @@ public class GemStaxBuilder extends GemBuilder{
     private void buildGem(Gem gem, XMLStreamReader reader) throws XMLStreamException, GemException {
         if (reader.getAttributeCount() == 1){
             gem.setId(reader.getAttributeValue(0));
-        }else if ("id".equals(reader.getAttributeLocalName(0))){
+        }else if (GemEnum.ID.getValue().equals(reader.getAttributeLocalName(0))){
             gem.setId(reader.getAttributeValue(0));
             gem.setWeight(Integer.parseInt(reader.getAttributeValue(1)));
         }else{

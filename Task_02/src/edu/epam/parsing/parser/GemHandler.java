@@ -28,10 +28,10 @@ public class GemHandler extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes){
-        if ("natural-gem".equals(localName)){
+        if (GemEnum.NATURAL_GEM.getValue().equals(localName)){
             current = new NaturalGem();
             setAttributes(attributes, current);
-        }else if ("artificial-gem".equals(localName)){
+        }else if (GemEnum.ARTIFICIAL_GEM.getValue().equals(localName)){
             current = new ArtificialGem();
             setAttributes(attributes, current);
         }else{
@@ -44,7 +44,7 @@ public class GemHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName){
-        if ("natural-gem".equals(localName) || "artificial-gem".equals(localName)){
+        if (GemEnum.NATURAL_GEM.getValue().equals(localName) || GemEnum.ARTIFICIAL_GEM.getValue().equals(localName)){
             gems.add(current);
         }
     }
@@ -80,7 +80,7 @@ public class GemHandler extends DefaultHandler {
         if (attributes.getLength() == 1){
             current.setId(attributes.getValue(0));
         }else{
-            if ("id".equals(attributes.getLocalName(0))){
+            if (GemEnum.ID.getValue().equals(attributes.getLocalName(0))){
                 current.setId(attributes.getValue(0));
                 current.setWeight(Integer.parseInt(attributes.getValue(1)));
             }else{

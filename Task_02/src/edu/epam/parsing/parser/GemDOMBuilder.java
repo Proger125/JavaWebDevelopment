@@ -38,13 +38,13 @@ public class GemDOMBuilder extends GemBuilder{
         try{
             document = builder.parse(filename);
             Element root = document.getDocumentElement();
-            NodeList naturalGemList = root.getElementsByTagName("natural-gem");
+            NodeList naturalGemList = root.getElementsByTagName(GemEnum.NATURAL_GEM.getValue());
             for (int i = 0; i < naturalGemList.getLength(); i++){
                 Element gemElement = (Element) naturalGemList.item(i);
                 NaturalGem gem = buildNaturalGem(gemElement);
                 gems.add(gem);
             }
-            NodeList artificialGemList = root.getElementsByTagName("artificial-gem");
+            NodeList artificialGemList = root.getElementsByTagName(GemEnum.ARTIFICIAL_GEM.getValue());
             for (int i = 0; i < artificialGemList.getLength(); i++){
                 Element gemElement = (Element) artificialGemList.item(i);
                 ArtificialGem gem = buildArtificialGem(gemElement);
@@ -62,30 +62,30 @@ public class GemDOMBuilder extends GemBuilder{
     private NaturalGem buildNaturalGem(Element gemElement){
         NaturalGem gem = new NaturalGem();
         buildGem(gem, gemElement);
-        String extractionPlace = getElementTextContent(gemElement, "extraction-place").toUpperCase().replace('-', '_');
+        String extractionPlace = getElementTextContent(gemElement, GemEnum.EXTRACTION_PLACE.getValue()).toUpperCase().replace('-', '_');
         gem.setPlace(ExtractionPlace.valueOf(extractionPlace));
         return gem;
     }
     private ArtificialGem buildArtificialGem(Element gemElement){
         ArtificialGem gem = new ArtificialGem();
         buildGem(gem, gemElement);
-        gem.setGrowingTime(Integer.parseInt(getElementTextContent(gemElement, "growing-time")));
+        gem.setGrowingTime(Integer.parseInt(getElementTextContent(gemElement, GemEnum.GROWING_TIME.getValue())));
         return gem;
     }
     private void buildGem(Gem gem, Element gemElement){
-        gem.setId(gemElement.getAttribute("id"));
-        if (gemElement.hasAttribute("weight")){
-            gem.setWeight(Integer.parseInt(gemElement.getAttribute("weight")));
+        gem.setId(gemElement.getAttribute(GemEnum.ID.getValue()));
+        if (gemElement.hasAttribute(GemEnum.WEIGHT.getValue())){
+            gem.setWeight(Integer.parseInt(gemElement.getAttribute(GemEnum.WEIGHT.getValue())));
         }
-        gem.setName(getElementTextContent(gemElement, "name"));
-        String preciousness = getElementTextContent(gemElement, "preciousness").toUpperCase();
+        gem.setName(getElementTextContent(gemElement, GemEnum.NAME.getValue()));
+        String preciousness = getElementTextContent(gemElement, GemEnum.PRECIOUSNESS.getValue()).toUpperCase();
         gem.setPreciousness(Preciousness.valueOf(preciousness));
-        gem.setCreationDate(YearMonth.parse(getElementTextContent(gemElement, "creation-date")));
+        gem.setCreationDate(YearMonth.parse(getElementTextContent(gemElement, GemEnum.CREATION_DATE.getValue())));
         Gem.VisualParameters parameters = gem.getParameters();
-        Element parameter = (Element) gemElement.getElementsByTagName("visual-parameters").item(0);
-        parameters.setColor(getElementTextContent(parameter, "color"));
-        parameters.setEdgeAmount(Integer.parseInt(getElementTextContent(parameter, "edge-amount")));
-        parameters.setTransparency(Integer.parseInt(getElementTextContent(parameter, "transparency")));
+        Element parameter = (Element) gemElement.getElementsByTagName(GemEnum.VISUAL_PARAMETERS.getValue()).item(0);
+        parameters.setColor(getElementTextContent(parameter, GemEnum.COLOR.getValue()));
+        parameters.setEdgeAmount(Integer.parseInt(getElementTextContent(parameter, GemEnum.EDGE_AMOUNT.getValue())));
+        parameters.setTransparency(Integer.parseInt(getElementTextContent(parameter, GemEnum.TRANSPARENCY.getValue())));
     }
     private static String getElementTextContent(Element element, String elementName){
         NodeList list = element.getElementsByTagName(elementName);
