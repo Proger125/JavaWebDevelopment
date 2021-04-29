@@ -1,8 +1,8 @@
 package edu.epam.shapes.service;
 
-import edu.epam.shapes.entity.Quadrangle;
+import edu.epam.shapes.entity.Rectangle;
 
 public interface CalculateService {
-    double square(Quadrangle quadrangle);
-    double perimeter(Quadrangle quadrangle);
+    int square(Rectangle rectangle);
+    int perimeter(Rectangle rectangle);
 }

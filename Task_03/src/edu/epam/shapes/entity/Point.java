@@ -32,10 +32,12 @@ public class Point {
 
     @Override
     public String toString() {
-        return "Point{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append("Point{ ");
+        builder.append("X: ").append(x).append(", ");
+        builder.append("Y: ").append(y).append(" ");
+        builder.append("}");
+        return builder.toString();
     }
 
     @Override
