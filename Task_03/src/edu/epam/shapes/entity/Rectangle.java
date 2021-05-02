@@ -1,12 +1,20 @@
 package edu.epam.shapes.entity;
 
+import edu.epam.shapes.exception.ShapeException;
+import edu.epam.shapes.observer.Observable;
+import edu.epam.shapes.observer.Observer;
+import edu.epam.shapes.observer.RectangleEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Rectangle {
-    private long id;
+public class Rectangle implements Observable {
+    private final long id;
     private Point lowerLeftPoint;
     private int width;
     private int height;
+    private List<Observer> observers = new ArrayList<>();
 
     public Rectangle(long id, Point lowerLeftPoint, int width, int height) {
         this.id = id;
@@ -19,9 +27,6 @@ public class Rectangle {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public Point getLowerLeftPoint() {
         return lowerLeftPoint;
@@ -29,6 +34,7 @@ public class Rectangle {
 
     public void setLowerLeftPoint(Point lowerLeftPoint) {
         this.lowerLeftPoint = lowerLeftPoint;
+        notifyObservers();
     }
 
     public int getWidth() {
@@ -37,6 +43,7 @@ public class Rectangle {
 
     public void setWidth(int width) {
         this.width = width;
+        notifyObservers();
     }
 
     public int getHeight() {
@@ -45,6 +52,7 @@ public class Rectangle {
 
     public void setHeight(int height) {
         this.height = height;
+        notifyObservers();
     }
 
     @Override
@@ -72,5 +80,33 @@ public class Rectangle {
     @Override
     public int hashCode() {
         return Long.hashCode(id) + lowerLeftPoint.hashCode() + Integer.hashCode(width) + Integer.hashCode(height);
+    }
+
+    @Override
+    public void attach(Observer observer) {
+        if (observer != null){
+            observers.add(observer);
+        }else{
+           //TODO выбрасывать ли исключение
+        }
+    }
+
+    @Override
+    public void detach(Observer observer) {
+        if (observer != null){
+            observers.remove(observer);
+        }else{
+            // TODO выбрасывать ли исключение
+        }
+    }
+
+    @Override
+    public void notifyObservers() {
+        if (!observers.isEmpty()){
+            RectangleEvent event = new RectangleEvent(this);
+            for (Observer observer : observers){
+                observer.parameterChanged(event);
+            }
+        }
     }
 }
