@@ -7,8 +7,12 @@ import edu.epam.shapes.observer.RectangleEvent;
 import edu.epam.shapes.service.CalculateService;
 import edu.epam.shapes.service.impl.CalculateServiceImpl;
 import edu.epam.shapes.warehouse.Warehouse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class RectangleObserver implements Observer {
+    private static Logger logger = LogManager.getLogger();
     private final CalculateService service = new CalculateServiceImpl();
     @Override
     public void parameterChanged(RectangleEvent event) {
@@ -19,7 +23,7 @@ public class RectangleObserver implements Observer {
         try {
             Warehouse.getInstance().updateParameter(id, perimeter, square);
         } catch (ShapeException e) {
-            //TODO log
+            logger.log(Level.ERROR, "There is no such element in warehouse");
         }
     }
 }
