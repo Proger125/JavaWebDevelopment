@@ -7,7 +7,6 @@ import edu.epam.shapes.observer.RectangleEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Rectangle implements Observable {
     private final long id;
@@ -59,6 +58,7 @@ public class Rectangle implements Observable {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Rectangle{ ");
+        builder.append("Id: ").append(id).append(", ");
         builder.append("Lower left point: ").append(lowerLeftPoint).append(", ");
         builder.append("Width: ").append(width).append(", ");
         builder.append("Height: ").append(height).append(" ");
@@ -71,7 +71,7 @@ public class Rectangle implements Observable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rectangle that = (Rectangle) o;
-        return id == that.id
+        return this.id == that.id
                 && this.lowerLeftPoint.equals(that.lowerLeftPoint)
                 && this.width == that.width
                 && this.height == that.height;
@@ -83,20 +83,20 @@ public class Rectangle implements Observable {
     }
 
     @Override
-    public void attach(Observer observer) {
+    public void attach(Observer observer) throws ShapeException {
         if (observer != null){
             observers.add(observer);
         }else{
-           //TODO выбрасывать ли исключение
+           throw new ShapeException("Observer is null");
         }
     }
 
     @Override
-    public void detach(Observer observer) {
+    public void detach(Observer observer) throws ShapeException {
         if (observer != null){
             observers.remove(observer);
         }else{
-            // TODO выбрасывать ли исключение
+            throw new ShapeException("Observer is null");
         }
     }
 

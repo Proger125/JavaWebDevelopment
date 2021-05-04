@@ -2,12 +2,16 @@ package edu.epam.shapes.warehouse;
 
 import edu.epam.shapes.entity.Rectangle;
 import edu.epam.shapes.exception.ShapeException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Warehouse {
-    private static final Warehouse instance = new Warehouse();
+    private static Logger logger = LogManager.getLogger();
+    private final static Warehouse instance = new Warehouse();
     private final Map<Long, RectangleParameter> map = new HashMap<>();
 
     public static Warehouse getInstance(){
@@ -31,5 +35,6 @@ public class Warehouse {
         }
         parameter.setPerimeter(newPerimeter);
         parameter.setSquare(newSquare);
+        logger.log(Level.INFO, "Parameter with id:" + id + "was updated");
     }
 }
