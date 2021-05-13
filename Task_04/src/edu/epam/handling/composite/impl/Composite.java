@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Composite implements Component {
-    private final List<Component> components = new ArrayList<>();
-    private final ComponentType type;
+    private List<Component> components = new ArrayList<>();
+    private ComponentType type;
 
     public Composite(ComponentType type) {
         this.type = type;
