@@ -3,6 +3,7 @@ package edu.epam.handling.composite.impl;
 import edu.epam.handling.composite.Component;
 import edu.epam.handling.composite.ComponentType;
 import edu.epam.handling.composite.Delimeter;
+import edu.epam.handling.exception.HandlerException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,10 @@ public class Composite implements Component {
     }
 
     @Override
-    public Object getChild(int index) {
+    public Object getChild(int index) throws HandlerException {
+        if (index < 0 || index > components.size() - 1){
+            throw new HandlerException("Incorrect index");
+        }
         return components.get(index);
     }
 

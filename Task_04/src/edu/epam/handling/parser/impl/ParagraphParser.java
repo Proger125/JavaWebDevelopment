@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class ParagraphParser implements ChainParser{
     private ChainParser nextChain;
-    private final static String SENTENCE_DELIMITER ="[!?\\.]";
+    private final static String SENTENCE_DELIMITER ="[…!?\\.]";
     @Override
     public void setNext(ChainParser parser) {
         this.nextChain = parser;
