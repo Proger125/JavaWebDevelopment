@@ -1,14 +1,19 @@
 package edu.epam.handling.parser.impl;
 
-import edu.epam.handling.composite.Component;
+import edu.epam.handling.composite.TextComponent;
 import edu.epam.handling.composite.ComponentType;
-import edu.epam.handling.composite.impl.Composite;
+import edu.epam.handling.composite.impl.TextComposite;
+import edu.epam.handling.exception.HandlerException;
 import edu.epam.handling.parser.ChainParser;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ParagraphParser implements ChainParser{
+    private static Logger logger = LogManager.getLogger();
     private ChainParser nextChain;
     private final static String SENTENCE_DELIMITER ="[…!?\\.]";
     @Override
@@ -17,8 +22,8 @@ public class ParagraphParser implements ChainParser{
     }
 
     @Override
-    public void processData(String text, Component component) {
-        ComponentType type = component.getType();
+    public void processData(String text, TextComponent textComponent) throws HandlerException {
+        ComponentType type = textComponent.getType();
         if (type == ComponentType.PARAGRAPH){
             Pattern sentencePattern = Pattern.compile(SENTENCE_DELIMITER);
             Matcher sentenceMatcher = sentencePattern.matcher(text);
@@ -26,12 +31,13 @@ public class ParagraphParser implements ChainParser{
             while (sentenceMatcher.find()) {
                 String sentence = text.substring(index, sentenceMatcher.end());
                 index = sentenceMatcher.end();
-                Composite sentenceComposite = new Composite(ComponentType.SENTENCE);
-                component.add(sentenceComposite);
-                nextChain.processData(sentence, sentenceComposite);
+                TextComposite sentenceTextComposite = new TextComposite(ComponentType.SENTENCE);
+                textComponent.add(sentenceTextComposite);
+                nextChain.processData(sentence, sentenceTextComposite);
             }
+            logger.log(Level.INFO, "Paragraph was parsed");
         }else{
-            nextChain.processData(text, component);
+            nextChain.processData(text, textComponent);
         }
     }
 }

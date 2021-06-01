@@ -51,3 +51,14 @@
 2021-04-01 18:34:33 [main] INFO  edu.epam.array.entity.IntArray- Array was created
 2021-04-01 18:34:33 [main] INFO  edu.epam.array.entity.IntArray- Array was created
 2021-04-01 18:34:33 [main] INFO  edu.epam.array.entity.IntArray- Array was created
+2021-05-23 22:00:43 [main] INFO  edu.epam.array.entity.IntArray- Array was created
+2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Count elements: 2
+2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Count of elements by expression is 3
+2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Count of elements by expression is 2
+2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Average in array is 3.0
+2021-05-23 22:00:43 [main] INFO  edu.epam.array.entity.IntArray- Array was created
+2021-05-23 22:00:43 [main] ERROR epam.array.service.impl.ArrayDefineServiceImpl- Array is empty
+2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Sum of element is 15
+2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Sum of elements is 15
+2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Sum of elements is 15
+2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Sum of elements is 15

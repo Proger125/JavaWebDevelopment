@@ -12,9 +12,13 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${console_pattern}"></PatternLayout>
         </Console>
-        <File name="TxtFile" fileName="logs/text.log" bufferedIO="true">
+        <RollingFile name="TxtFile" fileName="logs/text.log" append="true" filePattern="logs/text%]_%i.log" bufferedIO="true">
             <PatternLayout pattern="${file_pattern}"></PatternLayout>
-        </File>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="15 KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
     </Appenders>
     <Loggers>
         <Root level="DEBUG">

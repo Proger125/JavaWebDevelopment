@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShapeFactory {
-    private static Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     public List<Rectangle> createRectangles(List<int[]> list) throws ShapeException {
         if (list == null){
             throw new ShapeException("List is null");
