@@ -1,0 +1,37 @@
+[
+  {
+    "id" : 1,
+    "perishable" : false,
+    "task" : "LOAD"
+  },
+  {
+    "id" : 2,
+    "perishable" : false,
+    "task" : "LOAD"
+  },
+  {
+    "id" : 3,
+    "perishable" : true,
+    "task" : "LOAD"
+  },
+  {
+    "id" : 4,
+    "perishable" : false,
+    "task" : "UNLOAD"
+  },
+  {
+    "id" : 5,
+    "perishable" : true,
+    "task" : "UNLOAD"
+  },
+  {
+    "id" : 6,
+    "perishable" : true,
+    "task" : "LOAD"
+  },
+  {
+    "id" : 7,
+    "perishable" : false,
+    "task" : "UNLOAD"
+  }
+]

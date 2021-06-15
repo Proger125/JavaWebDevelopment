@@ -38,7 +38,7 @@ public class ArrayDefineServiceTest {
     @Test
     public void sumStreamTestTrue() throws ArrayCustomException{
         Integer expected = 15;
-        Integer actual = service.sum(array);
+        Integer actual = service.sumStream(array);
         assertEquals(actual, expected);
     }
     @Test

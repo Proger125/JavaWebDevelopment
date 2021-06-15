@@ -62,3 +62,7 @@
 2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Sum of elements is 15
 2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Sum of elements is 15
 2021-05-23 22:00:43 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Sum of elements is 15
+2021-06-01 20:59:11 [main] INFO  edu.epam.array.entity.IntArray- Array was created
+2021-06-01 20:59:11 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Sum of element is 15
+2021-06-02 14:11:22 [main] INFO  edu.epam.array.entity.IntArray- Array was created
+2021-06-02 14:11:22 [main] INFO  epam.array.service.impl.ArrayDefineServiceImpl- Average in array is 3.4
