@@ -53,6 +53,8 @@ public class ShapeParserTest {
     public void ParserResultTestTrue() throws ShapeException {
         List<String> list = reader.readAllCorrectLines("src/test/edu/epam/resources/input1.txt", " ");
         List<int[]> actualList = parser.parseAllCorrectStrings(list);
+        String str1 = actualList.toString();
+        String str2 = correctList1.toString();
         assertEquals(actualList, correctList1);
     }
     @Test

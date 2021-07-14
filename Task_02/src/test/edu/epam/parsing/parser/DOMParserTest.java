@@ -1,9 +1,7 @@
 package test.edu.epam.parsing.parser;
 
-import edu.epam.parsing.entity.ArtificialGem;
-import edu.epam.parsing.entity.Preciousness;
+import edu.epam.parsing.entity.*;
 import edu.epam.parsing.gemException.GemException;
-import edu.epam.parsing.entity.Gem;
 import edu.epam.parsing.parser.GemBuilderFactory;
 import edu.epam.parsing.parser.GemDOMBuilder;
 import org.testng.annotations.AfterClass;
@@ -47,6 +45,21 @@ public class DOMParserTest {
         gem.setCreationDate(YearMonth.parse("2018-06"));
         gem.setGrowingTime(500);
         gem.setWeight(8);
+        boolean actual = gems.contains(gem);
+        assertTrue(actual);
+    }
+    @Test
+    public void GemDomParserContainsTest2True(){
+        NaturalGem gem = new NaturalGem();
+        gem.setId("g1");
+        gem.setName("Diamond");
+        gem.setPreciousness(Preciousness.PRECIOUS);
+        gem.getParameters().setColor("Yellow");
+        gem.getParameters().setTransparency(80);
+        gem.getParameters().setEdgeAmount(6);
+        gem.setCreationDate(YearMonth.parse("2021-03"));
+        gem.setPlace(ExtractionPlace.AFRICA);
+        gem.setWeight(5);
         boolean actual = gems.contains(gem);
         assertTrue(actual);
     }
