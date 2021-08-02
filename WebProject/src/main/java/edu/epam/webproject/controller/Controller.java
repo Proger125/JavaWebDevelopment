@@ -35,9 +35,7 @@ public class Controller extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String commandName = req.getParameter(RequestParameter.COMMAND);
         Command command = commandProvider.getCommand(commandName);
-        System.out.println(req.getRequestURI());
         Router router = command.execute(req);
-        System.out.println(commandName);
         switch (router.getType()){
             case FORWARD:
                 RequestDispatcher dispatcher = req.getRequestDispatcher(router.getPagePath());
