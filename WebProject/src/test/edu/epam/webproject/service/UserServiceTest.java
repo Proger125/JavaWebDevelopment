@@ -24,7 +24,7 @@ public class UserServiceTest {
     public void SignUpTestTrue() throws ServiceException {
         ServiceProvider serviceProvider = ServiceProvider.getInstance();
         UserService userService = serviceProvider.getUserService();
-        boolean actual = userService.signUp("user-01", "alexdy.achenka@gmail.com", "Sashka125");
+        boolean actual = userService.signUp("admin-01", "alexdyachenka@gmail.com", "Sashka125");
         assertTrue(actual);
     }
 }

@@ -1,9 +1,6 @@
 package edu.epam.webproject.controller.command;
 
-import edu.epam.webproject.controller.command.impl.ChangeLocaleCommand;
-import edu.epam.webproject.controller.command.impl.DefaultCommand;
-import edu.epam.webproject.controller.command.impl.SignInCommand;
-import edu.epam.webproject.controller.command.impl.SignUpCommand;
+import edu.epam.webproject.controller.command.impl.*;
 import edu.epam.webproject.controller.command.impl.go.GoToAboutPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToSignInPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToSignUpPageCommand;
@@ -16,6 +13,7 @@ public class CommandProvider {
     private CommandProvider(){
         commands.put(CommandType.SIGN_UP_COMMAND, new SignUpCommand());
         commands.put(CommandType.SIGN_IN_COMMAND, new SignInCommand());
+        commands.put(CommandType.LOG_OUT_COMMAND, new LogOutCommand());
         commands.put(CommandType.GO_TO_ABOUT_PAGE_COMMAND, new GoToAboutPageCommand());
         commands.put(CommandType.GO_TO_SIGN_UP_PAGE_COMMAND, new GoToSignUpPageCommand());
         commands.put(CommandType.GO_TO_SIGN_IN_PAGE_COMMAND, new GoToSignInPageCommand());

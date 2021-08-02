@@ -29,6 +29,9 @@
 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
 
     <link href="../../static/css/footer.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
@@ -76,6 +79,11 @@
                         <a href="#" class="nav-link">${header_offersList}</a>
                     </li>
                 </c:if>
+                <c:if test="${user != null}">
+                    <li class="nav-item">
+                        <a href="../../Controller?command=log_out_command" class="nav-link">${header_logout}</a>
+                    </li>
+                </c:if>
                 <li class="nav-item">
                     <button form="localeForm" type="submit" name="locale" value="en">
                         EN
@@ -91,7 +99,6 @@
 </nav>
 <form id="localeForm" action="../../Controller" method="post">
     <input type="hidden" name="command" value="change_locale_command">
-
 </form>
 </body>
 </html>

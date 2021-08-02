@@ -1,7 +1,6 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: green;
 }
 .form-div{
     width: 100%;
@@ -31,5 +30,38 @@ body{
 .custom-slider{
     width: calc(100% - 100px);
     margin-left: 50px;
+    margin-bottom: 20px;
     height: calc(100vh - 156px);
+}
+.custom-slider-item img{
+    width: 100%;
+    height: 100%;
+}
+.data{
+    width: 100%;
+    height: calc(100vh - 156px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.user-info{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: row;
+}
+.user-data{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.user-property{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.info-helper{
+    font-family: 'Arvo', serif;
+    font-weight: bold;
 }

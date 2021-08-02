@@ -16,15 +16,15 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<div class="custom-slider">
+<div class="custom-slider autoplay">
     <div class="custom-slider-item">
-        a
+        <img src="../../static/img/util/carousel_img_1.jpg" alt="First slider item">
     </div>
     <div class="custom-slider-item">
-        b
+        <img src="../../static/img/util/carousel_img_2.jpg" alt="Second slider item">
     </div>
     <div class="custom-slider-item">
-        c
+        <img src="../../static/img/util/carousel_img_3.jpg" alt="Third slider item">
     </div>
 </div>
 <jsp:include page="footer.jsp"/>
