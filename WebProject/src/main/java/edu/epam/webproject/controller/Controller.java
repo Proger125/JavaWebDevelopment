@@ -1,9 +1,6 @@
 package edu.epam.webproject.controller;
 
-import edu.epam.webproject.controller.command.Command;
-import edu.epam.webproject.controller.command.CommandProvider;
-import edu.epam.webproject.controller.command.RequestParameter;
-import edu.epam.webproject.controller.command.Router;
+import edu.epam.webproject.controller.command.*;
 import edu.epam.webproject.model.connection.ConnectionPool;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -46,7 +43,7 @@ public class Controller extends HttpServlet {
                 break;
             default:
                 logger.log(Level.ERROR, "Incorrect router type: " + router.getType());
-                // TODO Redirect to error page
+                resp.sendRedirect(PagePath.DEFAULT_PAGE);
         }
     }
 
