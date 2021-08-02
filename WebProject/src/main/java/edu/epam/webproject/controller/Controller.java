@@ -1,0 +1,55 @@
+package edu.epam.webproject.controller;
+
+import edu.epam.webproject.controller.command.Command;
+import edu.epam.webproject.controller.command.CommandProvider;
+import edu.epam.webproject.controller.command.RequestParameter;
+import edu.epam.webproject.controller.command.Router;
+import edu.epam.webproject.model.connection.ConnectionPool;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
+public class Controller extends HttpServlet {
+    private static Logger logger = LogManager.getLogger();
+    private static final CommandProvider commandProvider = CommandProvider.getInstance();
+    public Controller(){
+        super();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        processRequest(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        processRequest(req, resp);
+    }
+    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String commandName = req.getParameter(RequestParameter.COMMAND);
+        Command command = commandProvider.getCommand(commandName);
+        System.out.println(req.getRequestURI());
+        Router router = command.execute(req);
+        System.out.println(commandName);
+        switch (router.getType()){
+            case FORWARD:
+                RequestDispatcher dispatcher = req.getRequestDispatcher(router.getPagePath());
+                dispatcher.forward(req, resp);
+                break;
+            case REDIRECT:
+                resp.sendRedirect(router.getPagePath());
+                break;
+            default:
+                logger.log(Level.ERROR, "Incorrect router type: " + router.getType());
+                // TODO Redirect to error page
+        }
+    }
+
+}

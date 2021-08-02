@@ -1,15 +1,15 @@
 package edu.epam.webproject.model.dao.impl;
 
-import edu.epam.webproject.entity.SignInData;
-import edu.epam.webproject.entity.SignUpData;
 import edu.epam.webproject.entity.User;
 import edu.epam.webproject.exception.DaoException;
 import edu.epam.webproject.model.connection.ConnectionPool;
+import edu.epam.webproject.model.dao.ColumnName;
 import edu.epam.webproject.model.dao.UserDao;
 import edu.epam.webproject.util.PasswordEncryptor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -18,8 +18,10 @@ public class UserDaoImpl implements UserDao {
     private static final UserDaoImpl instance = new UserDaoImpl();
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
-    private static final String SIGN_UP = "INSERT INTO users (login, password, email, role_id, status_id) VALUES (?, ?, ?, ?, ?)";
-
+    private static final String SIGN_UP_SQL = "INSERT INTO users (login, password, email, role_id, status_id) VALUES (?, ?, ?, ?, ?)";
+    private static final String FIND_USER_BY_EMAIL_SQL = "SELECT users.user_id, users.password, users.login, users.email, users.icon, roles.role_type, user_status.status_type " +
+            "FROM users " +
+            "JOIN roles ON users.role_id = roles.role_id JOIN user_status ON users.status_id = user_status.status_id WHERE users.email = ?";
     private UserDaoImpl(){
 
     }
@@ -29,8 +31,29 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Optional<User> signIn(SignInData data) {
-        return Optional.empty();
+    public Optional<User> signIn(String email, String password) throws DaoException {
+        PasswordEncryptor encryptor = PasswordEncryptor.getInstance();
+        User user = null;
+        try(Connection connection = pool.getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_EMAIL_SQL)) {
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                String hashPassword = resultSet.getString(ColumnName.PASSWORD);
+                if (encryptor.checkHash(password, hashPassword)){
+                    user = new User();
+                    user.setId(resultSet.getInt(ColumnName.USER_ID));
+                    user.setLogin(resultSet.getString(ColumnName.LOGIN));
+                    user.setEmail(resultSet.getString(ColumnName.EMAIL));
+                    user.setIcon(resultSet.getString(ColumnName.ICON));
+                    user.setRole(User.Role.valueOf(resultSet.getString(ColumnName.ROLE_TYPE).toUpperCase()));
+                    user.setStatus(User.UserStatus.valueOf(resultSet.getString(ColumnName.STATUS_TYPE).toUpperCase()));
+                }
+            }
+            return Optional.ofNullable(user);
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle UserDao.signIn request");
+        }
     }
 
     @Override
@@ -49,16 +72,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean signUp(SignUpData data) throws DaoException {
-        PasswordEncryptor encryptor = PasswordEncryptor.getInstance();
+    public boolean signUp(String login, String email, String password) throws DaoException {
+
         final int DUPLICATE_EMAIL_ERROR_CODE = 1062;
         try(Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(SIGN_UP)){
-            statement.setString(SignUpIndex.LOGIN, data.getLogin());
-            statement.setString(SignUpIndex.PASSWORD, encryptor.getHash(data.getPassword()));
-            statement.setString(SignUpIndex.EMAIL, data.getEmail());
+            PreparedStatement statement = connection.prepareStatement(SIGN_UP_SQL)){
+            statement.setString(SignUpIndex.LOGIN, login);
+            statement.setString(SignUpIndex.PASSWORD, password);
+            statement.setString(SignUpIndex.EMAIL, email);
             statement.setInt(SignUpIndex.ROLE, User.Role.USER.getValue());
-            statement.setInt(SignUpIndex.STATUS, User.UserStatus.IN_PROGRESS.getValue());
+            statement.setInt(SignUpIndex.STATUS, User.UserStatus.IN_PROCESS.getValue());
             statement.execute();
             return true;
         } catch (SQLException e) {
@@ -67,7 +90,6 @@ public class UserDaoImpl implements UserDao {
             }else{
                 throw new DaoException("Unable to handle UserDao signUp request");
             }
-            //TODO Dublicate email if (dublicate email){return false} else {throw new DaoException()}
         }
     }
 

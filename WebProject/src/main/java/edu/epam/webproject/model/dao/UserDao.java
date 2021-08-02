@@ -13,8 +13,8 @@ public interface UserDao extends AbstractDao<User>{
         return false;
     }
 
-    boolean signUp(SignUpData data) throws DaoException;
-    Optional<User> signIn(SignInData data);
+    boolean signUp(String login, String email, String password) throws DaoException;
+    Optional<User> signIn(String email, String password) throws DaoException;
     boolean setPasswordById(long id, String password);
     boolean banUserById(long id);
     boolean unBanUserById(long id);

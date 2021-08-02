@@ -7,6 +7,8 @@ import edu.epam.handling.exception.HandlerException;
 import edu.epam.handling.parser.impl.*;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 import static org.testng.Assert.assertEquals;
 
 public class InformationHandlingParserTest {
@@ -32,5 +34,11 @@ public class InformationHandlingParserTest {
         String actual = component.toString();
         assertEquals(actual, expected);
     }
-
+    @Test
+    public void test(){
+        File file = new File("./");
+        for (var sub : file.listFiles()){
+            System.out.println(sub);
+        }
+    }
 }

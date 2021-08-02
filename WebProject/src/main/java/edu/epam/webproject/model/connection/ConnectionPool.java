@@ -10,27 +10,30 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ConnectionPool {
     private static Logger logger = LogManager.getLogger();
-    private static final int DEFAULT_POOL_SIZE = 20;
+    private static final int DEFAULT_POOL_SIZE = 4;
     private static ConnectionPool instance = new ConnectionPool();
     private static AtomicBoolean isCreated = new AtomicBoolean(false);
     private BlockingQueue<ProxyConnection> freeConnections;
     private BlockingQueue<ProxyConnection> usedConnections;
-    private ConnectionPool(){}
+    private ConnectionPool(){
+    }
     public void init(){
-        freeConnections = new LinkedBlockingDeque<>(DEFAULT_POOL_SIZE);
-        usedConnections = new LinkedBlockingDeque<>(DEFAULT_POOL_SIZE);
+        freeConnections = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
+        usedConnections = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++){
             try{
                 Connection connection = ConnectionFactory.createConnection();
                 ProxyConnection proxyConnection = new ProxyConnection(connection);
-                freeConnections.offer(proxyConnection);
+                freeConnections.put(proxyConnection);
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "Unable to create connection: " + e);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
         }
         if (freeConnections.isEmpty()){
@@ -50,14 +53,14 @@ public class ConnectionPool {
         ProxyConnection connection = null;
         try{
             connection = freeConnections.take();
-            usedConnections.add(connection);
+            usedConnections.put(connection);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
         return connection;
     }
     public void releaseConnection(Connection connection){
-        if (! (connection instanceof ProxyConnection)){
+        if (!(connection instanceof ProxyConnection)){
             logger.log(Level.FATAL, "Incorrect connection: " + connection);
             throw new RuntimeException("Incorrect connection: " + connection);
         }

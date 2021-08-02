@@ -110,7 +110,7 @@ public class User extends Entity{
     }
     public enum UserStatus {
         APPROVED(1),
-        IN_PROGRESS(2),
+        IN_PROCESS(2),
         REJECTED(3);
         private final int value;
         private UserStatus(int value){

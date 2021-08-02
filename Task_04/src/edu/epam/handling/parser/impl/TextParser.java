@@ -26,7 +26,7 @@ public class TextParser implements ChainParser {
             String[] paragraphs = text.split(PARAGRAPH_REGEXP);
             for (var paragraph : paragraphs){
                 if (!paragraph.isEmpty()) {
-                    paragraph = paragraph.replace(ENTER_REGEXP, " ");
+                    //paragraph = paragraph.replace(ENTER_REGEXP, " ");
                     TextComposite paragraphTextComposite = new TextComposite(ComponentType.PARAGRAPH);
                     textComponent.add(paragraphTextComposite);
                     nextChain.processData(paragraph, paragraphTextComposite);
