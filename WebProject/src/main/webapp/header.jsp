@@ -2,9 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
-<%
-
-%>
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>
 </c:if>
@@ -17,30 +14,30 @@
 <fmt:message key="header.book" var="header_book"/>
 <fmt:message key="header.usersList" var="header_usersList"/>
 <fmt:message key="header.offersList" var="header_offersList"/>
+<fmt:message key="header.reservationList" var="header_reservationsList"/>
 <head>
     <title>Title</title>
     <meta name="viewport" content="width = device-width, initial-scale = 1">
 
-    <link href="../../static/bootstrap/css/bootstrap-reboot.css" rel="stylesheet">
-    <link href="../../static/bootstrap/css/bootstrap-grid.css" rel="stylesheet">
-    <link href="../../static/bootstrap/css/bootstrap-utilities.css" rel="stylesheet">
-    <link href="../../static/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/slick-theme.css">
-
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link href="<c:url value="/static/bootstrap/css/bootstrap-grid.css"/>" rel="stylesheet">
+    <link href="<c:url value="/static/bootstrap/css/bootstrap-reboot.css"/>" rel="stylesheet">
+    <link href="<c:url value="/static/bootstrap/css/bootstrap-utilities.css"/>" rel="stylesheet">
+    <link href="<c:url value="/static/bootstrap/css/bootstrap.css"/>" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
 
-    <link href="../../static/css/footer.css" rel="stylesheet">
-    <link href="../../static/css/style.css" rel="stylesheet">
+    <link href="<c:url value="/static/css/footer.css"/> " rel="stylesheet">
+    <link href="<c:url value="/static/css/style.css"/>" rel="stylesheet">
 
-    <script src="../../static/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script type="text/javascript" src="../../static/js/script.js"></script>
+    <script src="<c:url value="/static/bootstrap/js/bootstrap.js"/>"></script>
+    <script src="<c:url value="/static/jquery-1.11.0.js"/> "></script>
+
+    <link rel="stylesheet" href="<c:url value="/static/slick.css"/>">
+    <link href="<c:url value="/static/css/slick-theme.css"/>" rel="stylesheet">
+    <script src="<c:url value="/static/slick.min.js"/> "></script>
+    <script src="<c:url value="/static/js/script.js"/> "></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -73,10 +70,13 @@
                 </c:if>
                 <c:if test="${user.role == 'ADMIN'}">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">${header_usersList}</a>
+                        <a href="../../Controller?command=go_to_all_users_page_command" class="nav-link">${header_usersList}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">${header_offersList}</a>
+                        <a href="../../Controller?command=go_to_all_offers_page_command" class="nav-link">${header_offersList}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../Controller?command=go_to_all_reservations_page_command" class="nav-link">${header_reservationsList}</a>
                     </li>
                 </c:if>
                 <c:if test="${user != null}">

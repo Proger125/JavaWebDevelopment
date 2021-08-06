@@ -8,15 +8,6 @@ public class Address extends Entity{
     private int houseNumber;
     private int apartmentNumber;
 
-    public Address(long id, String country, String city, String street, int houseNumber, int apartmentNumber) {
-        this.id = id;
-        this.country = country;
-        this.city = city;
-        this.street = street;
-        this.houseNumber = houseNumber;
-        this.apartmentNumber = apartmentNumber;
-    }
-
     public long getId() {
         return id;
     }

@@ -8,10 +8,8 @@
   Time: 10:02
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    request.getSession().setAttribute(RequestAttribute.LAST_PAGE, PagePath.ADMIN_ACCOUNT_PAGE);
-%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<c:set var="last_page" value="${PagePath.ADMIN_ACCOUNT_PAGE}" scope="session"/>
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>
 </c:if>
@@ -20,18 +18,18 @@
 <fmt:message key="account.email" var="account_email"/>
 <fmt:message key="account.role" var="account_role"/>
 <fmt:message key="account.status" var="account_status"/>
+<fmt:message key="header.offersList" var="header_offersList"/>
+<fmt:message key="header.usersList" var="header_usersList"/>
+<fmt:message key="header.reservationList" var="header_reservationList"/>
 <html>
-<head>
-    <title>Title</title>
-</head>
 <body>
-<jsp:include page="../all/header.jsp"/>
+<jsp:include page="../../header.jsp"/>
 <c:set var="user" value="${sessionScope.user}"/>
 <div class="data">
     <div class="user-info">
         <div class="user-photo">
             <c:if test="${user.icon == null}">
-                <img src="../../static/img/users/default.jpg" alt="Default image">
+                <img src="../../static/img/users/default.jpg" class="user-photo-img" alt="Default image">
             </c:if>
             <c:if test="${user.icon != null}">
                 <img src="${user.icon}" alt="User image">
@@ -56,7 +54,24 @@
             </div>
         </div>
     </div>
+    <div class="admin-options">
+        <a href="Controller?command=go_to_all_users_page_command">
+            <button class="admin-option">
+                ${header_usersList}
+            </button>
+        </a>
+        <a href="../../Controller?command=go_to_all_offers_page_command">
+            <button class="admin-option">
+                ${header_offersList}
+            </button>
+        </a>
+        <a href="../../Controller?command=log_out_command">
+            <button class="admin-option">
+                ${header_reservationList}
+            </button>
+        </a>
+    </div>
 </div>
-<jsp:include page="../all/footer.jsp"/>
+<jsp:include page="../../footer.jsp"/>
 </body>
 </html>

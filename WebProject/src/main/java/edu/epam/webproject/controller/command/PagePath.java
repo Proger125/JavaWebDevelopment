@@ -7,4 +7,8 @@ public class PagePath {
     public static final String ADMIN_ACCOUNT_PAGE = "pages/admin/admin_account.jsp";
     public static final String USER_ACCOUNT_PAGE = "pages/user/user_account.jsp";
     public static final String DEFAULT_PAGE = "pages/all/default.jsp";
+
+    public static final String ALL_USERS_PAGE = "pages/admin/all_users.jsp";
+    public static final String ALL_OFFERS_PAGE = "pages/admin/all_offers.jsp";
+    public static final String ALL_RESERVATIONS_PAGE = "page/admin/all_reservations.jsp";
 }

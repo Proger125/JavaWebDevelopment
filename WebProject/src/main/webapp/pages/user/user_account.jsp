@@ -1,4 +1,5 @@
 <%@ page import="edu.epam.webproject.controller.command.RequestAttribute" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %><%--
   Created by IntelliJ IDEA.
   User: Lenovo
@@ -7,16 +8,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    request.getSession().setAttribute(RequestAttribute.LAST_PAGE, PagePath.USER_ACCOUNT_PAGE);
-%>
+<c:set var="last_page" value="${PagePath.USER_ACCOUNT_PAGE}" scope="session"/>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="../all/header.jsp"/>
+<jsp:include page="../../header.jsp"/>
 user_account
-<jsp:include page="../all/footer.jsp"/>
+<jsp:include page="../../footer.jsp"/>
 </body>
 </html>

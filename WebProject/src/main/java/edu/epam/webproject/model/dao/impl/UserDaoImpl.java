@@ -7,10 +7,8 @@ import edu.epam.webproject.model.dao.ColumnName;
 import edu.epam.webproject.model.dao.UserDao;
 import edu.epam.webproject.util.PasswordEncryptor;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +20,9 @@ public class UserDaoImpl implements UserDao {
     private static final String FIND_USER_BY_EMAIL_SQL = "SELECT users.user_id, users.password, users.login, users.email, users.icon, roles.role_type, user_status.status_type " +
             "FROM users " +
             "JOIN roles ON users.role_id = roles.role_id JOIN user_status ON users.status_id = user_status.status_id WHERE users.email = ?";
+    private static final String FIND_ALL_USERS_SQL = "SELECT users.user_id, users.login, users.email, users.icon, roles.role_type, user_status.status_type " +
+            "FROM users " +
+            "JOIN roles ON users.role_id = roles.role_id JOIN user_status ON users.status_id = user_status.status_id";
     private UserDaoImpl(){
 
     }
@@ -88,7 +89,7 @@ public class UserDaoImpl implements UserDao {
             if (e.getErrorCode() == DUPLICATE_EMAIL_ERROR_CODE){
                 return false;
             }else{
-                throw new DaoException("Unable to handle UserDao signUp request");
+                throw new DaoException("Unable to handle UserDao signUp request", e);
             }
         }
     }
@@ -99,8 +100,26 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Optional<List<User>> findAll() {
-        return Optional.empty();
+    public List<User> findAll() throws DaoException {
+        List<User> list;
+        try(Connection connection = pool.getConnection();
+            Statement statement = connection.createStatement()){
+            ResultSet set = statement.executeQuery(FIND_ALL_USERS_SQL);
+            list = new ArrayList<>();
+            while (set.next()){
+                User user = new User();
+                user.setId(set.getLong(ColumnName.USER_ID));
+                user.setStatus(User.UserStatus.valueOf(set.getString(ColumnName.STATUS_TYPE).toUpperCase()));
+                user.setRole(User.Role.valueOf(set.getString(ColumnName.ROLE_TYPE).toUpperCase()));
+                user.setLogin(set.getString(ColumnName.LOGIN));
+                user.setEmail(set.getString(ColumnName.EMAIL));
+                user.setIcon(set.getString(ColumnName.ICON));
+                list.add(user);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle UserDao findAll request", e);
+        }
+        return list;
     }
 
     @Override

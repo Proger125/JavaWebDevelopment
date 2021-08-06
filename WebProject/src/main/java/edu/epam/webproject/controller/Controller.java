@@ -1,9 +1,9 @@
 package edu.epam.webproject.controller;
 
 import edu.epam.webproject.controller.command.*;
-import edu.epam.webproject.model.connection.ConnectionPool;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,8 +13,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+@WebServlet
 public class Controller extends HttpServlet {
-    private static Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     private static final CommandProvider commandProvider = CommandProvider.getInstance();
     public Controller(){
         super();
@@ -43,7 +44,7 @@ public class Controller extends HttpServlet {
                 break;
             default:
                 logger.log(Level.ERROR, "Incorrect router type: " + router.getType());
-                //resp.sendError(PagePath.DEFAULT_PAGE);
+                resp.sendError(404);
         }
     }
 

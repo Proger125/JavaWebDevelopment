@@ -1,6 +1,9 @@
 package edu.epam.webproject.controller.command;
 
 import edu.epam.webproject.controller.command.impl.*;
+import edu.epam.webproject.controller.command.impl.admin.go.GoToAllOffersPageCommand;
+import edu.epam.webproject.controller.command.impl.admin.go.GoToAllReservationsPageCommand;
+import edu.epam.webproject.controller.command.impl.admin.go.GoToAllUsersPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToAboutPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToSignInPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToSignUpPageCommand;
@@ -17,6 +20,9 @@ public class CommandProvider {
         commands.put(CommandType.GO_TO_ABOUT_PAGE_COMMAND, new GoToAboutPageCommand());
         commands.put(CommandType.GO_TO_SIGN_UP_PAGE_COMMAND, new GoToSignUpPageCommand());
         commands.put(CommandType.GO_TO_SIGN_IN_PAGE_COMMAND, new GoToSignInPageCommand());
+        commands.put(CommandType.GO_TO_ALL_OFFERS_PAGE_COMMAND, new GoToAllOffersPageCommand());
+        commands.put(CommandType.GO_TO_ALL_RESERVATIONS_PAGE_COMMAND, new GoToAllReservationsPageCommand());
+        commands.put(CommandType.GO_TO_ALL_USERS_PAGE_COMMAND, new GoToAllUsersPageCommand());
         commands.put(CommandType.CHANGE_LOCALE_COMMAND, new ChangeLocaleCommand());
         commands.put(CommandType.DEFAULT, new DefaultCommand());
     }

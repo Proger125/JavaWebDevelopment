@@ -12,15 +12,8 @@ public class Offer extends Entity{
     private String description;
     private List<String> photos;
     private OfferStatus status;
-
-    public Offer(long id, User owner, Address address, BigInteger pricePerDay, String description, OfferStatus status) {
-        this.id = id;
-        this.owner = owner;
-        this.address = address;
-        this.pricePerDay = pricePerDay;
-        this.description = description;
-        this.status = status;
-        photos = new ArrayList<>();
+    public Offer(){
+        this.photos = new ArrayList<>();
     }
 
     public long getId() {

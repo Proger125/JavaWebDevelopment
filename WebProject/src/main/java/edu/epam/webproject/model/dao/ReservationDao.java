@@ -6,6 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReservationDao extends AbstractDao<Reservation>{
-    Optional<List<Reservation> > findReservationsByHirerId(long id);
+    List<Reservation> findReservationsByHirerId(long id);
     boolean changeReservationStatusById(long id);
 }

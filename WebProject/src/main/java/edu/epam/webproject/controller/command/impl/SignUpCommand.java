@@ -9,8 +9,11 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static edu.epam.webproject.model.service.UserService.INCORRECT_DATA_EXCEPTION_MESSAGE;
+
 public class SignUpCommand implements Command {
     private static Logger logger = LogManager.getLogger();
+    //public static final String INCORRECT_DATA_EXCEPTION_MESSAGE = "Incorrect user data";
 
     @Override
     public Router execute(HttpServletRequest req) {
@@ -27,16 +30,21 @@ public class SignUpCommand implements Command {
             if (result){
                 //TODO Send email
                 router = new Router(PagePath.USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
-                        req.setAttribute(RequestAttribute.EMAIL_SENT, true);
+                req.getSession().setAttribute(RequestAttribute.EMAIL_SENT, true);
             }else{
                 router = new Router(PagePath.SIGN_UP_PAGE, Router.RouterType.REDIRECT);
-                req.setAttribute(RequestAttribute.DUPLICATE_EMAIL, true);
+                req.getSession().setAttribute(RequestAttribute.DUPLICATE_EMAIL, true);
             }
 
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Error at SignUp servlet", e);
-            req.setAttribute(RequestAttribute.EXCEPTION, e);
-            router = new Router(PagePath.DEFAULT_PAGE, Router.RouterType.REDIRECT);
+            if (e.getMessage().equals(INCORRECT_DATA_EXCEPTION_MESSAGE)){
+                req.getSession().setAttribute(RequestAttribute.INCORRECT_DATA, true);
+                router = new Router(PagePath.SIGN_UP_PAGE, Router.RouterType.REDIRECT);
+            }else{
+                logger.log(Level.ERROR, "Error at SignUp servlet", e);
+                req.getSession().setAttribute(RequestAttribute.EXCEPTION, e);
+                router = new Router(PagePath.DEFAULT_PAGE, Router.RouterType.REDIRECT);
+            }
         }
         return router;
     }

@@ -13,17 +13,6 @@ public class Reservation extends Entity{
     private String comment;
     private ReservationStatus status;
 
-    public Reservation(long id, User tenant, Offer offer, Date arrivalDate, Date departureDate, BigInteger totalPrice, String comment, ReservationStatus status) {
-        this.id = id;
-        this.tenant = tenant;
-        this.offer = offer;
-        this.arrivalDate = arrivalDate;
-        this.departureDate = departureDate;
-        this.totalPrice = totalPrice;
-        this.comment = comment;
-        this.status = status;
-    }
-
     public long getId() {
         return id;
     }

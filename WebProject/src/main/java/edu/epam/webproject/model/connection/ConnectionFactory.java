@@ -19,17 +19,6 @@ public class ConnectionFactory {
     private static final Properties properties = new Properties();
     private static final String RESOURCE_FILE = "\\db.properties";
     static {
-        File currentClass = null;
-        try {
-            currentClass = new File(URLDecoder.decode(ConnectionFactory.class
-                    .getProtectionDomain()
-                    .getCodeSource()
-                    .getLocation()
-                    .getPath(), "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        System.out.println(currentClass.getAbsolutePath());
         try(InputStream stream = ConnectionFactory.class.getClassLoader().getResourceAsStream(RESOURCE_FILE)){
             Class.forName(DRIVER);
             properties.load(stream);

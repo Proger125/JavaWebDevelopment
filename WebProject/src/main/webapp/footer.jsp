@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>
 </c:if>
@@ -19,22 +20,22 @@
     <div class=" social-networks">
         <div class="social-network-item">
             <a href="">
-                <img src="../../static/img/util/icons8-instagram-48.png" alt="Instagram">
+                <img src="<c:url value="/static/img/util/icons8-instagram-48.png"/>" alt="Instagram">
             </a>
         </div>
         <div class="social-network-item">
             <a href="">
-                <img src="../../static/img/util/icons8-vk-в-круге-48.png" alt="VK">
+                <img src="<c:url value="/static/img/util/icons8-vk-в-круге-48.png"/>" alt="VK">
             </a>
         </div>
         <div class="social-network-item">
             <a href="">
-                <img src="../../static/img/util/icons8-whatsapp-48.png" alt="WhatsApp">
+                <img src="<c:url value="/static/img/util/icons8-whatsapp-48.png"/>" alt="WhatsApp">
             </a>
         </div>
         <div class="social-network-item">
             <a href="">
-                <img src="../../static/img/util/icons8-телеграмма-app-48.png" alt="Telegram">
+                <img src="<c:url value="/static/img/util/icons8-телеграмма-app-48.png"/>" alt="Telegram">
             </a>
         </div>
     </div>

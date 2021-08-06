@@ -11,4 +11,22 @@ public final class ColumnName {
 
     public static final String ROLE_TYPE = "role_type";
     public static final String STATUS_TYPE = "status_type";
+
+    public static final String OFFER_ID = "offer_id";
+    public static final String PRICE_PER_DAY = "price_per_day";
+    public static final String DESCRIPTION = "description";
+    public static final String OWNER_ID = "owner_id";
+
+    public static final String COUNTRY = "country";
+    public static final String CITY = "city";
+    public static final String STREET = "street";
+    public static final String HOUSE_NUMBER = "house_number";
+    public static final String APARTMENT_NUMBER = "apartment_number";
+
+    public static final String RESERVATION_ID = "reservation_id";
+    public static final String TENANT_ID = "tenant_id";
+    public static final String ARRIVAL_DATE = "arrival_date";
+    public static final String DEPARTURE_DATE = "departure_date";
+    public static final String TOTAL_PRICE = "total_price";
+    public static final String COMMENT = "comment";
 }
