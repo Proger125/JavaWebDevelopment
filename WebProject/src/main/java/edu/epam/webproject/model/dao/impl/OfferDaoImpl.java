@@ -8,10 +8,7 @@ import edu.epam.webproject.model.connection.ConnectionPool;
 import edu.epam.webproject.model.dao.ColumnName;
 import edu.epam.webproject.model.dao.OfferDao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,14 +24,34 @@ public class OfferDaoImpl implements OfferDao {
             "FROM offers " +
             "JOIN addresses ON offers.address_id = addresses.id " +
             "JOIN offer_status ON offers.status_id = offer_status.id ";
+    private static final String FIND_OFFERS_BY_OWNER_ID = "SELECT offers.offer_id, offers.owner_id, addresses.country, " +
+            "addresses.city, addresses.street, addresses.house_number, addresses.apartment_number, offers.price_per_day, " +
+            "offers.description, offer_status.status_type " +
+            "FROM offers " +
+            "JOIN addresses ON offers.address_id = addresses.id " +
+            "JOIN offer_status ON offers.status_id = offer_status.id " +
+            "WHERE offers.owner_id = ?";
 
     private OfferDaoImpl(){}
     public static OfferDaoImpl getInstance(){
         return instance;
     }
     @Override
-    public List<Offer> findOffersByOwnerId(long id) {
-        return null;
+    public List<Offer> findOffersByOwnerId(long id) throws DaoException {
+        List<Offer> list;
+        try(Connection connection = pool.getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_OFFERS_BY_OWNER_ID)){
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            list = new ArrayList<>();
+            while (resultSet.next()){
+                Offer offer = createOffer(resultSet);
+                list.add(offer);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle OfferDao.findOffersByOwnerId request", e);
+        }
+        return list;
     }
 
     @Override
@@ -65,25 +82,11 @@ public class OfferDaoImpl implements OfferDao {
             ResultSet set = statement.executeQuery(FIND_ALL_OFFERS_SQL);
             list = new ArrayList<>();
             while (set.next()){
-                Offer offer = new Offer();
-                offer.setId(set.getLong(ColumnName.OFFER_ID));
-                User user = new User();
-                user.setId(set.getLong(ColumnName.OWNER_ID));
-                offer.setOwner(user);
-                offer.setDescription(set.getString(ColumnName.DESCRIPTION));
-                offer.setPricePerDay(set.getBigDecimal(ColumnName.PRICE_PER_DAY).toBigInteger());
-                offer.setStatus(Offer.OfferStatus.valueOf(set.getString(ColumnName.STATUS_TYPE).toUpperCase()));
-                Address address = new Address();
-                address.setCountry(set.getString(ColumnName.COUNTRY));
-                address.setCity(set.getString(ColumnName.CITY));
-                address.setStreet(set.getString(ColumnName.STREET));
-                address.setHouseNumber(set.getInt(ColumnName.HOUSE_NUMBER));
-                address.setApartmentNumber(set.getInt(ColumnName.APARTMENT_NUMBER));
-                offer.setAddress(address);
+                Offer offer = createOffer(set);
                 list.add(offer);
             }
         } catch (SQLException e) {
-            throw new DaoException("Unable to handle UserDao findAll request");
+            throw new DaoException("Unable to handle OfferDao.findAll request");
         }
         return list;
     }
@@ -91,5 +94,24 @@ public class OfferDaoImpl implements OfferDao {
     @Override
     public Optional<Offer> updateById(long id, Offer entity) {
         return Optional.empty();
+    }
+    private static  Offer createOffer(ResultSet resultSet) throws SQLException {
+        Offer offer = new Offer();
+        offer.setId(resultSet.getLong(ColumnName.OFFER_ID));
+        User user = new User();
+        user.setId(resultSet.getLong(ColumnName.OWNER_ID));
+        offer.setOwner(user);
+        offer.setDescription(resultSet.getString(ColumnName.DESCRIPTION));
+        offer.setPricePerDay(resultSet.getBigDecimal(ColumnName.PRICE_PER_DAY).toBigInteger());
+        offer.setStatus(Offer.OfferStatus.valueOf(resultSet.getString(ColumnName.STATUS_TYPE).toUpperCase()));
+        Address address = new Address();
+        address.setCountry(resultSet.getString(ColumnName.COUNTRY));
+        address.setCity(resultSet.getString(ColumnName.CITY));
+        address.setStreet(resultSet.getString(ColumnName.STREET));
+        address.setHouseNumber(resultSet.getInt(ColumnName.HOUSE_NUMBER));
+        address.setApartmentNumber(resultSet.getInt(ColumnName.APARTMENT_NUMBER));
+        address.setApartmentNumber(resultSet.getInt(ColumnName.APARTMENT_NUMBER));
+        offer.setAddress(address);
+        return offer;
     }
 }

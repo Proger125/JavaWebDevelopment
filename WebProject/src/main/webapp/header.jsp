@@ -18,32 +18,13 @@
 <head>
     <title>Title</title>
     <meta name="viewport" content="width = device-width, initial-scale = 1">
-
-    <link href="<c:url value="/static/bootstrap/css/bootstrap-grid.css"/>" rel="stylesheet">
-    <link href="<c:url value="/static/bootstrap/css/bootstrap-reboot.css"/>" rel="stylesheet">
-    <link href="<c:url value="/static/bootstrap/css/bootstrap-utilities.css"/>" rel="stylesheet">
-    <link href="<c:url value="/static/bootstrap/css/bootstrap.css"/>" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
-
-    <link href="<c:url value="/static/css/footer.css"/> " rel="stylesheet">
-    <link href="<c:url value="/static/css/style.css"/>" rel="stylesheet">
-
-    <script src="<c:url value="/static/bootstrap/js/bootstrap.js"/>"></script>
-    <script src="<c:url value="/static/jquery-1.11.0.js"/> "></script>
-
-    <link rel="stylesheet" href="<c:url value="/static/slick.css"/>">
-    <link href="<c:url value="/static/css/slick-theme.css"/>" rel="stylesheet">
-    <script src="<c:url value="/static/slick.min.js"/> "></script>
-    <script src="<c:url value="/static/js/script.js"/> "></script>
+    <jsp:include page="connections.jsp"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <c:set var="user" value="${sessionScope.user}"/>
-        <a class="navbar-brand" href="../../Controller?command=go_to_about_page_command">WorldFlat</a>
+        <a class="navbar-brand" href="<c:url value="/Controller?command=go_to_about_page_command"/>">WorldFlat</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -51,10 +32,10 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <c:if test="${user == null}">
                     <li class="nav-item">
-                        <a class="nav-link" href="../../Controller?command=go_to_sign_in_page_command">${header_enter}</a>
+                        <a class="nav-link" href="<c:url value="/Controller?command=go_to_sign_in_page_command"/>">${header_enter}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../Controller?command=go_to_sign_up_page_command">${header_register}</a>
+                        <a class="nav-link" href="<c:url value="/Controller?command=go_to_sign_up_page_command"/>">${header_register}</a>
                     </li>
                 </c:if>
                 <c:if test="${user.role == 'USER'}">
@@ -64,24 +45,21 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">${header_book}</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">${header_logout}</a>
-                    </li>
                 </c:if>
                 <c:if test="${user.role == 'ADMIN'}">
                     <li class="nav-item">
-                        <a href="../../Controller?command=go_to_all_users_page_command" class="nav-link">${header_usersList}</a>
+                        <a href="<c:url value="/Controller?command=go_to_all_users_page_command"/>" class="nav-link">${header_usersList}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../../Controller?command=go_to_all_offers_page_command" class="nav-link">${header_offersList}</a>
+                        <a href="<c:url value="/Controller?command=go_to_all_offers_page_command"/>" class="nav-link">${header_offersList}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../../Controller?command=go_to_all_reservations_page_command" class="nav-link">${header_reservationsList}</a>
+                        <a href="<c:url value="/Controller?command=go_to_all_reservations_page_command"/>" class="nav-link">${header_reservationsList}</a>
                     </li>
                 </c:if>
                 <c:if test="${user != null}">
                     <li class="nav-item">
-                        <a href="../../Controller?command=log_out_command" class="nav-link">${header_logout}</a>
+                        <a href="<c:url value="/Controller?command=log_out_command"/>" class="nav-link">${header_logout}</a>
                     </li>
                 </c:if>
                 <li class="nav-item">
@@ -97,7 +75,7 @@
         </div>
     </div>
 </nav>
-<form id="localeForm" action="../../Controller" method="post">
+<form id="localeForm" action="<c:url value="/Controller"/>" method="post">
     <input type="hidden" name="command" value="change_locale_command">
 </form>
 </body>

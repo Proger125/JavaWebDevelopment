@@ -95,3 +95,21 @@ body{
     width: 60%;
     border: 1px solid black;
 }
+.custom-user{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.admin-functions{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.admin-functions form{
+    width: 100%;
+    height: 100%;
+}
+.admin-functions-button{
+    width: 100%;
+    height: 20%;
+}

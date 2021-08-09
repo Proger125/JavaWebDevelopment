@@ -10,5 +10,12 @@ public class PagePath {
 
     public static final String ALL_USERS_PAGE = "pages/admin/all_users.jsp";
     public static final String ALL_OFFERS_PAGE = "pages/admin/all_offers.jsp";
-    public static final String ALL_RESERVATIONS_PAGE = "page/admin/all_reservations.jsp";
+    public static final String ALL_RESERVATIONS_PAGE = "pages/admin/all_reservations.jsp";
+
+
+    public static final String GO_TO_ALL_USERS_PAGE = "Controller?command=go_to_all_users_page_command";
+    public static final String GO_TO_ALL_OFFERS_PAGE = "Controller?command=go_to_all_offers_page_command";
+    public static final String GO_TO_ALL_RESERVATIONS_PAGE = "Controller?command=go_to_all_reservations_page_command";
+
+    public static final String GO_TO_USER_ACCOUNT_PAGE = "Controller?command=go_to_user_account_page_command";
 }

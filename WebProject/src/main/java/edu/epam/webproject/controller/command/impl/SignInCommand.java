@@ -25,11 +25,17 @@ public class SignInCommand implements Command {
             Optional<User> optionalUser = userService.signIn(email, password);
             if (optionalUser.isPresent()){
                 User user = optionalUser.get();
+                if (user.getStatus() == User.UserStatus.APPROVED){
+                    req.getSession().setAttribute(RequestAttribute.EMAIL_CONFIRM, true);
+                }else{
+                    req.getSession().setAttribute(RequestAttribute.EMAIL_CONFIRM, false);
+                }
                 req.getSession().setAttribute(RequestAttribute.USER, user);
+                req.getSession().setAttribute(RequestAttribute.ROLE, user.getRole());
                 if (user.getRole() == User.Role.ADMIN){
                     router = new Router(PagePath.ADMIN_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
                 }else {
-                    router = new Router(PagePath.USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+                    router = new Router(PagePath.GO_TO_USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
                 }
             }else{
                 req.getSession().setAttribute(RequestAttribute.INCORRECT_DATA, true);

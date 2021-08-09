@@ -15,7 +15,8 @@ public interface UserDao extends AbstractDao<User>{
 
     boolean signUp(String login, String email, String password) throws DaoException;
     Optional<User> signIn(String email, String password) throws DaoException;
+    void changeUserStatusById(long id, User.UserStatus status) throws DaoException;
     boolean setPasswordById(long id, String password);
-    boolean banUserById(long id);
-    boolean unBanUserById(long id);
+    void updateUserIconById(long id, String icon) throws DaoException;
+    User activateUserByEmail(String email) throws DaoException;
 }

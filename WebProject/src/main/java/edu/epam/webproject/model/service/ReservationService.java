@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface ReservationService {
     List<Reservation> findAllReservations() throws ServiceException;
+    List<Reservation> findReservationsByTenantId(long id) throws ServiceException;
 }

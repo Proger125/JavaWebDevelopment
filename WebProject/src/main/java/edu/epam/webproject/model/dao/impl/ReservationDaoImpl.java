@@ -8,10 +8,7 @@ import edu.epam.webproject.model.connection.ConnectionPool;
 import edu.epam.webproject.model.dao.ColumnName;
 import edu.epam.webproject.model.dao.ReservationDao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +18,14 @@ public class ReservationDaoImpl implements ReservationDao {
     private static final ReservationDaoImpl instance = new ReservationDaoImpl();
 
     private static final String FIND_ALL_RESERVATIONS_SQL = "SELECT reservations.reservation_id, reservations.tenant_id, " +
-            "reservations.offer_id, reservation.arrival_date, reservation.departure_date, reservation.total_price, " +
-            "reservation.comment, reservation_status.status_type FROM reservations " +
+            "reservations.offer_id, reservations.arrival_date, reservations.departure_date, reservations.total_price, " +
+            "reservations.comment, reservation_status.status_type FROM reservations " +
             "JOIN reservation_status ON reservations.status_id = reservation_status.id";
+    private static final String FIND_RESERVATIONS_BY_TENANT_ID_SQL = "SELECT reservations.reservation_id, reservations.tenant_id, " +
+            "reservations.offer_id, reservations.arrival_date, reservations.departure_date, reservations.total_price, " +
+            "reservations.comment, reservation_status.status_type FROM reservations " +
+            "JOIN reservation_status ON reservations.status_id = reservation_status.id " +
+            "WHERE reservations.tenant_id = ?";
     private ReservationDaoImpl(){}
 
     public static ReservationDaoImpl getInstance() {
@@ -31,8 +33,21 @@ public class ReservationDaoImpl implements ReservationDao {
     }
 
     @Override
-    public List<Reservation> findReservationsByHirerId(long id) {
-        return null;
+    public List<Reservation> findReservationsByTenantId(long id) throws DaoException {
+        List<Reservation> list;
+        try(Connection connection = pool.getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_RESERVATIONS_BY_TENANT_ID_SQL)){
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            list = new ArrayList<>();
+            while (resultSet.next()){
+                Reservation reservation = createReservation(resultSet);
+                list.add(reservation);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle UserDao findAll request");
+        }
+        return list;
     }
 
     @Override
@@ -58,19 +73,7 @@ public class ReservationDaoImpl implements ReservationDao {
             ResultSet set = statement.executeQuery(FIND_ALL_RESERVATIONS_SQL);
             list = new ArrayList<>();
             while (set.next()){
-                Reservation reservation = new Reservation();
-                reservation.setId(set.getLong(ColumnName.RESERVATION_ID));
-                User user = new User();
-                user.setId(set.getLong(ColumnName.TENANT_ID));
-                reservation.setTenant(user);
-                Offer offer = new Offer();
-                offer.setId(set.getLong(ColumnName.OFFER_ID));
-                reservation.setOffer(offer);
-                reservation.setArrivalDate(set.getDate(ColumnName.ARRIVAL_DATE));
-                reservation.setDepartureDate(set.getDate(ColumnName.DEPARTURE_DATE));
-                reservation.setTotalPrice(set.getBigDecimal(ColumnName.TOTAL_PRICE).toBigInteger());
-                reservation.setComment(set.getString(ColumnName.COMMENT));
-                reservation.setStatus(Reservation.ReservationStatus.valueOf(set.getString(ColumnName.STATUS_TYPE.toUpperCase())));
+                Reservation reservation = createReservation(set);
                 list.add(reservation);
             }
         } catch (SQLException e) {
@@ -82,5 +85,21 @@ public class ReservationDaoImpl implements ReservationDao {
     @Override
     public Optional<Reservation> updateById(long id, Reservation entity) {
         return Optional.empty();
+    }
+    private static Reservation createReservation(ResultSet resultSet) throws SQLException {
+        Reservation reservation = new Reservation();
+        reservation.setId(resultSet.getLong(ColumnName.RESERVATION_ID));
+        User user = new User();
+        user.setId(resultSet.getLong(ColumnName.TENANT_ID));
+        reservation.setTenant(user);
+        Offer offer = new Offer();
+        offer.setId(resultSet.getLong(ColumnName.OFFER_ID));
+        reservation.setOffer(offer);
+        reservation.setArrivalDate(resultSet.getDate(ColumnName.ARRIVAL_DATE));
+        reservation.setDepartureDate(resultSet.getDate(ColumnName.DEPARTURE_DATE));
+        reservation.setTotalPrice(resultSet.getBigDecimal(ColumnName.TOTAL_PRICE).toBigInteger());
+        reservation.setComment(resultSet.getString(ColumnName.COMMENT));
+        reservation.setStatus(Reservation.ReservationStatus.valueOf(resultSet.getString(ColumnName.STATUS_TYPE.toUpperCase())));
+        return reservation;
     }
 }

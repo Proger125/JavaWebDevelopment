@@ -4,6 +4,7 @@ import edu.epam.webproject.controller.command.*;
 import edu.epam.webproject.exception.ServiceException;
 import edu.epam.webproject.model.service.ServiceProvider;
 import edu.epam.webproject.model.service.UserService;
+import edu.epam.webproject.util.MailSender;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -28,9 +29,10 @@ public class SignUpCommand implements Command {
         try{
             boolean result = userService.signUp(login, email, password);
             if (result){
-                //TODO Send email
-                router = new Router(PagePath.USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
-                req.getSession().setAttribute(RequestAttribute.EMAIL_SENT, true);
+                MailSender.send(email);
+                req.setAttribute(RequestAttribute.EMAIL, email);
+                router = new Router(PagePath.USER_ACCOUNT_PAGE, Router.RouterType.FORWARD);
+                req.getSession().setAttribute(RequestAttribute.EMAIL_CONFIRM, false);
             }else{
                 router = new Router(PagePath.SIGN_UP_PAGE, Router.RouterType.REDIRECT);
                 req.getSession().setAttribute(RequestAttribute.DUPLICATE_EMAIL, true);

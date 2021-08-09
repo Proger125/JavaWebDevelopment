@@ -21,4 +21,13 @@ public class OfferServiceImpl implements OfferService {
             throw new ServiceException("Unable to handle findAllOffers request at OfferService");
         }
     }
+
+    @Override
+    public List<Offer> findOffersByOwnerId(long id) throws ServiceException {
+        try{
+            return offerDao.findOffersByOwnerId(id);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to handle findOffersByOwnerId at OfferService");
+        }
+    }
 }

@@ -5,7 +5,10 @@
   Time: 11:47
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="edu.epam.webproject.controller.command.PagePath" %>
+<c:set var="last_page" value="${PagePath.GO_TO_ALL_OFFERS_PAGE}" scope="session"/>
 <html>
 <head>
     <title>Title</title>

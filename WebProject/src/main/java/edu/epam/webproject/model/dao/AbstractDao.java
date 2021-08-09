@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface AbstractDao<T extends Entity> {
     boolean add(T entity);
-    Optional<T> findById(long id);
+    Optional<T> findById(long id) throws DaoException;
     List<T> findAll() throws DaoException;
     Optional<T> updateById(long id, T entity);
 }

@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface OfferService {
     List<Offer> findAllOffers() throws ServiceException;
+    List<Offer> findOffersByOwnerId(long id) throws ServiceException;
 }

@@ -18,7 +18,16 @@ public class ReservationServiceImpl implements ReservationService {
         try {
             return reservationDao.findAll();
         } catch (DaoException e) {
-            throw new ServiceException("Unable to handle findAllReservations request at Reservation service");
+            throw new ServiceException("Unable to handle findAllReservations request at ReservationService");
+        }
+    }
+
+    @Override
+    public List<Reservation> findReservationsByTenantId(long id) throws ServiceException {
+        try {
+            return reservationDao.findReservationsByTenantId(id);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to handle findReservationsByTenantId request at ReservationService");
         }
     }
 }

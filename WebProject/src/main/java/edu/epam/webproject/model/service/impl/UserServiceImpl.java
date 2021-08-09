@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.signIn(email, password);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to handle signIn request at User Service", e);
+            throw new ServiceException("Unable to handle signIn request at UserService", e);
         }
     }
 
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
             String hashedPassword = encryptor.getHash(password);
             return userDao.signUp(login, email, hashedPassword);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to handle signUp request at User Service", e);
+            throw new ServiceException("Unable to handle signUp request at UserService", e);
         }
     }
 
@@ -47,12 +47,54 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.findAll();
         } catch (DaoException e) {
-            throw new ServiceException("Unable to handle findAllUsers request at User Service");
+            throw new ServiceException("Unable to handle findAllUsers request at UserService", e);
         }
     }
 
     @Override
+    public User findUserById(long id) throws ServiceException {
+        try {
+            Optional<User> optionalUser = userDao.findById(id);
+            if (optionalUser.isPresent()){
+                return optionalUser.get();
+            }else{
+                throw new ServiceException("Can't find user by id: " + id);
+            }
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to handle findUserById request at UserService", e);
+        }
+    }
+
+    @Override
+    public void updateUserIconById(long id, String icon) throws ServiceException {
+        try{
+            userDao.updateUserIconById(id, icon);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to handle updateUserIconById request at UserService");
+        }
+    }
+
+    @Override
+    public User activateUserByEmail(String email) throws ServiceException {
+        try{
+            return userDao.activateUserByEmail(email);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to handle activateUserByEmail request at UserService", e);
+        }
+    }
+
+
+    @Override
     public Optional<User> updateUserById(long id, User user) {
         return Optional.empty();
+    }
+
+    @Override
+    public void changeUserStatusById(long id, User.UserStatus status) throws ServiceException {
+        try{
+            userDao.changeUserStatusById(id, status);
+        }catch (DaoException e){
+            throw new ServiceException("Unable to handle changeUserById request at UserService", e);
+        }
     }
 }

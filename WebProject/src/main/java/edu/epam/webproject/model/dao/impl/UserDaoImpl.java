@@ -7,6 +7,7 @@ import edu.epam.webproject.model.dao.ColumnName;
 import edu.epam.webproject.model.dao.UserDao;
 import edu.epam.webproject.util.PasswordEncryptor;
 
+import java.io.BufferedInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +21,16 @@ public class UserDaoImpl implements UserDao {
     private static final String FIND_USER_BY_EMAIL_SQL = "SELECT users.user_id, users.password, users.login, users.email, users.icon, roles.role_type, user_status.status_type " +
             "FROM users " +
             "JOIN roles ON users.role_id = roles.role_id JOIN user_status ON users.status_id = user_status.status_id WHERE users.email = ?";
+    private static final String FIND_USER_BY_ID_SQL = "SELECT users.user_id, users.password, users.login, users.email, users.icon, roles.role_type, user_status.status_type " +
+            "FROM users " +
+            "JOIN roles ON users.role_id = roles.role_id JOIN user_status ON users.status_id = user_status.status_id WHERE users.user_id = ?";
     private static final String FIND_ALL_USERS_SQL = "SELECT users.user_id, users.login, users.email, users.icon, roles.role_type, user_status.status_type " +
             "FROM users " +
-            "JOIN roles ON users.role_id = roles.role_id JOIN user_status ON users.status_id = user_status.status_id";
+            "JOIN roles ON users.role_id = roles.role_id JOIN user_status ON users.status_id = user_status.status_id WHERE users.role_id <> 1";
+    private static final String CHANGE_USER_STATUS_BY_ID_SQL = "UPDATE users SET status_id = ? WHERE user_id = ?";
+    private static final String CHANGE_USER_STATUS_BY_EMAIL_SQL = "UPDATE users SET status_id = ? WHERE email = ?";
+    private static final String UPDATE_USER_ICON_BY_ID_SQL = "UPDATE users SET icon = ? WHERE user_id = ?";
+
     private UserDaoImpl(){
 
     }
@@ -42,18 +50,24 @@ public class UserDaoImpl implements UserDao {
             if (resultSet.next()){
                 String hashPassword = resultSet.getString(ColumnName.PASSWORD);
                 if (encryptor.checkHash(password, hashPassword)){
-                    user = new User();
-                    user.setId(resultSet.getInt(ColumnName.USER_ID));
-                    user.setLogin(resultSet.getString(ColumnName.LOGIN));
-                    user.setEmail(resultSet.getString(ColumnName.EMAIL));
-                    user.setIcon(resultSet.getString(ColumnName.ICON));
-                    user.setRole(User.Role.valueOf(resultSet.getString(ColumnName.ROLE_TYPE).toUpperCase()));
-                    user.setStatus(User.UserStatus.valueOf(resultSet.getString(ColumnName.STATUS_TYPE).toUpperCase()));
+                    user = createUser(resultSet);
                 }
             }
             return Optional.ofNullable(user);
         } catch (SQLException e) {
-            throw new DaoException("Unable to handle UserDao.signIn request");
+            throw new DaoException("Unable to handle UserDao.signIn request", e);
+        }
+    }
+
+    @Override
+    public void changeUserStatusById(long id, User.UserStatus status) throws DaoException {
+        try(Connection connection = pool.getConnection();
+            PreparedStatement statement = connection.prepareStatement(CHANGE_USER_STATUS_BY_ID_SQL);) {
+            statement.setInt(ChangeUserStatusIndex.STATUS, status.getValue());
+            statement.setLong(ChangeUserStatusIndex.ID, id);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle UserDao.changeUserStatusById request", e);
         }
     }
 
@@ -63,13 +77,58 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean banUserById(long id) {
-        return false;
+    public void updateUserIconById(long id, String icon) throws DaoException {
+        try(Connection connection = pool.getConnection();
+            PreparedStatement statement = connection.prepareStatement(UPDATE_USER_ICON_BY_ID_SQL);) {
+            statement.setString(UpdateUserIconIndex.ICON, icon);
+            statement.setLong(UpdateUserIconIndex.ID, id);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle UserDao.updateUserIconById request", e);
+        }
     }
 
     @Override
-    public boolean unBanUserById(long id) {
-        return false;
+    public User activateUserByEmail(String email) throws DaoException {
+        User user = new User();
+        Connection connection = null;
+        try{
+            connection = pool.getConnection();
+
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_USER_STATUS_BY_EMAIL_SQL);
+            preparedStatement.setInt(ChangeUserStatusIndex.STATUS, User.UserStatus.APPROVED.getValue());
+            preparedStatement.setString(ChangeUserStatusIndex.EMAIL, email);
+            preparedStatement.execute();
+
+            PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_EMAIL_SQL);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                user = createUser(resultSet);
+            }
+            connection.commit();
+            return user;
+        } catch (SQLException e) {
+            if (connection != null){
+                try{
+                    connection.rollback();
+                } catch (SQLException e1) {
+                    throw new DaoException("Unable to rollback in UserDao.activateUserByEmail request", e1);
+                }
+            }
+            throw new DaoException("Unable to handle UserDao.activateUserByEmail request", e);
+        }
+        finally {
+            if (connection != null){
+                try{
+                    connection.setAutoCommit(true);
+                    connection.close();
+                } catch (SQLException e) {
+                    throw new DaoException("Unable to close connection in UserDao.activateUserByEmail", e);
+                }
+            }
+        }
     }
 
     @Override
@@ -95,8 +154,19 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Optional<User> findById(long id) {
-        return Optional.empty();
+    public Optional<User> findById(long id) throws DaoException {
+        User user = null;
+        try(Connection connection = pool.getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_ID_SQL)) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                user = createUser(resultSet);
+            }
+            return Optional.ofNullable(user);
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle UserDao.findById request", e);
+        }
     }
 
     @Override
@@ -107,13 +177,7 @@ public class UserDaoImpl implements UserDao {
             ResultSet set = statement.executeQuery(FIND_ALL_USERS_SQL);
             list = new ArrayList<>();
             while (set.next()){
-                User user = new User();
-                user.setId(set.getLong(ColumnName.USER_ID));
-                user.setStatus(User.UserStatus.valueOf(set.getString(ColumnName.STATUS_TYPE).toUpperCase()));
-                user.setRole(User.Role.valueOf(set.getString(ColumnName.ROLE_TYPE).toUpperCase()));
-                user.setLogin(set.getString(ColumnName.LOGIN));
-                user.setEmail(set.getString(ColumnName.EMAIL));
-                user.setIcon(set.getString(ColumnName.ICON));
+                User user = createUser(set);
                 list.add(user);
             }
         } catch (SQLException e) {
@@ -126,11 +190,30 @@ public class UserDaoImpl implements UserDao {
     public Optional<User> updateById(long id, User entity) {
         return Optional.empty();
     }
+    private static User createUser(ResultSet resultSet) throws SQLException {
+        User user = new User();
+        user.setId(resultSet.getLong(ColumnName.USER_ID));
+        user.setStatus(User.UserStatus.valueOf(resultSet.getString(ColumnName.STATUS_TYPE).toUpperCase()));
+        user.setRole(User.Role.valueOf(resultSet.getString(ColumnName.ROLE_TYPE).toUpperCase()));
+        user.setLogin(resultSet.getString(ColumnName.LOGIN));
+        user.setEmail(resultSet.getString(ColumnName.EMAIL));
+        user.setIcon(resultSet.getString(ColumnName.ICON));
+        return user;
+    }
     private static class SignUpIndex{
         private static final int LOGIN = 1;
         private static final int PASSWORD = 2;
         private static final int EMAIL = 3;
         private static final int ROLE = 4;
         private static final int STATUS = 5;
+    }
+    private static class ChangeUserStatusIndex{
+        private static final int STATUS = 1;
+        public static final int ID = 2;
+        public static final int EMAIL = 2;
+    }
+    private static class UpdateUserIconIndex{
+        private static final int ICON = 1;
+        private static final int ID = 2;
     }
 }

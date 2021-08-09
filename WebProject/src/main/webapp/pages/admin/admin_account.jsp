@@ -22,6 +22,9 @@
 <fmt:message key="header.usersList" var="header_usersList"/>
 <fmt:message key="header.reservationList" var="header_reservationList"/>
 <html>
+<head>
+    <link rel="stylesheet" href="<c:url value="/static/css/users_styles.css"/> ">
+</head>
 <body>
 <jsp:include page="../../header.jsp"/>
 <c:set var="user" value="${sessionScope.user}"/>
@@ -34,6 +37,17 @@
             <c:if test="${user.icon != null}">
                 <img src="${user.icon}" alt="User image">
             </c:if>
+            <form action="upload" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="req_upload_type" value="user">
+                <input type="hidden" name="user_id" value="${user.id}"/>
+                <div class="user-photo-wrapper">
+                    <div class="user-photo-upload">
+                        <input type="file" id="content" name="content" height="130">
+                        <br>
+                        <input type="submit" value="Upload file">
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="user-data">
             <div class="user-property">
@@ -55,7 +69,7 @@
         </div>
     </div>
     <div class="admin-options">
-        <a href="Controller?command=go_to_all_users_page_command">
+        <a href="../../Controller?command=go_to_all_users_page_command">
             <button class="admin-option">
                 ${header_usersList}
             </button>
