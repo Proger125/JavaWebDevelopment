@@ -18,4 +18,5 @@ public class PagePath {
     public static final String GO_TO_ALL_RESERVATIONS_PAGE = "Controller?command=go_to_all_reservations_page_command";
 
     public static final String GO_TO_USER_ACCOUNT_PAGE = "Controller?command=go_to_user_account_page_command";
+    private PagePath(){}
 }

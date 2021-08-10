@@ -21,6 +21,17 @@
 <fmt:message key="header.book" var="header_book"/>
 <fmt:message key="header.addOffer" var="header_addOffer"/>
 <fmt:message key="message.emailVerification" var="emailVerification"/>
+<fmt:message key="offer.address" var="offer_address"/>
+<fmt:message key="offer.price" var="offer_price"/>
+<fmt:message key="offer.description" var="offer_description"/>
+<fmt:message key="address.street" var="address_street"/>
+<fmt:message key="address.flat" var="address_flat"/>
+<fmt:message key="reservation.arrivalDate" var="arrivalDate"/>
+<fmt:message key="reservation.departureDate" var="departureDate"/>
+<fmt:message key="reservation.totalPrice" var="totalPrice"/>
+<fmt:message key="user.emptyList" var="emptyList"/>
+<fmt:message key="header.offersList" var="offersList"/>
+<fmt:message key="header.reservationList" var="reservationList"/>
 <html>
 <head>
     <link rel="stylesheet" href="<c:url value="/static/css/users_styles.css"/>">
@@ -48,8 +59,7 @@
                     <img src="<c:url value="${user.icon}" />" class="user-photo-img" alt="User image">
                 </c:if>
                     <form action="upload" enctype="multipart/form-data" method="post">
-                        <input type="hidden" name="req_upload_type" value="user">
-                        <input type="hidden" name="user_id" value="${user.id}"/>
+                        <input type="hidden" name="command" value="upload_user_icon_command">
                         <div class="user-photo-wrapper">
                             <div class="user-photo-upload">
                                 <input type="file" id="content" name="content" height="130">
@@ -78,17 +88,100 @@
                 </div>
             </div>
         </div>
-        <div class="user-options">
-            <a href="">
-                <button class="user-option">
-                        ${header_book}
-                </button>
-            </a>
-            <a href="">
-                <button class="user-option">
-                        ${header_addOffer}
-                </button>
-            </a>
+        <div class="user-options-wrapper">
+            <div class="user-options">
+                <div class="user-option">
+                    <div class="offers-list">
+                       <span class="info-helper">${offersList}</span>
+                    </div>
+                    <c:if test="${requestScope.offers_list.size() != 0}">
+                        <c:forEach items="${requestScope.offers_list}" var="offer">
+                            <div class="user-offer">
+                                <div class="offer-photo">
+                                    <c:if test="${offer.photos.size() == 0}">
+                                        <img src="<c:url value="/static/img/users/default.jpg"/> " class="user-photo-img" alt="Default image">
+                                    </c:if>
+                                    <c:if test="${offer.photos.size() != 0}">
+                                        <img src="<c:url value="${offer.photos.get(0)}"/>" alt="User image">
+                                    </c:if>
+                                </div>
+                                <div class="offer-info">
+                                    <div class="offer-property">
+                                        <span class="info-helper">${offer_address}:</span>
+                                            ${offer.address.country}, ${offer.address.city}, ${offer.address.street} ${address_street}, ${offer.address.houseNumber}, ${offer.address.apartmentNumber} ${address_flat}
+                                    </div>
+                                    <div class="offer-property">
+                                        <span class="info-helper">${offer_description}:</span>
+                                            ${offer.description}
+                                    </div>
+                                    <div class="offer-property">
+                                        <span class="info-helper">${offer_price}:</span>
+                                            ${offer.pricePerDay}
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${requestScope.offers_list.size() == 0}">
+                        <div class="empty-list">
+                            ${emptyList}
+                        </div>
+                    </c:if>
+                    <a href="">
+                        <button>
+                                ${header_addOffer}
+                        </button>
+                    </a>
+                </div>
+                <hr>
+                <div class="user-option">
+                    <div class="reservation-list">
+                        <span class="info-helper">${reservationList}</span>
+                    </div>
+                    <c:if test="${requestScope.reservations_list.size() != 0}">
+                        <c:forEach items="${requestScope.reservations_list}" var="reservation">
+                            <div class="user-reservation">
+                                <div class="reservation-photo">
+                                    <c:if test="${reservation.offer.photos.size() == 0}">
+                                        <img src="<c:url value="/static/img/users/default.jpg"/> " class="user-photo-img" alt="Default image">
+                                    </c:if>
+                                    <c:if test="${reservation.offer.photos.size() != 0}">
+                                        <img src="<c:url value="${reservation.offer.photos.get(0)}"/>" alt="User image">
+                                    </c:if>
+                                </div>
+                                <div class="reservation-info">
+                                    <div class="reservation-property">
+                                        <span class="info-helper">${offer_address}:</span>
+                                            ${reservation.offer.address.country}, ${reservation.offer.address.city}, ${reservation.offer.address.street} ${address_street}, ${reservation.offer.address.houseNumber}, ${reservation.offer.address.apartmentNumber} ${address_flat}
+                                    </div>
+                                    <div class="reservation-property">
+                                        <span class="info-helper">${arrivalDate}:</span>
+                                            ${reservation.arrivalDate}
+                                    </div>
+                                    <div class="reservation-property">
+                                        <span class="info-helper">${departureDate}:</span>
+                                            ${reservation.departureDate}
+                                    </div>
+                                    <div class="reservation-property">
+                                        <span class="info-helper">${totalPrice}:</span>
+                                            ${reservation.totalPrice}
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${requestScope.reservations_list.size() == 0}">
+                        <div class="empty-list">
+                                ${emptyList}
+                        </div>
+                    </c:if>
+                    <a href="">
+                        <button>
+                                ${header_book}
+                        </button>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </c:if>

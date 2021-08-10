@@ -11,6 +11,5 @@ public class RequestParameter {
     public static final String STATUS = "status";
     public static final String USER_ID = "user_id";
     public static final String USERS_LIST = "users_list";
-
-    public static final String REQ_UPLOAD_TYPE = "req_upload_type";
+    private RequestParameter(){}
 }

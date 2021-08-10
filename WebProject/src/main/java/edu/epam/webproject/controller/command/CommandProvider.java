@@ -8,7 +8,8 @@ import edu.epam.webproject.controller.command.impl.admin.go.GoToAllUsersPageComm
 import edu.epam.webproject.controller.command.impl.go.GoToAboutPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToSignInPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToSignUpPageCommand;
-import edu.epam.webproject.controller.command.impl.user.ActivateAccountCommand;
+import edu.epam.webproject.controller.command.impl.user.func.ActivateAccountCommand;
+import edu.epam.webproject.controller.command.impl.user.func.UploadUserIconCommand;
 import edu.epam.webproject.controller.command.impl.user.go.GoToUserAccountPageCommand;
 
 import java.util.EnumMap;
@@ -30,6 +31,7 @@ public class CommandProvider {
         commands.put(CommandType.CHANGE_LOCALE_COMMAND, new ChangeLocaleCommand());
         commands.put(CommandType.CHANGE_USER_STATUS_COMMAND, new ChangeUserStatusCommand());
         commands.put(CommandType.ACTIVATE_ACCOUNT_COMMAND, new ActivateAccountCommand());
+        commands.put(CommandType.UPLOAD_USER_ICON_COMMAND, new UploadUserIconCommand());
         commands.put(CommandType.DEFAULT, new DefaultCommand());
     }
 

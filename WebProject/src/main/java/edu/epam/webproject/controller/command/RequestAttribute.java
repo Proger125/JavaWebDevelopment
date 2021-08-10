@@ -14,4 +14,5 @@ public class RequestAttribute {
     public static final String USERS_LIST = "users_list";
     public static final String OFFERS_LIST = "offers_list";
     public static final String RESERVATIONS_LIST = "reservations_list";
+    private RequestAttribute(){}
 }

@@ -29,4 +29,5 @@ public final class ColumnName {
     public static final String DEPARTURE_DATE = "departure_date";
     public static final String TOTAL_PRICE = "total_price";
     public static final String COMMENT = "comment";
+    private ColumnName(){}
 }

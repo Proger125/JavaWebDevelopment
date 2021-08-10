@@ -5,6 +5,7 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: 'Arvo', serif;
 }
 .form-div{
     width: 100%;
@@ -44,11 +45,11 @@ body{
 }
 .data{
     width: 100%;
-    height: calc(100vh - 156px);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     flex-shrink: 0;
+    flex-grow: 1;
 }
 .user-info{
     width: 100%;
@@ -99,6 +100,10 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+.custom-user-photo img{
+    max-width: 250px;
+    max-height: 250px;
 }
 .admin-functions{
     display: flex;

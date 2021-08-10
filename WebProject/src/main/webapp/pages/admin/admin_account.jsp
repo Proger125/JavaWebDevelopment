@@ -38,8 +38,7 @@
                 <img src="${user.icon}" alt="User image">
             </c:if>
             <form action="upload" enctype="multipart/form-data" method="post">
-                <input type="hidden" name="req_upload_type" value="user">
-                <input type="hidden" name="user_id" value="${user.id}"/>
+                <input type="hidden" name="command" value="upload_user_icon_command">
                 <div class="user-photo-wrapper">
                     <div class="user-photo-upload">
                         <input type="file" id="content" name="content" height="130">

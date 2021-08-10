@@ -33,7 +33,7 @@
                             <img src="<c:url value="/static/img/users/default.jpg"/> " class="user-photo-img" alt="Default image">
                         </c:if>
                         <c:if test="${user.icon != null}">
-                            <img src="${user.icon}" alt="User image">
+                            <img src="<c:url value="${user.icon}"/>" alt="User image">
                         </c:if>
                     </div>
                     <div class="custom-user-info">

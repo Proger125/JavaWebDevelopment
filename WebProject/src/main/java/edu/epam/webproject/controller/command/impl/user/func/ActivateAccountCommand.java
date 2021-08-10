@@ -1,4 +1,4 @@
-package edu.epam.webproject.controller.command.impl.user;
+package edu.epam.webproject.controller.command.impl.user.func;
 
 import edu.epam.webproject.controller.command.*;
 import edu.epam.webproject.entity.User;

@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
 
     <link href="<c:url value="/static/css/footer.css"/> " rel="stylesheet">
-    <link href="<c:url value="/static/css/style.css"/>" rel="stylesheet">
+    <link href="<c:url value="/static/css/styles.css"/>" rel="stylesheet">
 
     <script src="<c:url value="/static/bootstrap/js/bootstrap.js"/>"></script>
     <script src="<c:url value="/static/jquery-1.11.0.js"/> "></script>
