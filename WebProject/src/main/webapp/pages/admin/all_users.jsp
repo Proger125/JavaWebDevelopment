@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="admin-functions">
-                        <form action="Controller" method="post" >
+                        <form action="<c:url value="/Controller"/>" method="post" >
                             <input type="hidden" name="command" value="change_user_status_command" />
                             <input type="hidden" name="user_id" value="${user.id}"/>
                             <c:if test="${user.status == 'APPROVED'}">

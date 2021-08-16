@@ -17,9 +17,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
 
-    <link href="<c:url value="/static/css/footer.css"/> " rel="stylesheet">
+    <link href="<c:url value="/static/css/footers.css"/> " rel="stylesheet">
     <link href="<c:url value="/static/css/styles.css"/>" rel="stylesheet">
 
     <script src="<c:url value="/static/bootstrap/js/bootstrap.js"/>"></script>

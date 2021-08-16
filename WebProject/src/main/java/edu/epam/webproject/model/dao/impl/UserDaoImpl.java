@@ -6,6 +6,9 @@ import edu.epam.webproject.model.connection.ConnectionPool;
 import edu.epam.webproject.model.dao.ColumnName;
 import edu.epam.webproject.model.dao.UserDao;
 import edu.epam.webproject.util.PasswordEncryptor;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedInputStream;
 import java.sql.*;
@@ -14,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
+    private static final Logger logger = LogManager.getLogger();
     private static final UserDaoImpl instance = new UserDaoImpl();
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
@@ -113,8 +117,8 @@ public class UserDaoImpl implements UserDao {
             if (connection != null){
                 try{
                     connection.rollback();
-                } catch (SQLException e1) {
-                    throw new DaoException("Unable to rollback in UserDao.activateUserByEmail request", e1);
+                } catch (SQLException ex) {
+                    throw new DaoException("Unable to rollback in UserDao.activateUserByEmail request", ex);
                 }
             }
             throw new DaoException("Unable to handle UserDao.activateUserByEmail request", e);
@@ -125,7 +129,7 @@ public class UserDaoImpl implements UserDao {
                     connection.setAutoCommit(true);
                     connection.close();
                 } catch (SQLException e) {
-                    throw new DaoException("Unable to close connection in UserDao.activateUserByEmail", e);
+                    logger.log(Level.ERROR, "Unable to handle UserDao.activateUserByEmail request");
                 }
             }
         }

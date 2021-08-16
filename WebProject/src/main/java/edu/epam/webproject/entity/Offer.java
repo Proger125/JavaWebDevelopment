@@ -121,7 +121,14 @@ public class Offer extends Entity{
         return builder.toString();
     }
     public enum OfferStatus {
-        ACTIVE,
-        INACTIVE
+        ACTIVE(1),
+        INACTIVE(2);
+        private final int value;
+        private OfferStatus(int value){
+            this.value = value;
+        }
+        public int getValue(){
+            return value;
+        }
     }
 }

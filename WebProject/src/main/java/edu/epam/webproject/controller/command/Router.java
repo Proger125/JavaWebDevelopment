@@ -1,8 +1,5 @@
 package edu.epam.webproject.controller.command;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Router {
     public enum RouterType{
         FORWARD, REDIRECT

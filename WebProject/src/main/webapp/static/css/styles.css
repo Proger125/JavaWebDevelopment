@@ -5,7 +5,14 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: 'Tinos', serif;
+    background-color: #d1dae1;
+}
+.navbar-brand{
     font-family: 'Arvo', serif;
+}
+.header{
+    background-color: #d1e0e6;
 }
 .form-div{
     width: 100%;
@@ -34,9 +41,10 @@ body{
 }
 .custom-slider{
     width: calc(100% - 100px);
-    margin-left: 50px;
-    margin-bottom: 20px;
     height: calc(100vh - 156px);
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     flex-shrink: 0;
 }
 .custom-slider-item img{
@@ -53,7 +61,6 @@ body{
 }
 .user-info{
     width: 100%;
-    height: 250px;
     display: flex;
     flex-direction: row;
 }
@@ -65,6 +72,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-left: 50px;
 }
 .user-property{
     display: flex;
@@ -117,4 +125,7 @@ body{
 .admin-functions-button{
     width: 100%;
     height: 20%;
+}
+#content{
+    display: none;
 }

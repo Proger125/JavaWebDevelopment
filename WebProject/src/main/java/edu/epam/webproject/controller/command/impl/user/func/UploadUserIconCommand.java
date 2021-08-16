@@ -45,7 +45,11 @@ public class UploadUserIconCommand implements Command {
             user.setIcon(icon);
             req.getSession().setAttribute(RequestAttribute.USER, user);
             service.updateUserIconById(user.getId(), icon);
-            router = new Router(PagePath.GO_TO_USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+            if (user.getRole() == User.Role.ADMIN){
+                router = new Router(PagePath.GO_TO_ADMIN_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+            }else{
+                router = new Router(PagePath.GO_TO_USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+            }
         } catch (ServiceException | IOException | ServletException e) {
             logger.log(Level.ERROR, "Error at UploadUserIcon servlet", e);
             req.getSession().setAttribute(RequestAttribute.EXCEPTION, e);

@@ -32,6 +32,7 @@
 <fmt:message key="user.emptyList" var="emptyList"/>
 <fmt:message key="header.offersList" var="offersList"/>
 <fmt:message key="header.reservationList" var="reservationList"/>
+<fmt:message key="offer.status" var="offer_status"/>
 <html>
 <head>
     <link rel="stylesheet" href="<c:url value="/static/css/users_styles.css"/>">
@@ -53,10 +54,14 @@
         <div class="user-info">
             <div class="user-photo">
                 <c:if test="${user.icon == null}">
-                    <img src="<c:url value="/static/img/users/default.jpg"/>" class="user-photo-img" alt="Default image">
+                    <label for="content">
+                        <img src="<c:url value="/static/img/users/default.jpg"/>" class="user-photo-img" alt="Default image">
+                    </label>
                 </c:if>
                 <c:if test="${user.icon != null}">
-                    <img src="<c:url value="${user.icon}" />" class="user-photo-img" alt="User image">
+                    <label for="content">
+                        <img src="<c:url value="${user.icon}" />" class="user-photo-img" alt="User image">
+                    </label>
                 </c:if>
                     <form action="upload" enctype="multipart/form-data" method="post">
                         <input type="hidden" name="command" value="upload_user_icon_command">
@@ -108,7 +113,7 @@
                                 <div class="offer-info">
                                     <div class="offer-property">
                                         <span class="info-helper">${offer_address}:</span>
-                                            ${offer.address.country}, ${offer.address.city}, ${offer.address.street} ${address_street}, ${offer.address.houseNumber}, ${offer.address.apartmentNumber} ${address_flat}
+                                        <a href="<c:url value="/Controller?command=go_to_offer_page_command&offer_id=${offer.id}"/> ">${offer.address.country}, ${offer.address.city}, ${offer.address.street} ${address_street}, ${offer.address.houseNumber}, ${address_flat} ${offer.address.apartmentNumber}</a>
                                     </div>
                                     <div class="offer-property">
                                         <span class="info-helper">${offer_description}:</span>
@@ -118,6 +123,22 @@
                                         <span class="info-helper">${offer_price}:</span>
                                             ${offer.pricePerDay}
                                     </div>
+                                    <div class="offer-property">
+                                        <span class="info-helper">${offer_status}:</span>
+                                        ${offer.status}
+                                    </div>
+                                </div>
+                                <div class="user-functions">
+                                    <form action="<c:url value="/Controller"/>" method="post" >
+                                        <input type="hidden" name="command" value="change_offer_status_command">
+                                        <input type="hidden" name="offer_id" value="${offer.id}">
+                                        <c:if test="${offer.status == 'ACTIVE'}">
+                                            <button type="submit" value="INACTIVE" name="status">InActive</button>
+                                        </c:if>
+                                        <c:if test="${offer.status == 'INACTIVE'}">
+                                            <button type="submit" value="ACTIVE" name="status">Active</button>
+                                        </c:if>
+                                    </form>
                                 </div>
                             </div>
                         </c:forEach>
@@ -127,7 +148,7 @@
                             ${emptyList}
                         </div>
                     </c:if>
-                    <a href="">
+                    <a href="<c:url value="/Controller?command=go_to_add_new_offer_page_command"/>">
                         <button>
                                 ${header_addOffer}
                         </button>
@@ -175,7 +196,7 @@
                                 ${emptyList}
                         </div>
                     </c:if>
-                    <a href="">
+                    <a href="<c:url value="/Controller?command=go_to_all_offers_page_user_command"/>">
                         <button>
                                 ${header_book}
                         </button>

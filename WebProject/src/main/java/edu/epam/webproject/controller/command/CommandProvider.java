@@ -2,21 +2,25 @@ package edu.epam.webproject.controller.command;
 
 import edu.epam.webproject.controller.command.impl.*;
 import edu.epam.webproject.controller.command.impl.admin.func.ChangeUserStatusCommand;
+import edu.epam.webproject.controller.command.impl.admin.go.GoToAdminAccountPageCommand;
 import edu.epam.webproject.controller.command.impl.admin.go.GoToAllOffersPageCommand;
 import edu.epam.webproject.controller.command.impl.admin.go.GoToAllReservationsPageCommand;
 import edu.epam.webproject.controller.command.impl.admin.go.GoToAllUsersPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToAboutPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToSignInPageCommand;
 import edu.epam.webproject.controller.command.impl.go.GoToSignUpPageCommand;
-import edu.epam.webproject.controller.command.impl.user.func.ActivateAccountCommand;
-import edu.epam.webproject.controller.command.impl.user.func.UploadUserIconCommand;
+import edu.epam.webproject.controller.command.impl.user.func.*;
+import edu.epam.webproject.controller.command.impl.user.go.GoToAddNewOfferPageCommand;
+import edu.epam.webproject.controller.command.impl.user.go.GoToAllOffersPageUserCommand;
+import edu.epam.webproject.controller.command.impl.user.go.GoToOfferPageCommand;
 import edu.epam.webproject.controller.command.impl.user.go.GoToUserAccountPageCommand;
 
+import java.awt.print.Book;
 import java.util.EnumMap;
 
 public class CommandProvider {
-    private static CommandProvider instance = new CommandProvider();
-    private final EnumMap<CommandType, Command> commands = new EnumMap<CommandType, Command>(CommandType.class);
+    private static final CommandProvider instance = new CommandProvider();
+    private final EnumMap<CommandType, Command> commands = new EnumMap<>(CommandType.class);
     private CommandProvider(){
         commands.put(CommandType.SIGN_UP_COMMAND, new SignUpCommand());
         commands.put(CommandType.SIGN_IN_COMMAND, new SignInCommand());
@@ -30,8 +34,17 @@ public class CommandProvider {
         commands.put(CommandType.GO_TO_USER_ACCOUNT_PAGE_COMMAND, new GoToUserAccountPageCommand());
         commands.put(CommandType.CHANGE_LOCALE_COMMAND, new ChangeLocaleCommand());
         commands.put(CommandType.CHANGE_USER_STATUS_COMMAND, new ChangeUserStatusCommand());
+        commands.put(CommandType.CHANGE_OFFER_STATUS_COMMAND, new ChangeOfferStatusCommand());
         commands.put(CommandType.ACTIVATE_ACCOUNT_COMMAND, new ActivateAccountCommand());
         commands.put(CommandType.UPLOAD_USER_ICON_COMMAND, new UploadUserIconCommand());
+        commands.put(CommandType.GO_TO_ADD_NEW_OFFER_PAGE_COMMAND, new GoToAddNewOfferPageCommand());
+        commands.put(CommandType.GO_TO_ALL_OFFERS_PAGE_USER_COMMAND, new GoToAllOffersPageUserCommand());
+        commands.put(CommandType.GO_TO_OFFER_PAGE_COMMAND, new GoToOfferPageCommand());
+        commands.put(CommandType.ADD_NEW_OFFER_COMMAND, new AddNewOfferCommand());
+        commands.put(CommandType.ADD_PHOTOS_TO_OFFER_BY_ID, new AddPhotosToOfferById());
+        commands.put(CommandType.CHANGE_RESERVATION_STATUS_COMMAND, new ChangeReservationStatusCommand());
+        commands.put(CommandType.BOOK_COMMAND, new BookCommand());
+        commands.put(CommandType.GO_TO_ADMIN_ACCOUNT_PAGE_COMMAND, new GoToAdminAccountPageCommand());
         commands.put(CommandType.DEFAULT, new DefaultCommand());
     }
 

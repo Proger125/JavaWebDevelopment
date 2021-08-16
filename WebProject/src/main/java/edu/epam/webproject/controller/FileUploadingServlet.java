@@ -1,6 +1,7 @@
 package edu.epam.webproject.controller;
 
 import edu.epam.webproject.controller.command.*;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,21 +23,29 @@ public class FileUploadingServlet extends HttpServlet {
     private static final CommandProvider commandProvider = CommandProvider.getInstance();
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        processRequest(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        processRequest(req, resp);
+    }
+    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String commandName = req.getParameter(RequestParameter.COMMAND);
         Command command = commandProvider.getCommand(commandName);
         Router router = command.execute(req);
         switch (router.getType()){
+            case FORWARD:
+                RequestDispatcher dispatcher = req.getRequestDispatcher(router.getPagePath());
+                dispatcher.forward(req, resp);
+                break;
             case REDIRECT:
                 resp.sendRedirect(router.getPagePath());
-                break;
-            case FORWARD:
-                req.getRequestDispatcher(router.getPagePath()).forward(req, resp);
                 break;
             default:
                 logger.log(Level.ERROR, "Incorrect router type: " + router.getType());
                 resp.sendError(404);
         }
-        resp.sendRedirect(router.getPagePath());
     }
 }

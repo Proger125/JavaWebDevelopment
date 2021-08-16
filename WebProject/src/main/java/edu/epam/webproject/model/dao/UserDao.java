@@ -1,7 +1,5 @@
 package edu.epam.webproject.model.dao;
 
-import edu.epam.webproject.entity.SignInData;
-import edu.epam.webproject.entity.SignUpData;
 import edu.epam.webproject.entity.User;
 import edu.epam.webproject.exception.DaoException;
 

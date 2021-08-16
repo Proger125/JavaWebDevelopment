@@ -1,28 +1,31 @@
-package edu.epam.webproject.controller.command.impl.admin.func;
+package edu.epam.webproject.controller.command.impl.user.func;
 
 import edu.epam.webproject.controller.command.*;
-import edu.epam.webproject.entity.User;
+import edu.epam.webproject.entity.Reservation;
 import edu.epam.webproject.exception.ServiceException;
+import edu.epam.webproject.model.service.ReservationService;
 import edu.epam.webproject.model.service.ServiceProvider;
-import edu.epam.webproject.model.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
-public class ChangeUserStatusCommand implements Command {
+public class ChangeReservationStatusCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     @Override
     public Router execute(HttpServletRequest req) {
         Router router;
-        String status = req.getParameter(RequestParameter.STATUS);
-        long id = Long.parseLong(req.getParameter(RequestParameter.USER_ID));
+
+        long reservation_id = Long.parseLong(req.getParameter(RequestParameter.RESERVATI0N_ID));
+        long offer_id = Long.parseLong(req.getParameter(RequestParameter.OFFER_ID));
+        Reservation.ReservationStatus status = Reservation.ReservationStatus.valueOf(req.getParameter(RequestParameter.STATUS));
+
         ServiceProvider provider = ServiceProvider.getInstance();
-        UserService userService = provider.getUserService();
-        try {
-            userService.changeUserStatusById(id, User.UserStatus.valueOf(status.toUpperCase()));
-            router = new Router(PagePath.GO_TO_ALL_USERS_PAGE, Router.RouterType.REDIRECT);
+        ReservationService service = provider.getReservationService();
+        try{
+            service.changeReservationStatusById(reservation_id, status);
+            req.setAttribute(RequestAttribute.OFFER_ID, offer_id);
+            router = new Router(PagePath.GO_TO_OFFER_PAGE, Router.RouterType.FORWARD);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Error at ChangeUserStatus Servlet");
             req.getSession().setAttribute(RequestAttribute.EXCEPTION, e);

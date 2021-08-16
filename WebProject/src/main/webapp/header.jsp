@@ -15,13 +15,14 @@
 <fmt:message key="header.usersList" var="header_usersList"/>
 <fmt:message key="header.offersList" var="header_offersList"/>
 <fmt:message key="header.reservationList" var="header_reservationsList"/>
+<fmt:message key="header.profile" var="header_profile"/>
 <head>
     <title>Title</title>
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <jsp:include page="connections.jsp"/>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light header" >
     <div class="container-fluid">
         <c:set var="user" value="${sessionScope.user}"/>
         <a class="navbar-brand" href="<c:url value="/Controller?command=go_to_about_page_command"/>">WorldFlat</a>
@@ -38,15 +39,18 @@
                         <a class="nav-link" href="<c:url value="/Controller?command=go_to_sign_up_page_command"/>">${header_register}</a>
                     </li>
                 </c:if>
-                <c:if test="${user.role == 'USER'}">
+                <c:if test="${sessionScope.role == 'USER' && user.status == 'APPROVED'}">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">${header_addOffer}</a>
+                        <a class="nav-link" href="<c:url value="/Controller?command=go_to_add_new_offer_page_command"/>">${header_addOffer}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">${header_book}</a>
+                        <a href="<c:url value="/Controller?command=go_to_all_offers_page_user_command"/>" class="nav-link">${header_book}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<c:url value="/Controller?command=go_to_user_account_page_command"/>" class="nav-link">${header_profile}</a>
                     </li>
                 </c:if>
-                <c:if test="${user.role == 'ADMIN'}">
+                <c:if test="${sessionScope.role == 'ADMIN'}">
                     <li class="nav-item">
                         <a href="<c:url value="/Controller?command=go_to_all_users_page_command"/>" class="nav-link">${header_usersList}</a>
                     </li>
@@ -56,6 +60,9 @@
                     <li class="nav-item">
                         <a href="<c:url value="/Controller?command=go_to_all_reservations_page_command"/>" class="nav-link">${header_reservationsList}</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<c:url value="/Controller?command=go_to_admin_account_page_command"/>" class="nav-link">${header_profile}</a>
+                     </li>
                 </c:if>
                 <c:if test="${user != null}">
                     <li class="nav-item">

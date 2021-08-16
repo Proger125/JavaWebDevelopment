@@ -1,4 +1,3 @@
-<%@ page import="edu.epam.webproject.controller.command.RequestAttribute" %>
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%><%--
@@ -23,6 +22,7 @@
 <fmt:message key="header.reservationList" var="header_reservationList"/>
 <html>
 <head>
+    <title>Admin account</title>
     <link rel="stylesheet" href="<c:url value="/static/css/users_styles.css"/> ">
 </head>
 <body>
@@ -32,10 +32,14 @@
     <div class="user-info">
         <div class="user-photo">
             <c:if test="${user.icon == null}">
-                <img src="../../static/img/users/default.jpg" class="user-photo-img" alt="Default image">
+                <label for="content">
+                    <img src="<c:url value="/static/img/users/default.jpg"/>" class="user-photo-img" alt="Default image">
+                </label>
             </c:if>
             <c:if test="${user.icon != null}">
-                <img src="${user.icon}" alt="User image">
+                <label for="content">
+                    <img src="<c:url value="${user.icon}"/>" class="user-photo-img" alt="User image">
+                </label>
             </c:if>
             <form action="upload" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="command" value="upload_user_icon_command">
@@ -68,17 +72,20 @@
         </div>
     </div>
     <div class="admin-options">
-        <a href="../../Controller?command=go_to_all_users_page_command">
+
+        <a href="<c:url value="/Controller?command=go_to_all_users_page_command"/>">
             <button class="admin-option">
                 ${header_usersList}
             </button>
         </a>
-        <a href="../../Controller?command=go_to_all_offers_page_command">
+
+        <a href="<c:url value="/Controller?command=go_to_all_offers_page_command"/>">
             <button class="admin-option">
                 ${header_offersList}
             </button>
         </a>
-        <a href="../../Controller?command=log_out_command">
+
+        <a href="<c:url value="/Controller?command=go_to_all_reservations_page_command"/>">
             <button class="admin-option">
                 ${header_reservationList}
             </button>

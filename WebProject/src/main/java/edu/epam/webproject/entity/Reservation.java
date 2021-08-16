@@ -124,9 +124,16 @@ public class Reservation extends Entity{
         return builder.toString();
     }
     public enum ReservationStatus {
-        CONFIRMED,
-        REJECTED,
-        IN_PROCESSING
+        CONFIRMED(1),
+        REJECTED(2),
+        IN_PROCESSING(3);
+        private ReservationStatus(int value){
+            this.value = value;
+        }
+        private int value;
+
+        public int getValue() {
+            return value;
+        }
     }
-    //TODO Inner class for dates
 }

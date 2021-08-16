@@ -1,6 +1,5 @@
 package edu.epam.webproject.dao;
 
-import edu.epam.webproject.entity.SignUpData;
 import edu.epam.webproject.entity.User;
 import edu.epam.webproject.exception.DaoException;
 import edu.epam.webproject.model.connection.ConnectionPool;
@@ -8,8 +7,6 @@ import edu.epam.webproject.model.dao.impl.UserDaoImpl;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.Optional;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;

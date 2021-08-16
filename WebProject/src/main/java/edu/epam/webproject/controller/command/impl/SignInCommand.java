@@ -9,8 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Optional;
 
-import static edu.epam.webproject.model.service.UserService.INCORRECT_DATA_EXCEPTION_MESSAGE;
-
 public class SignInCommand implements Command {
     @Override
     public Router execute(HttpServletRequest req) {
@@ -33,7 +31,7 @@ public class SignInCommand implements Command {
                 req.getSession().setAttribute(RequestAttribute.USER, user);
                 req.getSession().setAttribute(RequestAttribute.ROLE, user.getRole());
                 if (user.getRole() == User.Role.ADMIN){
-                    router = new Router(PagePath.ADMIN_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+                    router = new Router(PagePath.GO_TO_ADMIN_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
                 }else {
                     router = new Router(PagePath.GO_TO_USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
                 }
