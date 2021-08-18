@@ -22,5 +22,7 @@ public class RequestAttribute {
     public static final String ALL_DAYS_LIST = "all_days_list";
 
     public static final String IN_ACTIVE_RESERVATIONS_LIST = "in_active_reservations_list";
+    public static final String BAN_MESSAGE = "ban_message";
+    public static final String ROLE_MESSAGE = "role_message";
     private RequestAttribute(){}
 }

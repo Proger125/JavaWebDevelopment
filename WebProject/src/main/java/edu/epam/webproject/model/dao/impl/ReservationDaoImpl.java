@@ -128,11 +128,6 @@ public class ReservationDaoImpl implements ReservationDao {
     }
 
     @Override
-    public boolean add(Reservation entity) {
-        return false;
-    }
-
-    @Override
     public Optional<Reservation> findById(long id) {
         return Optional.empty();
     }
@@ -154,10 +149,6 @@ public class ReservationDaoImpl implements ReservationDao {
         return list;
     }
 
-    @Override
-    public Optional<Reservation> updateById(long id, Reservation entity) {
-        return Optional.empty();
-    }
     private static Reservation createReservation(ResultSet resultSet) throws SQLException {
         Reservation reservation = new Reservation();
         reservation.setId(resultSet.getLong(ColumnName.RESERVATION_ID));

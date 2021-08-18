@@ -29,6 +29,7 @@
 <head>
     <title>Add new offer</title>
     <link rel="stylesheet" href="<c:url value="/static/css/util.css"/>">
+    <link rel="shortcut icon" href="<c:url value="/static/img/util/page_logo.jpg"/>"/>
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>

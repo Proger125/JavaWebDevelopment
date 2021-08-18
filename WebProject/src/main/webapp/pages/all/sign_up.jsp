@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="edu.epam.webproject.controller.command.PagePath" %><%--
+<%@ page import="edu.epam.webproject.controller.command.PagePath" %>
+<%@ page import="edu.epam.webproject.validator.ValidatorRegExp"%>
+<%--
   Created by IntelliJ IDEA.
   User: Lenovo
   Date: 26.07.2021
@@ -10,7 +12,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Sign Up</title>
+    <link rel="shortcut icon" href="<c:url value="/static/img/util/page_logo.jpg"/>"/>
 </head>
 <body>
 <c:set var="last_page" value="${PagePath.SIGN_UP_PAGE}" scope="session"/>
@@ -29,17 +32,17 @@
             <div class="form-item">
                 <label for="login-input">${login}</label>
                 <br>
-                <input type="text" id="login-input" name="login" />
+                <input type="text" id="login-input" name="login" pattern="${ValidatorRegExp.LOGIN_REGEXP}"/>
             </div>
             <div class="form-item">
                 <label for="email-input">${email}</label>
                 <br>
-                <input type="text" id="email-input" name="email"/>
+                <input type="text" id="email-input" name="email" pattern="${ValidatorRegExp.EMAIL_REGEXP}"/>
             </div>
             <div class="form-item">
                 <label for="password-input">${password}</label>
                 <br>
-                <input type="password" id="password-input" name="password" />
+                <input type="password" id="password-input" name="password" pattern="${ValidatorRegExp.PASSWORD_REGEXP}"/>
             </div>
             <div class="submit-button-wrapper">
                 <button type="submit">Enter</button>

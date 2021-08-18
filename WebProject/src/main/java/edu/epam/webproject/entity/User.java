@@ -99,7 +99,8 @@ public class User extends Entity{
     }
     public enum Role {
         ADMIN(1),
-        USER(2);
+        USER(2),
+        GUEST(3);
         private final int value;
         private Role(int value){
             this.value = value;

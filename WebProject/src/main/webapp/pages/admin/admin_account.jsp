@@ -23,7 +23,8 @@
 <html>
 <head>
     <title>Admin account</title>
-    <link rel="stylesheet" href="<c:url value="/static/css/users_styles.css"/> ">
+    <link rel="stylesheet" href="<c:url value="/static/css/users_style.css"/> ">
+    <link rel="shortcut icon" href="<c:url value="/static/img/util/page_logo.jpg"/>"/>
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>

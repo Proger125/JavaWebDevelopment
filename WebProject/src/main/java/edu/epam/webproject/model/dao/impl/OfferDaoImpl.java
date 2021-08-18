@@ -252,11 +252,6 @@ public class OfferDaoImpl implements OfferDao {
     }
 
     @Override
-    public boolean add(Offer entity) {
-        return false;
-    }
-
-    @Override
     public Optional<Offer> findById(long id) throws DaoException {
         Connection connection = null;
         Offer offer = null;
@@ -332,10 +327,6 @@ public class OfferDaoImpl implements OfferDao {
         return list;
     }
 
-    @Override
-    public Optional<Offer> updateById(long id, Offer entity) {
-        return Optional.empty();
-    }
     private static  Offer createOffer(ResultSet resultSet, Connection connection) throws SQLException {
         Offer offer = new Offer();
         offer.setId(resultSet.getLong(ColumnName.OFFER_ID));

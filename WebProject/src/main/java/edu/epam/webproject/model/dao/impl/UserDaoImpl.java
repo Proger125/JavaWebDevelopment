@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,15 +33,24 @@ public class UserDaoImpl implements UserDao {
     private static final String CHANGE_USER_STATUS_BY_ID_SQL = "UPDATE users SET status_id = ? WHERE user_id = ?";
     private static final String CHANGE_USER_STATUS_BY_EMAIL_SQL = "UPDATE users SET status_id = ? WHERE email = ?";
     private static final String UPDATE_USER_ICON_BY_ID_SQL = "UPDATE users SET icon = ? WHERE user_id = ?";
-
+    private static final String FIND_USER_STATUS_BY_ID = "SELECT user_status.status_type FROM users JOIN user_status ON users.status_id = user_status.status_id WHERE user_id = ?";
+    private static final String CHECK_USER_BY_EMAIL = "SELECT user_id FROM users WHERE email = ?";
+    private static final String UPDATE_USER_PASSWORD_BY_EMAIL = "UPDATE users SET password = ? WHERE email = ?";
     private UserDaoImpl(){
-
     }
 
     public static UserDaoImpl getInstance(){
         return instance;
     }
 
+    /**
+     * Check if database contains user with specified parameters
+     * @param email - user email
+     * @param password - user password
+     * @return {@link Optional<User>} which contains {@link User} if there is such user in database,
+     * {@link null} otherwise
+     * @throws DaoException when problems with database connection occurs
+     */
     @Override
     public Optional<User> signIn(String email, String password) throws DaoException {
         PasswordEncryptor encryptor = PasswordEncryptor.getInstance();
@@ -63,10 +71,16 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Changes {@link User} status
+     * @param id - users id
+     * @param status - new user status
+     * @throws DaoException when problems with database connection occurs
+     */
     @Override
     public void changeUserStatusById(long id, User.UserStatus status) throws DaoException {
         try(Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(CHANGE_USER_STATUS_BY_ID_SQL);) {
+            PreparedStatement statement = connection.prepareStatement(CHANGE_USER_STATUS_BY_ID_SQL)) {
             statement.setInt(ChangeUserStatusIndex.STATUS, status.getValue());
             statement.setLong(ChangeUserStatusIndex.ID, id);
             statement.execute();
@@ -76,14 +90,27 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean setPasswordById(long id, String password) {
-        return false;
+    public void setPasswordByEmail(String email, String password) throws DaoException {
+        try(Connection connection = pool.getConnection();
+            PreparedStatement statement = connection.prepareStatement(UPDATE_USER_PASSWORD_BY_EMAIL)){
+            statement.setString(UpdateUserPasswordIndex.PASSWORD, password);
+            statement.setString(UpdateUserPasswordIndex.EMAIL, email);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle UserDao.setPasswordByEmail request", e);
+        }
     }
 
+    /**
+     * Update {@link User} icon
+     * @param id - users id
+     * @param icon - new users icon
+     * @throws DaoException when problems with database connection occurs
+     */
     @Override
     public void updateUserIconById(long id, String icon) throws DaoException {
         try(Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(UPDATE_USER_ICON_BY_ID_SQL);) {
+            PreparedStatement statement = connection.prepareStatement(UPDATE_USER_ICON_BY_ID_SQL)) {
             statement.setString(UpdateUserIconIndex.ICON, icon);
             statement.setLong(UpdateUserIconIndex.ID, id);
             statement.execute();
@@ -92,6 +119,12 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Activates {@link User} account by changing its {@link User.UserStatus} to {@link User.UserStatus#APPROVED}
+     * @param email - users email
+     * @return - {@link User} with all data
+     * @throws DaoException when problems with database connection occurs
+     */
     @Override
     public User activateUserByEmail(String email) throws DaoException {
         User user = new User();
@@ -135,6 +168,46 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    @Override
+    public User.UserStatus findUserStatusById(long id) throws DaoException {
+        User.UserStatus status = null;
+        try(Connection connection = pool.getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_USER_STATUS_BY_ID)) {
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                status = User.UserStatus.valueOf(resultSet.getString(ColumnName.STATUS_TYPE).toUpperCase());
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle UserDao.findUserStatusById request", e);
+        }
+        return status;
+    }
+
+    @Override
+    public boolean checkUserByEmail(String email) throws DaoException {
+        boolean result = false;
+        try(Connection connection = pool.getConnection();
+            PreparedStatement statement = connection.prepareStatement(CHECK_USER_BY_EMAIL)){
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                result = true;
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Unable to handle UserDao.checkUserByEmail request", e);
+        }
+        return result;
+    }
+
+    /**
+     * Adds new user with {@link User.UserStatus#IN_PROCESS} status to database with specified parameters
+     * @param login - new user login
+     * @param email - new user email
+     * @param password - new user password
+     * @return true if user was added to database, false if database contains user with same email
+     * @throws DaoException when problems with database connection occurs
+     */
     @Override
     public boolean signUp(String login, String email, String password) throws DaoException {
 
@@ -190,10 +263,6 @@ public class UserDaoImpl implements UserDao {
         return list;
     }
 
-    @Override
-    public Optional<User> updateById(long id, User entity) {
-        return Optional.empty();
-    }
     private static User createUser(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setId(resultSet.getLong(ColumnName.USER_ID));
@@ -219,5 +288,9 @@ public class UserDaoImpl implements UserDao {
     private static class UpdateUserIconIndex{
         private static final int ICON = 1;
         private static final int ID = 2;
+    }
+    private static class UpdateUserPasswordIndex{
+        private static final int PASSWORD = 1;
+        private static final int EMAIL = 2;
     }
 }

@@ -6,16 +6,10 @@ import edu.epam.webproject.controller.command.impl.admin.go.GoToAdminAccountPage
 import edu.epam.webproject.controller.command.impl.admin.go.GoToAllOffersPageCommand;
 import edu.epam.webproject.controller.command.impl.admin.go.GoToAllReservationsPageCommand;
 import edu.epam.webproject.controller.command.impl.admin.go.GoToAllUsersPageCommand;
-import edu.epam.webproject.controller.command.impl.go.GoToAboutPageCommand;
-import edu.epam.webproject.controller.command.impl.go.GoToSignInPageCommand;
-import edu.epam.webproject.controller.command.impl.go.GoToSignUpPageCommand;
+import edu.epam.webproject.controller.command.impl.go.*;
 import edu.epam.webproject.controller.command.impl.user.func.*;
-import edu.epam.webproject.controller.command.impl.user.go.GoToAddNewOfferPageCommand;
-import edu.epam.webproject.controller.command.impl.user.go.GoToAllOffersPageUserCommand;
-import edu.epam.webproject.controller.command.impl.user.go.GoToOfferPageCommand;
-import edu.epam.webproject.controller.command.impl.user.go.GoToUserAccountPageCommand;
+import edu.epam.webproject.controller.command.impl.user.go.*;
 
-import java.awt.print.Book;
 import java.util.EnumMap;
 
 public class CommandProvider {
@@ -45,12 +39,19 @@ public class CommandProvider {
         commands.put(CommandType.CHANGE_RESERVATION_STATUS_COMMAND, new ChangeReservationStatusCommand());
         commands.put(CommandType.BOOK_COMMAND, new BookCommand());
         commands.put(CommandType.GO_TO_ADMIN_ACCOUNT_PAGE_COMMAND, new GoToAdminAccountPageCommand());
+        commands.put(CommandType.GO_TO_ADD_PHOTOS_TO_OFFER_BY_ID, new GoToAddPhotosToOfferById());
+        commands.put(CommandType.GO_TO_FORGET_PASSWORD_PAGE, new GoToForgetPasswordPage());
+        commands.put(CommandType.FORGET_PASSWORD_COMMAND, new ForgetPasswordCommand());
+        commands.put(CommandType.GO_TO_CHANGE_USER_PASSWORD_PAGE_COMMAND, new GoToChangeUserPasswordPageCommand());
+        commands.put(CommandType.CHANGE_USER_PASSWORD_COMMAND, new ChangeUserPasswordCommand());
         commands.put(CommandType.DEFAULT, new DefaultCommand());
     }
+
 
     public static CommandProvider getInstance(){
         return instance;
     }
+
 
     public Command getCommand(String command){
         if (command == null){

@@ -14,7 +14,6 @@ import static edu.epam.webproject.model.service.UserService.INCORRECT_DATA_EXCEP
 
 public class SignUpCommand implements Command {
     private static Logger logger = LogManager.getLogger();
-    //public static final String INCORRECT_DATA_EXCEPTION_MESSAGE = "Incorrect user data";
 
     @Override
     public Router execute(HttpServletRequest req) {
@@ -29,10 +28,10 @@ public class SignUpCommand implements Command {
         try{
             boolean result = userService.signUp(login, email, password);
             if (result){
-                MailSender.send(email);
+                MailSender.sendRegisterLetter(email);
                 req.setAttribute(RequestAttribute.EMAIL, email);
-                router = new Router(PagePath.USER_ACCOUNT_PAGE, Router.RouterType.FORWARD);
                 req.getSession().setAttribute(RequestAttribute.EMAIL_CONFIRM, false);
+                router = new Router(PagePath.USER_ACCOUNT_PAGE, Router.RouterType.FORWARD);
             }else{
                 router = new Router(PagePath.SIGN_UP_PAGE, Router.RouterType.REDIRECT);
                 req.getSession().setAttribute(RequestAttribute.DUPLICATE_EMAIL, true);

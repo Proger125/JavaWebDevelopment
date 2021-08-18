@@ -31,7 +31,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <c:if test="${user == null}">
+                <c:if test="${sessionScope.role == 'GUEST'}">
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/Controller?command=go_to_sign_in_page_command"/>">${header_enter}</a>
                     </li>
@@ -64,7 +64,7 @@
                         <a href="<c:url value="/Controller?command=go_to_admin_account_page_command"/>" class="nav-link">${header_profile}</a>
                      </li>
                 </c:if>
-                <c:if test="${user != null}">
+                <c:if test="${sessionScope.role != 'GUEST'}">
                     <li class="nav-item">
                         <a href="<c:url value="/Controller?command=log_out_command"/>" class="nav-link">${header_logout}</a>
                     </li>

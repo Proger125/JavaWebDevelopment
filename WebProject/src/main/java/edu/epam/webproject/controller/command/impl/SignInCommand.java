@@ -6,10 +6,14 @@ import edu.epam.webproject.exception.ServiceException;
 import edu.epam.webproject.model.service.ServiceProvider;
 import edu.epam.webproject.model.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 public class SignInCommand implements Command {
+    private static final Logger logger = LogManager.getLogger();
     @Override
     public Router execute(HttpServletRequest req) {
         Router router;
@@ -40,6 +44,7 @@ public class SignInCommand implements Command {
                 router = new Router(PagePath.SIGN_IN_PAGE, Router.RouterType.REDIRECT);
             }
         } catch (ServiceException e) {
+            logger.log(Level.ERROR, "Error at SignIn servlet");
             req.getSession().setAttribute(RequestAttribute.EXCEPTION, e);
             router = new Router(PagePath.DEFAULT_PAGE, Router.RouterType.REDIRECT);
         }

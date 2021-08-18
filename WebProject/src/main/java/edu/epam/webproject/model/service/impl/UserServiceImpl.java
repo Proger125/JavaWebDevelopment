@@ -66,12 +66,37 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean checkUserByEmail(String email) throws ServiceException {
+        try{
+            return userDao.checkUserByEmail(email);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to handle checkUserByEmail request at UserService", e);
+        }
+    }
+
+    @Override
     public void updateUserIconById(long id, String icon) throws ServiceException {
         try{
             userDao.updateUserIconById(id, icon);
         } catch (DaoException e) {
             throw new ServiceException("Unable to handle updateUserIconById request at UserService");
         }
+    }
+
+    @Override
+    public boolean updateUserPasswordByEmail(String email, String password, String repeatPassword) throws ServiceException {
+        boolean result = false;
+        try{
+            if (password.equals(repeatPassword)){
+                PasswordEncryptor encryptor = PasswordEncryptor.getInstance();
+                String hashedPassword = encryptor.getHash(password);
+                userDao.setPasswordByEmail(email, hashedPassword);
+                result = true;
+            }
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to handle updateUserPasswordByEmail", e);
+        }
+        return result;
     }
 
     @Override
@@ -83,18 +108,21 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
-    @Override
-    public Optional<User> updateUserById(long id, User user) {
-        return Optional.empty();
-    }
-
     @Override
     public void changeUserStatusById(long id, User.UserStatus status) throws ServiceException {
         try{
             userDao.changeUserStatusById(id, status);
         }catch (DaoException e){
             throw new ServiceException("Unable to handle changeUserById request at UserService", e);
+        }
+    }
+
+    @Override
+    public User.UserStatus findUserStatusById(long id) throws ServiceException {
+        try{
+            return userDao.findUserStatusById(id);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to handle findUserStatusById request at UserService", e);
         }
     }
 }

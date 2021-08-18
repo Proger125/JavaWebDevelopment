@@ -10,7 +10,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="mytag" uri="customtag" %>
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
-<c:set var="last_page" value="${PagePath.OFFER_PAGE}" scope="session"/>
+<c:set var="last_page" value="${PagePath.GO_TO_OFFER_PAGE}" scope="session"/>
+<c:if test="${empty requestScope.offer_id}">
+    <c:redirect url="user_account.jsp"/>
+</c:if>
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>
 </c:if>
@@ -30,6 +33,7 @@
 <fmt:message key="reservation.arrivalDate" var="arrivalDate"/>
 <fmt:message key="reservation.departureDate" var="departureDate"/>
 <fmt:message key="reservation.totalPrice" var="totalPrice"/>
+<fmt:message key="reservation.priceChar" var="priceChar"/>
 <fmt:message key="user.emptyList" var="emptyList"/>
 <fmt:message key="header.reservationList" var="reservationList"/>
 <fmt:message key="reservation.inactiveList" var="inactiveList"/>
@@ -39,7 +43,8 @@
     <title>Offer</title>
     <link rel="stylesheet" href="<c:url value="/static/css/offer.css"/> ">
     <link rel="stylesheet" href="<c:url value="/static/css/date_cell.css"/>">
-    <link rel="stylesheet" href="<c:url value="/static/css/users_styles.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/users_style.css"/>">
+    <link rel="shortcut icon" href="<c:url value="/static/img/util/page_logo.jpg"/>"/>
 </head>
 <body>
     <jsp:include page="../../header.jsp"/>
@@ -62,7 +67,7 @@
         <div class="offer-property">
             <span class="info-helper">${offer_price}:</span>
             <br>
-            ${offer.pricePerDay}
+            ${offer.pricePerDay} ${priceChar}
         </div>
         <div class="offer-property">
             <span class="info-helper">${offer_description}:</span>
@@ -130,7 +135,7 @@
                             </div>
                             <div class="reservation-property">
                                 <span class="info-helper">${totalPrice}:</span>
-                                    ${reservation.totalPrice}
+                                    ${reservation.totalPrice} ${priceChar}
                             </div>
                         </div>
                         <div class="user-functions">

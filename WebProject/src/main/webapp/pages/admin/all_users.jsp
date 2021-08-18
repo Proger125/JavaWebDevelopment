@@ -10,6 +10,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <c:set var="last_page" value="${PagePath.GO_TO_ALL_USERS_PAGE}" scope="session"/>
+<c:if test="${empty requestScope.users_list}">
+    <c:redirect url="admin_account.jsp"/>
+</c:if>
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>
 </c:if>
@@ -22,6 +25,10 @@
 <fmt:message key="admin.unban" var="admin_unban"/>
 <fmt:message key="admin.confirm" var="admin_confirm"/>
 <html>
+<head>
+    <title>All users</title>
+    <link rel="shortcut icon" href="<c:url value="/static/img/util/page_logo.jpg"/>"/>
+</head>
 <body>
 <jsp:include page="../../header.jsp"/>
     <div class="list-container-wrapper">
@@ -70,7 +77,6 @@
                         </form>
                     </div>
                 </div>
-                <hr>
             </c:forEach>
         </div>
     </div>

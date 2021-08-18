@@ -9,7 +9,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<c:set var="last_page" value="${PagePath.USER_ACCOUNT_PAGE}" scope="session"/>
+<c:set var="last_page" value="${PagePath.GO_TO_USER_ACCOUNT_PAGE}" scope="session"/>
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>
 </c:if>
@@ -35,7 +35,8 @@
 <fmt:message key="offer.status" var="offer_status"/>
 <html>
 <head>
-    <link rel="stylesheet" href="<c:url value="/static/css/users_styles.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/users_style.css"/>">
+    <link rel="shortcut icon" href="<c:url value="/static/img/util/page_logo.jpg"/>"/>
     <title>User Account</title>
 </head>
 <body>

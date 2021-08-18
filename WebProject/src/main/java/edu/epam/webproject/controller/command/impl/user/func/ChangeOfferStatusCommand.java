@@ -2,6 +2,7 @@ package edu.epam.webproject.controller.command.impl.user.func;
 
 import edu.epam.webproject.controller.command.*;
 import edu.epam.webproject.entity.Offer;
+import edu.epam.webproject.entity.User;
 import edu.epam.webproject.exception.ServiceException;
 import edu.epam.webproject.model.service.OfferService;
 import edu.epam.webproject.model.service.ServiceProvider;
@@ -19,9 +20,15 @@ public class ChangeOfferStatusCommand implements Command {
         long id = Long.parseLong(req.getParameter(RequestParameter.OFFER_ID));
         ServiceProvider provider = ServiceProvider.getInstance();
         OfferService offerService = provider.getOfferService();
+        User.Role role = (User.Role) req.getSession().getAttribute(RequestAttribute.ROLE);
         try{
             offerService.changeOfferStatusById(id, Offer.OfferStatus.valueOf(status));
-            router = new Router(PagePath.GO_TO_USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+
+            if(role == User.Role.ADMIN){
+                router = new Router(PagePath.GO_TO_ADMIN_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+            }else{
+                router = new Router(PagePath.GO_TO_USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+            }
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Error at ChangeOfferStatus Servlet");
             req.getSession().setAttribute(RequestAttribute.EXCEPTION, e);

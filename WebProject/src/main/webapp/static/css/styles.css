@@ -33,10 +33,14 @@ body{
 .form-item{
     margin: 20px 20px;
 }
+.forget-password-link{
+    margin-left: 20px;
+}
 .submit-button-wrapper{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 .custom-slider{
@@ -108,6 +112,7 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin: 20px;
 }
 .custom-user-photo img{
     max-width: 250px;

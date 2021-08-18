@@ -12,8 +12,10 @@ public interface UserService {
     boolean signUp(String login, String email, String password) throws ServiceException;
     List<User> findAllUsers() throws ServiceException;
     User findUserById(long id) throws ServiceException;
+    boolean checkUserByEmail(String email) throws ServiceException;
     void updateUserIconById(long id, String icon) throws ServiceException;
+    boolean updateUserPasswordByEmail(String email, String password, String repeatPassword) throws ServiceException;
     User activateUserByEmail(String email) throws ServiceException;
-    Optional<User> updateUserById(long id, User user);
     void changeUserStatusById(long id, User.UserStatus status) throws ServiceException;
+    User.UserStatus findUserStatusById(long id) throws ServiceException;
 }

@@ -39,3 +39,28 @@
 #content{
     display: none;
 }
+.exception-block{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    flex-grow: 1;
+}
+.go-home-block{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 200px;
+    flex-shrink: 0;
+}
+.go-home-block a{
+    position: relative;
+}
+.go-home{
+    width: 100px;
+    height: 50px;
+}

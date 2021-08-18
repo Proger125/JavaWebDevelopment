@@ -10,6 +10,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
 <c:set var="last_page" value="${PagePath.GO_TO_ALL_OFFERS_PAGE}" scope="session"/>
+
+<c:if test="${empty requestScope.offers_list && sessionScope.role == 'ADMIN'}">
+    <c:redirect url="../admin/admin_account.jsp"/>
+</c:if>
+<c:if test="${empty requestScope.reservations_list && sessionScope.role == 'USER'}">
+    <c:redirect url="../user/user_account.jsp"/>
+</c:if>
+
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>
 </c:if>
@@ -24,7 +32,8 @@
 <html>
 <head>
     <title>Offers</title>
-    <link rel="stylesheet" href="<c:url value="/static/css/users_styles.css"/> ">
+    <link rel="stylesheet" href="<c:url value="/static/css/users_style.css"/> ">
+    <link rel="shortcut icon" href="<c:url value="/static/img/util/page_logo.jpg"/>"/>
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>

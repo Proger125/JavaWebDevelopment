@@ -14,9 +14,15 @@
 
     <title>About</title>
     <link rel="stylesheet" href="<c:url value="/static/css/logo.css"/>">
+    <link rel="shortcut icon" href="<c:url value="/static/img/util/page_logo.jpg"/>"/>
 </head>
 <body>
 <jsp:include page="../../header.jsp"/>
+<c:if test="${requestScope.ban_message}">
+    <script>
+        alert("Your account was banned. Please wait until the admin unlocks your account, or create new");
+    </script>
+</c:if>
 <div class="logo">
     <img src="<c:url value="/static/img/util/logo.png"/> " alt="Logo">
 </div>

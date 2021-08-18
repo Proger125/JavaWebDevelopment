@@ -7,9 +7,11 @@ public class PagePath {
     public static final String ADMIN_ACCOUNT_PAGE = "pages/admin/admin_account.jsp";
     public static final String USER_ACCOUNT_PAGE = "pages/user/user_account.jsp";
     public static final String DEFAULT_PAGE = "pages/all/default.jsp";
+    public static final String FORGET_PASSWORD_PAGE = "pages/all/forget_password.jsp";
+    public static final String CHANGE_PASSWORD_PAGE = "pages/all/change_user_password.jsp";
 
     public static final String ALL_USERS_PAGE = "pages/admin/all_users.jsp";
-    public static final String ALL_OFFERS_PAGE = "pages/admin/all_offers.jsp";
+    public static final String ALL_OFFERS_PAGE = "pages/all/all_offers.jsp";
     public static final String ALL_RESERVATIONS_PAGE = "pages/admin/all_reservations.jsp";
 
     public static final String ADD_NEW_OFFER_PAGE = "pages/user/add_new_offer.jsp";
@@ -24,5 +26,8 @@ public class PagePath {
     public static final String GO_TO_OFFER_PAGE = "Controller?command=go_to_offer_page_command";
 
     public static final String GO_TO_ADMIN_ACCOUNT_PAGE = "Controller?command=go_to_admin_account_page_command";
+
+
+    public static final String GO_TO_ADD_PHOTOS_TO_OFFER_BY_ID = "Controller?command=go_to_add_photos_to_offer_by_id";
     private PagePath(){}
 }
