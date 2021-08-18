@@ -21,8 +21,6 @@ public class ConnectionPool {
     private BlockingQueue<ProxyConnection> freeConnections;
     private BlockingQueue<ProxyConnection> usedConnections;
     private ConnectionPool(){
-    }
-    public void init(){
         freeConnections = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
         usedConnections = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++){

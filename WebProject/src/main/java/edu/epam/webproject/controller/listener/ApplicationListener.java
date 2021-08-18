@@ -10,7 +10,6 @@ public class ApplicationListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ServletContextListener.super.contextInitialized(sce);
         ConnectionPool pool = ConnectionPool.getInstance();
-        pool.init();
     }
 
     @Override
