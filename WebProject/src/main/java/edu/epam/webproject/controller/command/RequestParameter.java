@@ -22,7 +22,7 @@ public class RequestParameter {
     public static final String PRICE_PER_DAY = "price_per_day";
     public static final String DESCRIPTION = "description";
 
-    public static final String RESERVATI0N_ID = "reservation_id";
+    public static final String RESERVATION_ID = "reservation_id";
 
     public static final String ARRIVAL_DATE_INDEX = "arrival_date_index";
     public static final String DEPARTURE_DATE_INDEX = "departure_date_index";

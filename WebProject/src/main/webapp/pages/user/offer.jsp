@@ -11,7 +11,7 @@
 <%@ taglib prefix="mytag" uri="customtag" %>
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
 <c:set var="last_page" value="${PagePath.GO_TO_OFFER_PAGE}" scope="session"/>
-<c:if test="${empty requestScope.offer_id}">
+<c:if test="${empty requestScope.offer}">
     <c:redirect url="user_account.jsp"/>
 </c:if>
 <c:if test="${not empty sessionScope.locale}">
@@ -37,6 +37,8 @@
 <fmt:message key="user.emptyList" var="emptyList"/>
 <fmt:message key="header.reservationList" var="reservationList"/>
 <fmt:message key="reservation.inactiveList" var="inactiveList"/>
+<fmt:message key="admin.confirm" var="confirm"/>
+<fmt:message key="admin.ban" var="ban"/>
 <c:set var="offer" value="${requestScope.offer}"/>
 <html>
 <head>
@@ -144,7 +146,7 @@
                                 <input type="hidden" name="offer_id" value="${offer.id}">
                                 <input type="hidden" name="reservation_id" value="${reservation.id}">
                                 <c:if test="${reservation.status == 'IN_PROCESSING'}">
-                                    <button type="submit" value="CONFIRMED" name="status">Confirm</button>
+                                    <button type="submit" value="CONFIRMED" name="status">${confirm}</button>
                                 </c:if>
                             </form>
                         </div>

@@ -16,7 +16,7 @@ public class ChangeReservationStatusCommand implements Command {
     public Router execute(HttpServletRequest req) {
         Router router;
 
-        long reservation_id = Long.parseLong(req.getParameter(RequestParameter.RESERVATI0N_ID));
+        long reservation_id = Long.parseLong(req.getParameter(RequestParameter.RESERVATION_ID));
         long offer_id = Long.parseLong(req.getParameter(RequestParameter.OFFER_ID));
         Reservation.ReservationStatus status = Reservation.ReservationStatus.valueOf(req.getParameter(RequestParameter.STATUS));
 

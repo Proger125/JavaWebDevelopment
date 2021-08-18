@@ -5,9 +5,12 @@ import edu.epam.webproject.exception.DaoException;
 
 import java.util.Optional;
 
+/**
+ * The interface provides methods to interact with {@link User} data from database
+ */
 public interface UserDao extends AbstractDao<User>{
     /**
-     * Adds new user with {@link User.UserStatus#IN_PROCESS} status to database with specified parameters
+     * Adds new {@link} with {@link User.UserStatus#IN_PROCESS} status and with {@link User.Role#USER} role to database with specified parameters
      * @param login - new user login
      * @param email - new user email
      * @param password - new user password
@@ -17,7 +20,7 @@ public interface UserDao extends AbstractDao<User>{
     boolean signUp(String login, String email, String password) throws DaoException;
 
     /**
-     * Check if database contains user with specified parameters
+     * Check if database contains {@link User} with specified parameters
      * @param email - user email
      * @param password - user password
      * @return {@link Optional<User>} which contains {@link User} if there is such user in database,
@@ -57,7 +60,19 @@ public interface UserDao extends AbstractDao<User>{
      */
     User activateUserByEmail(String email) throws DaoException;
 
+    /**
+     * Finds {@link User} by id and returns its status
+     * @param id - users id
+     * @return {@link User.UserStatus}
+     * @throws DaoException when problems with database connection occurs
+     */
     User.UserStatus findUserStatusById(long id) throws DaoException;
 
+    /**
+     * Checks if there is a {@link User} with this email in the database
+     * @param email - users email
+     * @return true if there, false otherwise
+     * @throws DaoException when problems with database connection occurs
+     */
     boolean checkUserByEmail(String email) throws DaoException;
 }

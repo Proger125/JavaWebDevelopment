@@ -43,14 +43,6 @@ public class UserDaoImpl implements UserDao {
         return instance;
     }
 
-    /**
-     * Check if database contains user with specified parameters
-     * @param email - user email
-     * @param password - user password
-     * @return {@link Optional<User>} which contains {@link User} if there is such user in database,
-     * {@link null} otherwise
-     * @throws DaoException when problems with database connection occurs
-     */
     @Override
     public Optional<User> signIn(String email, String password) throws DaoException {
         PasswordEncryptor encryptor = PasswordEncryptor.getInstance();
@@ -71,12 +63,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    /**
-     * Changes {@link User} status
-     * @param id - users id
-     * @param status - new user status
-     * @throws DaoException when problems with database connection occurs
-     */
     @Override
     public void changeUserStatusById(long id, User.UserStatus status) throws DaoException {
         try(Connection connection = pool.getConnection();
@@ -101,12 +87,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    /**
-     * Update {@link User} icon
-     * @param id - users id
-     * @param icon - new users icon
-     * @throws DaoException when problems with database connection occurs
-     */
     @Override
     public void updateUserIconById(long id, String icon) throws DaoException {
         try(Connection connection = pool.getConnection();
@@ -119,12 +99,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    /**
-     * Activates {@link User} account by changing its {@link User.UserStatus} to {@link User.UserStatus#APPROVED}
-     * @param email - users email
-     * @return - {@link User} with all data
-     * @throws DaoException when problems with database connection occurs
-     */
     @Override
     public User activateUserByEmail(String email) throws DaoException {
         User user = new User();
@@ -200,14 +174,6 @@ public class UserDaoImpl implements UserDao {
         return result;
     }
 
-    /**
-     * Adds new user with {@link User.UserStatus#IN_PROCESS} status to database with specified parameters
-     * @param login - new user login
-     * @param email - new user email
-     * @param password - new user password
-     * @return true if user was added to database, false if database contains user with same email
-     * @throws DaoException when problems with database connection occurs
-     */
     @Override
     public boolean signUp(String login, String email, String password) throws DaoException {
 
