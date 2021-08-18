@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class ConnectionFactory {
+class ConnectionFactory {
     private static final Logger logger = LogManager.getLogger(ConnectionFactory.class);
     private static final String URL;
     private static final String DB_URL = "db.url";
