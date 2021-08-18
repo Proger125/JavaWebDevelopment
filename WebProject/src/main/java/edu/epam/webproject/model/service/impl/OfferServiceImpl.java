@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class OfferServiceImpl implements OfferService {
-    private static final DaoProvider provider = DaoProvider.getInstance();
-    private static final OfferDao offerDao = provider.getOfferDao();
+    private final DaoProvider provider = DaoProvider.getInstance();
+    private final OfferDao offerDao = provider.getOfferDao();
     @Override
     public List<Offer> findAllOffers() throws ServiceException {
         try {

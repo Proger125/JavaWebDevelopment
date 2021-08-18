@@ -14,9 +14,9 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class ReservationServiceImpl implements ReservationService {
-    private static final DaoProvider provider = DaoProvider.getInstance();
-    private static final ReservationDao reservationDao = provider.getReservationDao();
-    private static final OfferDao offerDao = provider.getOfferDao();
+    private final DaoProvider provider = DaoProvider.getInstance();
+    private final ReservationDao reservationDao = provider.getReservationDao();
+    private final OfferDao offerDao = provider.getOfferDao();
     @Override
     public List<Reservation> findAllReservations() throws ServiceException {
         try {
@@ -100,7 +100,7 @@ public class ReservationServiceImpl implements ReservationService {
             throw new ServiceException("Unable to handle addNewReservation request at ReservationService", e);
         }
     }
-    private static void setOffer(Reservation reservation) throws DaoException {
+    private void setOffer(Reservation reservation) throws DaoException {
         long offer_id = reservation.getOffer().getId();
         Optional<Offer> optionalOffer = offerDao.findById(offer_id);
         Offer offer = null;

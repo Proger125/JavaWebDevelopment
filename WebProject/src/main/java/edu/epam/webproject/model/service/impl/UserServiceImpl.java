@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
-    private static final DaoProvider daoProvider = DaoProvider.getInstance();
-    private static final UserDao userDao = daoProvider.getUserDao();
+    private final DaoProvider daoProvider = DaoProvider.getInstance();
+    private final UserDao userDao = daoProvider.getUserDao();
 
     @Override
     public Optional<User> signIn(String email, String password) throws ServiceException {
