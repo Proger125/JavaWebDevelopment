@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ReservationDaoImpl implements ReservationDao {
-    private static final ConnectionPool pool = ConnectionPool.getInstance();
+    private final ConnectionPool pool = ConnectionPool.getInstance();
     private static final ReservationDaoImpl instance = new ReservationDaoImpl();
 
     private static final String FIND_ALL_RESERVATIONS_SQL = "SELECT reservations.reservation_id, reservations.tenant_id, " +
@@ -33,7 +33,7 @@ public class ReservationDaoImpl implements ReservationDao {
             "reservation_status.status_type FROM reservations " +
             "JOIN reservation_status ON reservations.status_id = reservation_status.id " +
             "WHERE reservations.offer_id = ? AND reservations.departure_date > ?";
-    private static final String FIND_IN_ACTIVE_RESERVATIONS_BY_OFFER_ID = "SELECT reservations.reservation_id, reservations.tenant_id, " +
+    private static final String FIND_IN_ACTIVE_RESERVATIONS_BY_OFFER_ID_SQL = "SELECT reservations.reservation_id, reservations.tenant_id, " +
             "reservations.offer_id, reservations.arrival_date, reservations.departure_date, reservations.total_price, " +
             "reservation_status.status_type FROM reservations " +
             "JOIN reservation_status ON reservations.status_id = reservation_status.id " +
@@ -98,7 +98,7 @@ public class ReservationDaoImpl implements ReservationDao {
     public List<Reservation> findInActiveReservationsByOfferId(long id) throws DaoException {
         List<Reservation> list = new ArrayList<>();
         try(Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(FIND_IN_ACTIVE_RESERVATIONS_BY_OFFER_ID)){
+            PreparedStatement statement = connection.prepareStatement(FIND_IN_ACTIVE_RESERVATIONS_BY_OFFER_ID_SQL)){
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){

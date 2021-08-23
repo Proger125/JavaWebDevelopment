@@ -31,20 +31,19 @@ public class UploadUserIconCommand implements Command {
         String applicationDir = req.getServletContext().getRealPath("");
         String randFileName = null;
         String uploadFileDir = applicationDir + File.separator + UPLOAD_USER_ICON_DIR + File.separator;
-
+        User user = (User) req.getSession().getAttribute(RequestAttribute.USER);
         try {
-            for (Part part : req.getParts()) {
-                if (part.getSubmittedFileName() != null) {
-                    String path = part.getSubmittedFileName();
-                    randFileName = UUID.randomUUID() + path.substring(path.lastIndexOf("."));
-                    part.write(uploadFileDir + File.separator + randFileName);
+                for (Part part : req.getParts()) {
+                    if (part.getSubmittedFileName() != null) {
+                        String path = part.getSubmittedFileName();
+                        randFileName = UUID.randomUUID() + path.substring(path.lastIndexOf("."));
+                        part.write(uploadFileDir + File.separator + randFileName);
+                    }
                 }
-            }
-            User user = (User) req.getSession().getAttribute(RequestAttribute.USER);
-            String icon = UPLOAD_USER_ICON_DIR + File.separator + randFileName;
-            user.setIcon(icon);
-            req.getSession().setAttribute(RequestAttribute.USER, user);
-            service.updateUserIconById(user.getId(), icon);
+                    String icon = UPLOAD_USER_ICON_DIR + File.separator + randFileName;
+                    user.setIcon(icon);
+                    req.getSession().setAttribute(RequestAttribute.USER, user);
+                    service.updateUserIconById(user.getId(), icon);
             if (user.getRole() == User.Role.ADMIN){
                 router = new Router(PagePath.GO_TO_ADMIN_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
             }else{

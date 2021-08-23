@@ -10,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.Date;
 
+/**
+ * Class functions of custom tag
+ */
 public class DateCellTag extends TagSupport {
     private static final Logger logger = LogManager.getLogger();
     private Date date;
@@ -38,10 +41,10 @@ public class DateCellTag extends TagSupport {
             String tagClass;
             if (isEnable){
                 tagClass = "date-cell-enable";
-                out.write("<div class=\"date-cell "+ tagClass + "\" onclick=\"setArrivalDate()\">"+ DateUtil.getDayOfMonth(date)+ "." + DateUtil.getMonth(date) + "</div>");
+                out.write("<div class=\"date-cell "+ tagClass + "\" onclick=\"setArrivalDate()\">"+ DateUtil.getDayOfMonth(date)+ "." + (DateUtil.getMonth(date) + 1) + "</div>");
             }else{
                 tagClass = "date-cell-disable";
-                out.write("<div class=\"date-cell "+ tagClass + "\">"+ DateUtil.getDayOfMonth(date)+ "." + DateUtil.getMonth(date) + "</div>");
+                out.write("<div class=\"date-cell "+ tagClass + "\">"+ DateUtil.getDayOfMonth(date)+ "." + (DateUtil.getMonth(date) + 1) + "</div>");
             }
 
 

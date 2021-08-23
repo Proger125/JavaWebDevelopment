@@ -57,4 +57,5 @@ function book(){
         data: data,
         dataType: "json"
     });
+    location.assign(url + "go_to_user_account_page_command");
 }

@@ -1,5 +1,8 @@
 package edu.epam.webproject.entity;
 
+/**
+ * Class designed to store information about address
+ */
 public class Address extends Entity{
     private long id;
     private String country;

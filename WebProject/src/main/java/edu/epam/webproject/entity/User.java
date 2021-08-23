@@ -1,6 +1,8 @@
 package edu.epam.webproject.entity;
 
-
+/**
+ * Class designed to store information about user
+ */
 public class User extends Entity{
     private long id;
     private String login;

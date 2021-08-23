@@ -16,7 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-//@WebFilter(urlPatterns = {"/Controller"})
+@WebFilter(urlPatterns = {"/Controller"})
 public class BanFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();
     @Override

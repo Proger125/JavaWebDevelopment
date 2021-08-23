@@ -1,5 +1,8 @@
 package edu.epam.webproject.controller.command;
 
+/**
+ * Class designed to store parameters that could be in the request
+ */
 public class RequestParameter {
     public static final String CONTROLLER = "Controller";
     public static final String COMMAND = "command";

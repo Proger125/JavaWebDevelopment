@@ -15,13 +15,12 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 public class OfferDaoImpl implements OfferDao {
     private static final Logger logger = LogManager.getLogger();
-    private static final ConnectionPool pool = ConnectionPool.getInstance();
+    private final ConnectionPool pool = ConnectionPool.getInstance();
     private static final OfferDaoImpl instance = new OfferDaoImpl();
 
     private static final String FIND_ALL_OFFERS_SQL = "SELECT offers.offer_id, offers.owner_id, addresses.country, " +
@@ -37,14 +36,14 @@ public class OfferDaoImpl implements OfferDao {
             "JOIN addresses ON offers.address_id = addresses.id " +
             "JOIN offer_status ON offers.status_id = offer_status.id " +
             "WHERE offers.owner_id <> ? AND offers.status_id = 1";
-    private static final String FIND_OFFERS_BY_OWNER_ID = "SELECT offers.offer_id, offers.owner_id, addresses.country, " +
+    private static final String FIND_OFFERS_BY_OWNER_ID_SQL = "SELECT offers.offer_id, offers.owner_id, addresses.country, " +
             "addresses.city, addresses.street, addresses.house_number, addresses.apartment_number, offers.price_per_day, " +
             "offers.description, offer_status.status_type " +
             "FROM offers " +
             "JOIN addresses ON offers.address_id = addresses.id " +
             "JOIN offer_status ON offers.status_id = offer_status.id " +
             "WHERE offers.owner_id = ?";
-    private static final String FIND_OFFER_BY_ID = "SELECT offers.offer_id, offers.owner_id, addresses.country, " +
+    private static final String FIND_OFFER_BY_ID_SQL = "SELECT offers.offer_id, offers.owner_id, addresses.country, " +
             "addresses.city, addresses.street, addresses.house_number, addresses.apartment_number, offers.price_per_day, " +
             "offers.description, offer_status.status_type " +
             "FROM offers " +
@@ -52,9 +51,9 @@ public class OfferDaoImpl implements OfferDao {
             "JOIN offer_status ON offers.status_id = offer_status.id " +
             "WHERE offers.offer_id = ?";
     private static final String FIND_PHOTOS_BY_OFFER_ID_SQL = "SELECT url FROM photos WHERE offer_id = ?";
-    private static final String CHANGE_OFFER_STATUS_BY_ID = "UPDATE offers SET status_id = ? WHERE offer_id = ?";
-    private static final String SELECT_ADDRESS_BY_DATA = "SELECT id FROM addresses WHERE country = ? AND city = ? AND street = ? AND house_number = ? AND apartment_number = ?";
-    private static final String SELECT_OFFER_BY_ADDRESS = "SELECT offer_id FROM offers WHERE address_id = ?";
+    private static final String CHANGE_OFFER_STATUS_BY_ID_SQL = "UPDATE offers SET status_id = ? WHERE offer_id = ?";
+    private static final String SELECT_ADDRESS_BY_DATA_SQL = "SELECT id FROM addresses WHERE country = ? AND city = ? AND street = ? AND house_number = ? AND apartment_number = ?";
+    private static final String SELECT_OFFER_BY_ADDRESS_SQL = "SELECT offer_id FROM offers WHERE address_id = ?";
     private static final String INSERT_NEW_ADDRESS_SQL = "INSERT INTO addresses (country, city, street, house_number, apartment_number) VALUES (?, ?, ?, ?, ?)";
     private static final String INSERT_NEW_OFFER_SQL = "INSERT INTO offers (owner_id, address_id, price_per_day, description, status_id) VALUES (?, ?, ?, ?, ?)";
     private static final String INSERT_NEW_PHOTO_SQL = "INSERT INTO photos (offer_id, url) VALUES (?, ?)";
@@ -71,7 +70,7 @@ public class OfferDaoImpl implements OfferDao {
             connection = pool.getConnection();
             connection.setAutoCommit(false);
 
-            PreparedStatement statement = connection.prepareStatement(FIND_OFFERS_BY_OWNER_ID);
+            PreparedStatement statement = connection.prepareStatement(FIND_OFFERS_BY_OWNER_ID_SQL);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
@@ -104,7 +103,7 @@ public class OfferDaoImpl implements OfferDao {
     @Override
     public void changeOfferStatusById(long id, Offer.OfferStatus status) throws DaoException {
         try(Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(CHANGE_OFFER_STATUS_BY_ID)) {
+            PreparedStatement statement = connection.prepareStatement(CHANGE_OFFER_STATUS_BY_ID_SQL)) {
             statement.setInt(ChangeOfferStatusIndex.STATUS, status.getValue());
             statement.setLong(ChangeOfferStatusIndex.OFFER_ID, id);
             statement.execute();
@@ -123,7 +122,7 @@ public class OfferDaoImpl implements OfferDao {
             connection = pool.getConnection();
             connection.setAutoCommit(false);
 
-            PreparedStatement selectAddressByDataStatement = connection.prepareStatement(SELECT_ADDRESS_BY_DATA);
+            PreparedStatement selectAddressByDataStatement = connection.prepareStatement(SELECT_ADDRESS_BY_DATA_SQL);
             fillAddressStatement(selectAddressByDataStatement, country, city, street, houseNumber, apartmentNumber);
             resultSet = selectAddressByDataStatement.executeQuery();
             if (resultSet.next()){
@@ -134,7 +133,7 @@ public class OfferDaoImpl implements OfferDao {
             fillAddressStatement(insertAddressStatement, country, city, street, houseNumber, apartmentNumber);
             insertAddressStatement.execute();
 
-            PreparedStatement getAddressByIdStatement = connection.prepareStatement(SELECT_ADDRESS_BY_DATA);
+            PreparedStatement getAddressByIdStatement = connection.prepareStatement(SELECT_ADDRESS_BY_DATA_SQL);
             fillAddressStatement(getAddressByIdStatement, country, city, street, houseNumber, apartmentNumber);
             resultSet = selectAddressByDataStatement.executeQuery();
             if (resultSet.next()){
@@ -148,7 +147,7 @@ public class OfferDaoImpl implements OfferDao {
             insertOfferStatement.setInt(InsertOfferIndex.STATUS_ID, 1);
             insertOfferStatement.execute();
 
-            PreparedStatement selectOfferId = connection.prepareStatement(SELECT_OFFER_BY_ADDRESS);
+            PreparedStatement selectOfferId = connection.prepareStatement(SELECT_OFFER_BY_ADDRESS_SQL);
             selectOfferId.setLong(1, addressId);
             resultSet = selectOfferId.executeQuery();
             if (resultSet.next()){
@@ -259,7 +258,7 @@ public class OfferDaoImpl implements OfferDao {
             connection = pool.getConnection();
             connection.setAutoCommit(false);
 
-            PreparedStatement statement = connection.prepareStatement(FIND_OFFER_BY_ID);
+            PreparedStatement statement = connection.prepareStatement(FIND_OFFER_BY_ID_SQL);
             statement.setLong(1, id);
             ResultSet set = statement.executeQuery();
 

@@ -1,5 +1,8 @@
 package edu.epam.webproject.controller.command;
 
+/**
+ * Enum designed to store all command types
+ */
 public enum CommandType {
     SIGN_IN_COMMAND,
     SIGN_UP_COMMAND,

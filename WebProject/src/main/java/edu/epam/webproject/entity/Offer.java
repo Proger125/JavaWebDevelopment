@@ -4,6 +4,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class designed to store information about offer
+ */
 public class Offer extends Entity{
     private long id;
     private User owner;
@@ -68,10 +71,6 @@ public class Offer extends Entity{
         photos.add(photo);
     }
 
-    public void removePhoto(String photo){
-        photos.remove(photo);
-    }
-
     public List<String> getPhotos() {
         return photos;
     }
@@ -120,6 +119,7 @@ public class Offer extends Entity{
         builder.append("}");
         return builder.toString();
     }
+
     public enum OfferStatus {
         ACTIVE(1),
         INACTIVE(2);

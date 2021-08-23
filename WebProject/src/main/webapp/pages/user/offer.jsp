@@ -161,6 +161,6 @@
         </div>
     </c:if>
     <jsp:include page="../../footer.jsp"/>
-<script src="<c:url value="/static/js/offer.js"/> "></script>
+<script src="<c:url value="/static/js/offers.js"/> "></script>
 </body>
 </html>

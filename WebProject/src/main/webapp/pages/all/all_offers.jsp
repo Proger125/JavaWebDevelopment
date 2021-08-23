@@ -14,7 +14,7 @@
 <c:if test="${empty requestScope.offers_list && sessionScope.role == 'ADMIN'}">
     <c:redirect url="../admin/admin_account.jsp"/>
 </c:if>
-<c:if test="${empty requestScope.reservations_list && sessionScope.role == 'USER'}">
+<c:if test="${empty requestScope.offers_list && sessionScope.role == 'USER'}">
     <c:redirect url="../user/user_account.jsp"/>
 </c:if>
 
@@ -83,7 +83,7 @@
                 </c:if>
                 <c:if test="${sessionScope.role == 'USER'}">
                     <div class="user-functions">
-                        <form action="<c:url value="/Controller"/>" method="post" >
+                        <form action="<c:url value="/Controller"/>" method="post">
                             <input type="hidden" name="command" value="go_to_offer_page_command">
                             <input type="hidden" name="offer_id" value="${offer.id}">
                             <button type="submit">

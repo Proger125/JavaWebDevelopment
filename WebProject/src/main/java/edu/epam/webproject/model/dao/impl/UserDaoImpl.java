@@ -18,7 +18,7 @@ import java.util.Optional;
 public class UserDaoImpl implements UserDao {
     private static final Logger logger = LogManager.getLogger();
     private static final UserDaoImpl instance = new UserDaoImpl();
-    private static final ConnectionPool pool = ConnectionPool.getInstance();
+    private final ConnectionPool pool = ConnectionPool.getInstance();
 
     private static final String SIGN_UP_SQL = "INSERT INTO users (login, password, email, role_id, status_id) VALUES (?, ?, ?, ?, ?)";
     private static final String FIND_USER_BY_EMAIL_SQL = "SELECT users.user_id, users.password, users.login, users.email, users.icon, roles.role_type, user_status.status_type " +
@@ -33,9 +33,9 @@ public class UserDaoImpl implements UserDao {
     private static final String CHANGE_USER_STATUS_BY_ID_SQL = "UPDATE users SET status_id = ? WHERE user_id = ?";
     private static final String CHANGE_USER_STATUS_BY_EMAIL_SQL = "UPDATE users SET status_id = ? WHERE email = ?";
     private static final String UPDATE_USER_ICON_BY_ID_SQL = "UPDATE users SET icon = ? WHERE user_id = ?";
-    private static final String FIND_USER_STATUS_BY_ID = "SELECT user_status.status_type FROM users JOIN user_status ON users.status_id = user_status.status_id WHERE user_id = ?";
-    private static final String CHECK_USER_BY_EMAIL = "SELECT user_id FROM users WHERE email = ?";
-    private static final String UPDATE_USER_PASSWORD_BY_EMAIL = "UPDATE users SET password = ? WHERE email = ?";
+    private static final String FIND_USER_STATUS_BY_ID_SQL = "SELECT user_status.status_type FROM users JOIN user_status ON users.status_id = user_status.status_id WHERE user_id = ?";
+    private static final String CHECK_USER_BY_EMAIL_SQL = "SELECT user_id FROM users WHERE email = ?";
+    private static final String UPDATE_USER_PASSWORD_BY_EMAIL_SQL = "UPDATE users SET password = ? WHERE email = ?";
     private UserDaoImpl(){
     }
 
@@ -78,7 +78,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void setPasswordByEmail(String email, String password) throws DaoException {
         try(Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(UPDATE_USER_PASSWORD_BY_EMAIL)){
+            PreparedStatement statement = connection.prepareStatement(UPDATE_USER_PASSWORD_BY_EMAIL_SQL)){
             statement.setString(UpdateUserPasswordIndex.PASSWORD, password);
             statement.setString(UpdateUserPasswordIndex.EMAIL, email);
             statement.execute();
@@ -146,7 +146,7 @@ public class UserDaoImpl implements UserDao {
     public User.UserStatus findUserStatusById(long id) throws DaoException {
         User.UserStatus status = null;
         try(Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(FIND_USER_STATUS_BY_ID)) {
+            PreparedStatement statement = connection.prepareStatement(FIND_USER_STATUS_BY_ID_SQL)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){
@@ -162,7 +162,7 @@ public class UserDaoImpl implements UserDao {
     public boolean checkUserByEmail(String email) throws DaoException {
         boolean result = false;
         try(Connection connection = pool.getConnection();
-            PreparedStatement statement = connection.prepareStatement(CHECK_USER_BY_EMAIL)){
+            PreparedStatement statement = connection.prepareStatement(CHECK_USER_BY_EMAIL_SQL)){
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){

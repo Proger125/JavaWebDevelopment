@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+/**
+ * Class that provides wrapper for {@link Connection}
+ */
 public class ProxyConnection implements Connection {
     private Connection connection;
     ProxyConnection(Connection connection){

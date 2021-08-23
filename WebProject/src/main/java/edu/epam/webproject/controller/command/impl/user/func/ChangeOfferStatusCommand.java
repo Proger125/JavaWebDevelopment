@@ -25,7 +25,7 @@ public class ChangeOfferStatusCommand implements Command {
             offerService.changeOfferStatusById(id, Offer.OfferStatus.valueOf(status));
 
             if(role == User.Role.ADMIN){
-                router = new Router(PagePath.GO_TO_ADMIN_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+                router = new Router(PagePath.GO_TO_ALL_OFFERS_PAGE, Router.RouterType.FORWARD);
             }else{
                 router = new Router(PagePath.GO_TO_USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
             }

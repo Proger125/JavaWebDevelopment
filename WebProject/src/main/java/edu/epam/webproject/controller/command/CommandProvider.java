@@ -12,9 +12,23 @@ import edu.epam.webproject.controller.command.impl.user.go.*;
 
 import java.util.EnumMap;
 
+/**
+ * Class provides methods to interact with commands
+ */
 public class CommandProvider {
+    /**
+     * Instance of singleton
+     */
     private static final CommandProvider instance = new CommandProvider();
+
+    /**
+     * Enum map that contains type of command as a key and command as a value
+     */
     private final EnumMap<CommandType, Command> commands = new EnumMap<>(CommandType.class);
+
+    /**
+     * Private constructor that initialize enum map
+     */
     private CommandProvider(){
         commands.put(CommandType.SIGN_UP_COMMAND, new SignUpCommand());
         commands.put(CommandType.SIGN_IN_COMMAND, new SignInCommand());
@@ -47,12 +61,19 @@ public class CommandProvider {
         commands.put(CommandType.DEFAULT, new DefaultCommand());
     }
 
-
+    /**
+     * Returns instance of singleton
+     * @return {@link CommandProvider}
+     */
     public static CommandProvider getInstance(){
         return instance;
     }
 
-
+    /**
+     * Return {@link Command} by its string representation
+     * @param command - string representation of command
+     * @return {@link Command}
+     */
     public Command getCommand(String command){
         if (command == null){
             return commands.get(CommandType.DEFAULT);

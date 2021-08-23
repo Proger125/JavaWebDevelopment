@@ -1,5 +1,8 @@
 package edu.epam.webproject.controller.command;
 
+/**
+ * Class designed to store attributes that could be in the request
+ */
 public class RequestAttribute {
     public static final String EXCEPTION = "exception";
     public static final String DUPLICATE_EMAIL = "duplicate_email";

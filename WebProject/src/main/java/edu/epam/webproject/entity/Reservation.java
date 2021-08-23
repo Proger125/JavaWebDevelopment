@@ -3,6 +3,9 @@ package edu.epam.webproject.entity;
 import java.math.BigInteger;
 import java.util.Date;
 
+/**
+ * Class designed to store information about reservation
+ */
 public class Reservation extends Entity{
     private long id;
     private User tenant;

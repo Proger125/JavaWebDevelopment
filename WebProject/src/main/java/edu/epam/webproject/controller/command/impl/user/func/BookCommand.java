@@ -31,7 +31,7 @@ public class BookCommand implements Command {
         ReservationService service = provider.getReservationService();
         try{
             service.addNewReservation(user.getId(), offer_id, allDays.get(arrivalDateIndex), allDays.get(departureDate), pricePerDay);
-            router = new Router(PagePath.GO_TO_USER_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
+            router = new Router(null, Router.RouterType.FORWARD);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Can't find all offers");
             req.getSession().setAttribute(RequestAttribute.EXCEPTION, e);

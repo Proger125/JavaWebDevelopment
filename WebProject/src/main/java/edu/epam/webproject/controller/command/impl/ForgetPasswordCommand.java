@@ -23,7 +23,7 @@ public class ForgetPasswordCommand implements Command {
         try{
             boolean result = service.checkUserByEmail(email);
             if (result){
-                MailSender.setForgetPasswordLetter(email);
+                MailSender.sendForgetPasswordLetter(email);
                 req.setAttribute(RequestAttribute.EMAIL, email);
                 router = new Router(PagePath.FORGET_PASSWORD_PAGE, Router.RouterType.FORWARD);
             }else{

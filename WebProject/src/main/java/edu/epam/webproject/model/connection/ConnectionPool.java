@@ -13,13 +13,43 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Class that provides connections to database
+ */
 public class ConnectionPool {
-    private static Logger logger = LogManager.getLogger();
+    /**
+     * @see Logger
+     */
+    private static final Logger logger = LogManager.getLogger();
+
+    /**
+     * Size of connection pool
+     */
     private static final int DEFAULT_POOL_SIZE = 4;
+
+    /**
+     * Instance of thread safe singleton
+     */
     private static ConnectionPool instance = new ConnectionPool();
-    private static AtomicBoolean isCreated = new AtomicBoolean(false);
+
+    /**
+     * Auxiliary object to make singleton thread safe
+     */
+    private static final AtomicBoolean isCreated = new AtomicBoolean(false);
+
+    /**
+     * Queue that contains free connections
+     */
     private BlockingQueue<ProxyConnection> freeConnections;
+
+    /**
+     * Queue that contains connections used by users
+     */
     private BlockingQueue<ProxyConnection> usedConnections;
+
+    /**
+     * Private constructor that initialize connection pool
+     */
     private ConnectionPool(){
         freeConnections = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
         usedConnections = new LinkedBlockingQueue<>(DEFAULT_POOL_SIZE);
@@ -39,6 +69,11 @@ public class ConnectionPool {
             throw new RuntimeException("Unable to create all connections");
         }
     }
+
+    /**
+     * Returns the instance of {@link ConnectionPool}
+     * @return {@link ConnectionPool} object
+     */
     public static ConnectionPool getInstance(){
         while (instance == null){
             if (isCreated.compareAndSet(false, true)){
@@ -47,6 +82,11 @@ public class ConnectionPool {
         }
         return instance;
     }
+
+    /**
+     * Returns free {@link Connection} to user
+     * @return free {@link ProxyConnection} from freeConnections queue
+     */
     public Connection getConnection(){
         ProxyConnection connection = null;
         try{
@@ -57,10 +97,16 @@ public class ConnectionPool {
         }
         return connection;
     }
-    public void releaseConnection(Connection connection){
+
+    /**
+     * Releases used {@link Connection} to {@link ConnectionPool}
+     * @param connection - released connection
+     * @return true if it's possible to release connection, false otherwise
+     */
+    public boolean releaseConnection(Connection connection){
         if (!(connection instanceof ProxyConnection)){
-            logger.log(Level.FATAL, "Incorrect connection: " + connection);
-            throw new RuntimeException("Incorrect connection: " + connection);
+            logger.log(Level.ERROR, "Incorrect connection: " + connection);
+            return false;
         }
         usedConnections.remove(connection);
         try {
@@ -68,7 +114,12 @@ public class ConnectionPool {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+        return true;
     }
+
+    /**
+     * Destroys {@link ConnectionPool}
+     */
     public void destroy(){
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++){
             try{
@@ -77,7 +128,12 @@ public class ConnectionPool {
                 logger.log(Level.ERROR, "Connection wasn't deleted");
             }
         }
+        deregisterDrivers();
     }
+
+    /**
+     * Deregister database drivers
+     */
     private void deregisterDrivers(){
         Enumeration<Driver> drivers = DriverManager.getDrivers();
         while (drivers.hasMoreElements()){
