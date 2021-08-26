@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
+<%@ page import="edu.epam.webproject.validator.ValidatorRegExp" %>
 <c:set var="last_page" value="${PagePath.ADD_NEW_OFFER_PAGE}" scope="session"/>
 
 <c:if test="${not empty sessionScope.locale}">
@@ -25,6 +26,7 @@
 <fmt:message key="offer.photos" var="photos"/>
 <fmt:message key="offer.create" var="create_offer"/>
 <fmt:message key="error.duplicateAddress" var="duplicateAddress"/>
+<fmt:message key="error.incorrectOfferData" var="incorrectOfferData"/>
 <html>
 <head>
     <title>Add new offer</title>
@@ -41,39 +43,39 @@
                 <div class="form-item">
                     <label for="country-input">${country}:</label>
                     <br>
-                    <input type="text" id="country-input" name="country" value="">
+                    <input type="text" id="country-input" name="country" pattern="${ValidatorRegExp.ADDRESS_STRING_REGEXP}">
                 </div>
                 <div class="form-item">
                     <label for="city-input">${city}:</label>
                     <br>
-                    <input type="text" id="city-input" name="city">
+                    <input type="text" id="city-input" name="city" pattern="${ValidatorRegExp.ADDRESS_STRING_REGEXP}">
                 </div>
                 <div class="form-item">
                     <label for="street-input">${street}:</label>
                     <br>
-                    <input type="text" id="street-input" name="street">
+                    <input type="text" id="street-input" name="street" pattern="${ValidatorRegExp.ADDRESS_STRING_REGEXP}">
                 </div>
                 <div class="form-item">
                     <label for="houseNumber-input">${houseNumber}:</label>
                     <br>
-                    <input type="text" id="houseNumber-input" name="house_number">
+                    <input type="text" id="houseNumber-input" name="house_number" ${ValidatorRegExp.ADDRESS_NUMBER_REGEXP}>
                 </div>
                 <div class="form-item">
                     <label for="apartmentNumber-input">${apartmentNumber}:</label>
                     <br>
-                    <input type="text" id="apartmentNumber-input" name="apartment_number">
+                    <input type="text" id="apartmentNumber-input" name="apartment_number" pattern="${ValidatorRegExp.ADDRESS_NUMBER_REGEXP}">
                 </div>
             </div>
             <div class="form-block">
                 <div class="form-item">
                     <label for="description-input">${description}:</label>
                     <br>
-                    <textarea id="description-input" name="description" rows="10" cols="30"></textarea>
+                    <textarea id="description-input" name="description" rows="10" cols="30" ></textarea>
                 </div>
                 <div class="form-item">
                     <label for="price-input">${price}</label>
                     <br>
-                    <input type="text" id="price-input" name="price_per_day">
+                    <input type="text" id="price-input" name="price_per_day" pattern="${ValidatorRegExp.ADDRESS_NUMBER_REGEXP}">
                 </div>
             </div>
             <button type="submit">${create_offer}</button>
@@ -84,6 +86,11 @@
 <c:if test="${sessionScope.duplicate_address == true}">
     <script>
         alert("${duplicateAddress}");
+    </script>
+</c:if>
+<c:if test="${sessionScope.incorrectData == true}">
+    <script>
+        alert("${incorrectOfferData}");
     </script>
 </c:if>
 </body>

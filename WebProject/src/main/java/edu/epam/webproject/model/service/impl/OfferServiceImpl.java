@@ -6,6 +6,7 @@ import edu.epam.webproject.exception.ServiceException;
 import edu.epam.webproject.model.dao.DaoProvider;
 import edu.epam.webproject.model.dao.OfferDao;
 import edu.epam.webproject.model.service.OfferService;
+import edu.epam.webproject.validator.OfferValidator;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -66,11 +67,17 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public long addNewOffer(long owner_id, BigInteger pricePerDay, String description, String country, String city, String street, int houseNumber, int apartmentNumber) throws ServiceException {
+        long result;
         try {
-            return offerDao.addNewOffer(owner_id, pricePerDay, description, country, city, street, houseNumber, apartmentNumber);
+            if (OfferValidator.validateOffer(country, city, street, houseNumber, apartmentNumber, pricePerDay, description)){
+                result =  offerDao.addNewOffer(owner_id, pricePerDay, description, country, city, street, houseNumber, apartmentNumber);
+            }else{
+                result = -1;
+            }
         } catch (DaoException e) {
             throw new ServiceException("Unable to handle addNewOffer request at OfferService");
         }
+        return result;
     }
 
     @Override

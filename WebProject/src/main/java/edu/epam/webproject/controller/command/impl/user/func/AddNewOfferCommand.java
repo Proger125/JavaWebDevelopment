@@ -30,10 +30,13 @@ public class AddNewOfferCommand implements Command {
         OfferService offerService = provider.getOfferService();
         try {
             long result = offerService.addNewOffer(owner_id, pricePerDay, description, country, city, street, houseNumber, apartmentNumber);
-            if (result != 0){
+            if (result > 0){
                 req.getSession().setAttribute(RequestAttribute.OFFER_ID, result);
                 req.setAttribute(RequestAttribute.OFFER_ID, result);
                 router = new Router(PagePath.ADD_PHOTOS_PAGE, Router.RouterType.FORWARD);
+            }else if (result < 0){
+                req.getSession().setAttribute(RequestAttribute.INCORRECT_DATA, true);
+                router = new Router(PagePath.ADD_NEW_OFFER_PAGE, Router.RouterType.REDIRECT);
             }else{
                 req.getSession().setAttribute(RequestAttribute.DUPLICATE_ADDRESS, true);
                 router = new Router(PagePath.ADD_NEW_OFFER_PAGE, Router.RouterType.REDIRECT);
