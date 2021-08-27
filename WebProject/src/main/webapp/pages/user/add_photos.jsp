@@ -11,7 +11,7 @@
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
 <c:set var="last_page" value="${PagePath.GO_TO_ADD_PHOTOS_TO_OFFER_BY_ID}" scope="session"/>
 <c:if test="${empty requestScope.offer_id}">
-    <c:redirect url="add_new_offer.jsp"/>
+    <c:redirect url="${PagePath.GO_TO_ADD_PHOTOS_TO_OFFER_BY_ID}"/>
 </c:if>
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>

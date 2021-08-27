@@ -11,6 +11,9 @@
 <%@ taglib prefix="mytag" uri="customtag" %>
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
 <c:set var="last_page" value="${PagePath.GO_TO_OFFER_PAGE}" scope="session"/>
+<c:if test="${empty sessionScope.user}">
+    <c:redirect url="/Controller?command=go_to_about_page_command"/>
+</c:if>
 <c:if test="${empty requestScope.offer}">
     <c:redirect url="user_account.jsp"/>
 </c:if>

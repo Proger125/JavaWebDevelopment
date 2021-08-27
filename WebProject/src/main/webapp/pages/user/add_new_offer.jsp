@@ -11,7 +11,9 @@
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
 <%@ page import="edu.epam.webproject.validator.ValidatorRegExp" %>
 <c:set var="last_page" value="${PagePath.ADD_NEW_OFFER_PAGE}" scope="session"/>
-
+<c:if test="${empty sessionScope.user}">
+    <c:redirect url="/Controller?command=go_to_about_page_command"/>
+</c:if>
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>
 </c:if>
@@ -37,7 +39,7 @@
 <jsp:include page="../../header.jsp"/>
 <div class="data">
     <div class="add-new-offer-form">
-        <form action="<c:url value="/Controller"/>">
+        <form action="<c:url value="/Controller"/>" method="post">
             <input type="hidden" name="command" value="add_new_offer_command">
             <div class="form-block">
                 <div class="form-item">

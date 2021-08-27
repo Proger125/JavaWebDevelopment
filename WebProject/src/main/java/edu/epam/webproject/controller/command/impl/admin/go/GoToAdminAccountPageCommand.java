@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class GoToAdminAccountPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest req) {
-        Router router = new Router(PagePath.ADMIN_ACCOUNT_PAGE, Router.RouterType.FORWARD);
+        Router router = new Router(PagePath.ADMIN_ACCOUNT_PAGE, Router.RouterType.REDIRECT);
         return router;
     }
 }
