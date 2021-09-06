@@ -8,10 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<c:set var="last_page" value="${PagePath.GO_TO_ADMIN_ACCOUNT_PAGE}" scope="session"/>
-<c:if test="${empty sessionScope.user}">
-    <c:redirect url="/Controller?command=go_to_about_page_command"/>
-</c:if>
+<c:set var="last_page" value="${PagePath.ADMIN_ACCOUNT_PAGE}" scope="session"/>
 <c:if test="${not empty sessionScope.locale}">
     <fmt:setLocale value="${sessionScope.locale}"/>
 </c:if>

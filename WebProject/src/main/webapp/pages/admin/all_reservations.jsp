@@ -10,9 +10,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
 <c:set var="last_page" value="${PagePath.GO_TO_ALL_RESERVATIONS_PAGE}" scope="session"/>
-<c:if test="${empty sessionScope.user}">
-    <c:redirect url="/Controller?command=go_to_about_page_command"/>
-</c:if>
 <c:if test="${empty requestScope.reservations_list}">
     <c:redirect url="admin_account.jsp"/>
 </c:if>

@@ -11,9 +11,6 @@
 <%@ page import="edu.epam.webproject.controller.command.PagePath" %>
 <c:set var="last_page" value="${PagePath.GO_TO_ALL_OFFERS_PAGE}" scope="session"/>
 
-<c:if test="${empty sessionScope.user}">
-    <c:redirect url="/Controller?command=go_to_about_page_command"/>
-</c:if>
 <c:if test="${empty requestScope.offers_list && sessionScope.role == 'ADMIN'}">
     <c:redirect url="../admin/admin_account.jsp"/>
 </c:if>

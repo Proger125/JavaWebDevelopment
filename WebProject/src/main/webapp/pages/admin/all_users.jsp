@@ -10,9 +10,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <c:set var="last_page" value="${PagePath.GO_TO_ALL_USERS_PAGE}" scope="session"/>
-<c:if test="${empty sessionScope.user}">
-    <c:redirect url="/Controller?command=go_to_about_page_command"/>
-</c:if>
 <c:if test="${empty requestScope.users_list}">
     <c:redirect url="admin_account.jsp"/>
 </c:if>
